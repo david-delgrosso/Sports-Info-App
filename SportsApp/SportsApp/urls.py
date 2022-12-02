@@ -24,5 +24,7 @@ urlpatterns = [
     path(route='', view=views.home, name='home'),
     path(route='a', view=views.scrape_games, name='scrape_games'),
     path(route='b', view=views.show_games, name='show_games'),
+    path(route='c', view=views.clear_schedule, name='clear_schedule'),
+    path(route='d', view=views.load_schedule, name='load_schedule'),
     path(route='mlb/', view=views.load_mlb, name="load_mlb"),
 ]
