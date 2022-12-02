@@ -3,7 +3,7 @@ from django.db import models
 class Schedule(models.Model):
     home_team = models.CharField(max_length=30)
     away_team = models.CharField(max_length=30)
-    time = models.TimeField()
+    time = models.TimeField('%H:%M')
     date = models.DateField()
     sport = models.CharField(max_length=10)
 

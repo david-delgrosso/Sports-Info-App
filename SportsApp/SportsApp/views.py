@@ -15,7 +15,8 @@ def clear_schedule(request):
 def load_schedule(request):
     context = {}
     nba_games = load_nba_schedule()
-
+    context['nba_games'] = nba_games
+    print(context)
     return render(request, 'SportsApp/index.html', context)
 
 def scrape_games(request):

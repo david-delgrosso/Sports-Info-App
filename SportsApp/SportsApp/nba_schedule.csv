@@ -1,0 +1,1231 @@
+sport,date,home_team,away_team,time
+NBA,2022-10-18,Philadelphia,Boston,19:30
+NBA,2022-10-18,LA Lakers,Golden State,22:00
+NBA,2022-10-19,Orlando,Detroit,19:00
+NBA,2022-10-19,Washington,Indiana,19:00
+NBA,2022-10-19,Houston,Atlanta,19:30
+NBA,2022-10-19,New Orleans,Brooklyn,19:30
+NBA,2022-10-19,Chicago,Miami,19:30
+NBA,2022-10-19,Cleveland,Toronto,19:30
+NBA,2022-10-19,New York,Memphis,19:30
+NBA,2022-10-19,Okla City,Minnesota,20:00
+NBA,2022-10-19,Charlotte,San Antonio,20:00
+NBA,2022-10-19,Denver,Utah,21:00
+NBA,2022-10-19,Dallas,Phoenix,22:00
+NBA,2022-10-19,Portland,Sacramento,22:00
+NBA,2022-10-20,Milwaukee,Philadelphia,19:30
+NBA,2022-10-20,LA Clippers,LA Lakers,22:00
+NBA,2022-10-21,New Orleans,Charlotte,19:00
+NBA,2022-10-21,San Antonio,Indiana,19:00
+NBA,2022-10-21,Chicago,Washington,19:00
+NBA,2022-10-21,Orlando,Atlanta,19:30
+NBA,2022-10-21,Toronto,Brooklyn,19:30
+NBA,2022-10-21,Boston,Miami,19:30
+NBA,2022-10-21,Detroit,New York,19:30
+NBA,2022-10-21,Memphis,Houston,20:00
+NBA,2022-10-21,Utah,Minnesota,20:00
+NBA,2022-10-21,Denver,Golden State,22:00
+NBA,2022-10-21,Phoenix,Portland,22:00
+NBA,2022-10-22,San Antonio,Philadelphia,18:00
+NBA,2022-10-22,Detroit,Indiana,19:00
+NBA,2022-10-22,Boston,Orlando,19:00
+NBA,2022-10-22,Toronto,Miami,20:00
+NBA,2022-10-22,Cleveland,Chicago,20:00
+NBA,2022-10-22,Houston,Milwaukee,20:00
+NBA,2022-10-22,Memphis,Dallas,20:30
+NBA,2022-10-22,Okla City,Denver,21:00
+NBA,2022-10-22,LA Clippers,Sacramento,22:00
+NBA,2022-10-23,Portland,LA Lakers,15:30
+NBA,2022-10-23,Charlotte,Atlanta,17:00
+NBA,2022-10-23,Washington,Cleveland,19:00
+NBA,2022-10-23,Utah,New Orleans,19:00
+NBA,2022-10-23,Minnesota,Okla City,20:00
+NBA,2022-10-23,Sacramento,Golden State,20:30
+NBA,2022-10-23,Phoenix,LA Clippers,22:00
+NBA,2022-10-24,Indiana,Philadelphia,19:00
+NBA,2022-10-24,Toronto,Miami,19:30
+NBA,2022-10-24,Orlando,New York,19:30
+NBA,2022-10-24,Boston,Chicago,20:00
+NBA,2022-10-24,Utah,Houston,20:00
+NBA,2022-10-24,Brooklyn,Memphis,20:00
+NBA,2022-10-24,San Antonio,Minnesota,20:00
+NBA,2022-10-24,Denver,Portland,22:00
+NBA,2022-10-25,Detroit,Washington,19:00
+NBA,2022-10-25,Dallas,New Orleans,19:30
+NBA,2022-10-25,LA Clippers,Okla City,20:00
+NBA,2022-10-25,Golden State,Phoenix,22:00
+NBA,2022-10-26,Orlando,Cleveland,19:00
+NBA,2022-10-26,Atlanta,Detroit,19:00
+NBA,2022-10-26,Charlotte,New York,19:30
+NBA,2022-10-26,Philadelphia,Toronto,19:30
+NBA,2022-10-26,Brooklyn,Milwaukee,19:30
+NBA,2022-10-26,Indiana,Chicago,20:00
+NBA,2022-10-26,San Antonio,Minnesota,20:00
+NBA,2022-10-26,Houston,Utah,21:00
+NBA,2022-10-26,LA Lakers,Denver,22:00
+NBA,2022-10-26,Miami,Portland,22:00
+NBA,2022-10-27,Dallas,Brooklyn,19:30
+NBA,2022-10-27,LA Clippers,Okla City,20:00
+NBA,2022-10-27,Miami,Golden State,22:00
+NBA,2022-10-27,Memphis,Sacramento,22:00
+NBA,2022-10-28,Atlanta,Detroit,19:00
+NBA,2022-10-28,Charlotte,Orlando,19:00
+NBA,2022-10-28,Cleveland,Boston,19:30
+NBA,2022-10-28,Philadelphia,Toronto,19:30
+NBA,2022-10-28,Indiana,Washington,19:30
+NBA,2022-10-28,New York,Milwaukee,20:00
+NBA,2022-10-28,LA Lakers,Minnesota,20:00
+NBA,2022-10-28,Chicago,San Antonio,20:30
+NBA,2022-10-28,Utah,Denver,21:00
+NBA,2022-10-28,New Orleans,Phoenix,22:00
+NBA,2022-10-28,Houston,Portland,22:00
+NBA,2022-10-29,Miami,Sacramento,18:00
+NBA,2022-10-29,Golden State,Charlotte,19:00
+NBA,2022-10-29,Indiana,Brooklyn,19:30
+NBA,2022-10-29,Philadelphia,Chicago,20:00
+NBA,2022-10-29,Atlanta,Milwaukee,20:00
+NBA,2022-10-29,Okla City,Dallas,21:00
+NBA,2022-10-29,Memphis,Utah,21:00
+NBA,2022-10-30,New Orleans,LA Clippers,15:00
+NBA,2022-10-30,Washington,Boston,18:00
+NBA,2022-10-30,New York,Cleveland,18:00
+NBA,2022-10-30,Golden State,Detroit,18:00
+NBA,2022-10-30,Minnesota,San Antonio,19:00
+NBA,2022-10-30,Orlando,Dallas,19:30
+NBA,2022-10-30,Houston,Phoenix,21:00
+NBA,2022-10-30,Denver,LA Lakers,21:30
+NBA,2022-10-31,Sacramento,Charlotte,19:00
+NBA,2022-10-31,Philadelphia,Washington,19:00
+NBA,2022-10-31,Indiana,Brooklyn,19:30
+NBA,2022-10-31,Atlanta,Toronto,19:30
+NBA,2022-10-31,Detroit,Milwaukee,20:00
+NBA,2022-10-31,Memphis,Utah,21:00
+NBA,2022-10-31,Houston,LA Clippers,22:30
+NBA,2022-11-1,Chicago,Brooklyn,19:30
+NBA,2022-11-1,Golden State,Miami,19:30
+NBA,2022-11-1,Orlando,Okla City,20:00
+NBA,2022-11-1,Minnesota,Phoenix,22:00
+NBA,2022-11-2,Washington,Philadelphia,18:00
+NBA,2022-11-2,Boston,Cleveland,19:30
+NBA,2022-11-2,Sacramento,Miami,19:30
+NBA,2022-11-2,Atlanta,New York,19:30
+NBA,2022-11-2,Charlotte,Chicago,20:00
+NBA,2022-11-2,Toronto,San Antonio,20:00
+NBA,2022-11-2,LA Clippers,Houston,20:00
+NBA,2022-11-2,Detroit,Milwaukee,20:00
+NBA,2022-11-2,Utah,Dallas,20:30
+NBA,2022-11-2,Memphis,Portland,22:00
+NBA,2022-11-2,New Orleans,LA Lakers,22:30
+NBA,2022-11-3,Golden State,Orlando,19:00
+NBA,2022-11-3,Denver,Okla City,20:00
+NBA,2022-11-4,New York,Philadelphia,19:00
+NBA,2022-11-4,Brooklyn,Washington,19:00
+NBA,2022-11-4,Miami,Indiana,19:00
+NBA,2022-11-4,Cleveland,Detroit,19:00
+NBA,2022-11-4,Chicago,Boston,19:30
+NBA,2022-11-4,Charlotte,Memphis,20:00
+NBA,2022-11-4,LA Clippers,San Antonio,20:00
+NBA,2022-11-4,Toronto,Dallas,20:30
+NBA,2022-11-4,Golden State,New Orleans,20:30
+NBA,2022-11-4,Milwaukee,Minnesota,22:00
+NBA,2022-11-4,Portland,Phoenix,22:00
+NBA,2022-11-4,Utah,LA Lakers,22:30
+NBA,2022-11-5,Sacramento,Orlando,17:00
+NBA,2022-11-5,Brooklyn,Charlotte,19:00
+NBA,2022-11-5,New Orleans,Atlanta,19:30
+NBA,2022-11-5,Boston,New York,19:30
+NBA,2022-11-5,Okla City,Milwaukee,20:00
+NBA,2022-11-5,Houston,Minnesota,20:00
+NBA,2022-11-5,San Antonio,Denver,21:00
+NBA,2022-11-5,Portland,Phoenix,22:00
+NBA,2022-11-6,Cleveland,LA Lakers,15:30
+NBA,2022-11-6,Chicago,Toronto,18:00
+NBA,2022-11-6,Washington,Memphis,18:00
+NBA,2022-11-6,Utah,LA Clippers,22:00
+NBA,2022-11-7,Washington,Charlotte,19:00
+NBA,2022-11-7,Houston,Orlando,19:15
+NBA,2022-11-7,Okla City,Detroit,19:30
+NBA,2022-11-7,New Orleans,Indiana,19:45
+NBA,2022-11-7,Phoenix,Philadelphia,20:00
+NBA,2022-11-7,Milwaukee,Atlanta,20:15
+NBA,2022-11-7,Portland,Miami,20:30
+NBA,2022-11-7,Toronto,Chicago,20:45
+NBA,2022-11-7,Boston,Memphis,21:00
+NBA,2022-11-7,New York,Minnesota,21:15
+NBA,2022-11-7,Denver,San Antonio,21:30
+NBA,2022-11-7,Brooklyn,Dallas,21:45
+NBA,2022-11-7,Sacramento,Golden State,22:00
+NBA,2022-11-7,LA Lakers,Utah,22:15
+NBA,2022-11-7,Cleveland,LA Clippers,22:30
+NBA,2022-11-9,Dallas,Orlando,17:30
+NBA,2022-11-9,Denver,Indiana,19:00
+NBA,2022-11-9,Portland,Charlotte,19:00
+NBA,2022-11-9,Utah,Atlanta,19:30
+NBA,2022-11-9,Houston,Toronto,19:30
+NBA,2022-11-9,New York,Brooklyn,19:30
+NBA,2022-11-9,Detroit,Boston,19:30
+NBA,2022-11-9,New Orleans,Chicago,20:00
+NBA,2022-11-9,Memphis,San Antonio,20:00
+NBA,2022-11-9,Milwaukee,Okla City,20:00
+NBA,2022-11-9,Phoenix,Minnesota,20:00
+NBA,2022-11-9,LA Lakers,LA Clippers,22:00
+NBA,2022-11-9,Cleveland,Sacramento,22:00
+NBA,2022-11-10,Dallas,Washington,19:00
+NBA,2022-11-10,Charlotte,Miami,19:30
+NBA,2022-11-10,Philadelphia,Atlanta,19:30
+NBA,2022-11-10,Portland,New Orleans,20:00
+NBA,2022-11-11,Denver,Boston,19:00
+NBA,2022-11-11,Phoenix,Orlando,19:00
+NBA,2022-11-11,Detroit,New York,19:30
+NBA,2022-11-11,Toronto,Okla City,20:00
+NBA,2022-11-11,Milwaukee,San Antonio,20:00
+NBA,2022-11-11,Minnesota,Memphis,21:30
+NBA,2022-11-11,Cleveland,Golden State,22:00
+NBA,2022-11-11,Sacramento,LA Lakers,22:30
+NBA,2022-11-12,Brooklyn,LA Clippers,16:00
+NBA,2022-11-12,Utah,Washington,18:00
+NBA,2022-11-12,Toronto,Indiana,19:00
+NBA,2022-11-12,Boston,Detroit,19:00
+NBA,2022-11-12,Atlanta,Philadelphia,19:30
+NBA,2022-11-12,Charlotte,Miami,20:00
+NBA,2022-11-12,Houston,New Orleans,20:30
+NBA,2022-11-12,Portland,Dallas,20:30
+NBA,2022-11-13,Okla City,New York,00:00
+NBA,2022-11-13,Minnesota,Cleveland,18:00
+NBA,2022-11-13,Memphis,Washington,18:00
+NBA,2022-11-13,Utah,Philadelphia,19:30
+NBA,2022-11-13,Denver,Chicago,20:00
+NBA,2022-11-13,Golden State,Sacramento,21:00
+NBA,2022-11-13,Brooklyn,LA Lakers,21:30
+NBA,2022-11-14,Charlotte,Orlando,19:00
+NBA,2022-11-14,Toronto,Detroit,19:00
+NBA,2022-11-14,Okla City,Boston,19:30
+NBA,2022-11-14,Phoenix,Miami,19:30
+NBA,2022-11-14,LA Clippers,Houston,20:00
+NBA,2022-11-14,Atlanta,Milwaukee,20:00
+NBA,2022-11-14,San Antonio,Golden State,22:00
+NBA,2022-11-15,Memphis,New Orleans,19:30
+NBA,2022-11-15,LA Clippers,Dallas,20:30
+NBA,2022-11-15,New York,Utah,21:00
+NBA,2022-11-15,San Antonio,Portland,22:00
+NBA,2022-11-15,Brooklyn,Sacramento,22:00
+NBA,2022-11-16,Indiana,Charlotte,19:00
+NBA,2022-11-16,Minnesota,Orlando,19:00
+NBA,2022-11-16,Okla City,Washington,19:00
+NBA,2022-11-16,Boston,Atlanta,19:30
+NBA,2022-11-16,Miami,Toronto,19:30
+NBA,2022-11-16,Cleveland,Milwaukee,20:00
+NBA,2022-11-16,Chicago,New Orleans,20:00
+NBA,2022-11-16,Houston,Dallas,20:30
+NBA,2022-11-16,New York,Denver,22:00
+NBA,2022-11-16,Golden State,Phoenix,22:00
+NBA,2022-11-17,Brooklyn,Portland,22:00
+NBA,2022-11-17,San Antonio,Sacramento,22:00
+NBA,2022-11-17,Detroit,LA Clippers,22:30
+NBA,2022-11-18,Miami,Washington,19:00
+NBA,2022-11-18,Charlotte,Cleveland,19:30
+NBA,2022-11-18,Milwaukee,Philadelphia,19:30
+NBA,2022-11-18,Orlando,Chicago,20:00
+NBA,2022-11-18,Indiana,Houston,20:00
+NBA,2022-11-18,Okla City,Memphis,20:00
+NBA,2022-11-18,Denver,Dallas,20:30
+NBA,2022-11-18,Boston,New Orleans,20:30
+NBA,2022-11-18,Phoenix,Utah,21:00
+NBA,2022-11-18,New York,Golden State,22:00
+NBA,2022-11-18,Detroit,LA Lakers,22:30
+NBA,2022-11-19,Toronto,Atlanta,18:00
+NBA,2022-11-19,Orlando,Indiana,19:00
+NBA,2022-11-19,Minnesota,Philadelphia,19:30
+NBA,2022-11-19,Utah,Portland,22:00
+NBA,2022-11-19,San Antonio,LA Clippers,22:30
+NBA,2022-11-20,New York,Phoenix,15:30
+NBA,2022-11-20,Charlotte,Washington,18:00
+NBA,2022-11-20,Detroit,Sacramento,18:00
+NBA,2022-11-20,Memphis,Brooklyn,19:00
+NBA,2022-11-20,Miami,Cleveland,19:00
+NBA,2022-11-20,Golden State,Houston,19:00
+NBA,2022-11-20,Denver,Dallas,19:30
+NBA,2022-11-20,San Antonio,LA Lakers,21:30
+NBA,2022-11-21,Atlanta,Cleveland,19:00
+NBA,2022-11-21,Orlando,Indiana,19:00
+NBA,2022-11-21,Boston,Chicago,20:00
+NBA,2022-11-21,Portland,Milwaukee,20:00
+NBA,2022-11-21,Miami,Minnesota,20:00
+NBA,2022-11-21,Golden State,New Orleans,20:00
+NBA,2022-11-21,New York,Okla City,20:00
+NBA,2022-11-21,Utah,LA Clippers,22:30
+NBA,2022-11-22,Brooklyn,Philadelphia,19:30
+NBA,2022-11-22,Sacramento,Memphis,20:00
+NBA,2022-11-22,Detroit,Denver,21:00
+NBA,2022-11-22,LA Lakers,Phoenix,22:00
+NBA,2022-11-23,Philadelphia,Charlotte,19:00
+NBA,2022-11-23,Portland,Cleveland,19:00
+NBA,2022-11-23,Minnesota,Indiana,19:00
+NBA,2022-11-23,Sacramento,Atlanta,19:30
+NBA,2022-11-23,Dallas,Boston,19:30
+NBA,2022-11-23,Washington,Miami,19:30
+NBA,2022-11-23,Brooklyn,Toronto,19:30
+NBA,2022-11-23,Chicago,Milwaukee,20:00
+NBA,2022-11-23,Denver,Okla City,20:00
+NBA,2022-11-23,New Orleans,San Antonio,20:00
+NBA,2022-11-23,Detroit,Utah,21:00
+NBA,2022-11-23,LA Clippers,Golden State,22:00
+NBA,2022-11-25,Minnesota,Charlotte,17:00
+NBA,2022-11-25,Philadelphia,Orlando,19:00
+NBA,2022-11-25,Portland,New York,19:30
+NBA,2022-11-25,Sacramento,Boston,20:00
+NBA,2022-11-25,LA Lakers,San Antonio,20:00
+NBA,2022-11-25,Chicago,Okla City,20:00
+NBA,2022-11-25,Cleveland,Milwaukee,20:00
+NBA,2022-11-25,New Orleans,Memphis,20:00
+NBA,2022-11-25,Atlanta,Houston,20:00
+NBA,2022-11-25,Washington,Miami,20:00
+NBA,2022-11-25,Brooklyn,Indiana,20:00
+NBA,2022-11-25,Detroit,Phoenix,21:00
+NBA,2022-11-25,Utah,Golden State,22:00
+NBA,2022-11-25,Denver,LA Clippers,22:30
+NBA,2022-11-26,Dallas,Toronto,17:00
+NBA,2022-11-26,LA Lakers,San Antonio,20:00
+NBA,2022-11-26,Okla City,Houston,20:00
+NBA,2022-11-26,Utah,Phoenix,21:00
+NBA,2022-11-27,Portland,Brooklyn,15:00
+NBA,2022-11-27,Golden State,Minnesota,15:30
+NBA,2022-11-27,Indiana,LA Clippers,16:00
+NBA,2022-11-27,Miami,Atlanta,17:00
+NBA,2022-11-27,Washington,Boston,18:00
+NBA,2022-11-27,Cleveland,Detroit,18:00
+NBA,2022-11-27,Philadelphia,Orlando,18:00
+NBA,2022-11-27,Memphis,New York,18:00
+NBA,2022-11-27,Dallas,Milwaukee,20:00
+NBA,2022-11-28,Atlanta,Philadelphia,19:00
+NBA,2022-11-28,Minnesota,Washington,19:00
+NBA,2022-11-28,Charlotte,Boston,19:30
+NBA,2022-11-28,Orlando,Brooklyn,19:30
+NBA,2022-11-28,Cleveland,Toronto,19:30
+NBA,2022-11-28,Okla City,New Orleans,20:00
+NBA,2022-11-28,Houston,Denver,21:00
+NBA,2022-11-28,Chicago,Utah,21:00
+NBA,2022-11-28,Phoenix,Sacramento,22:00
+NBA,2022-11-28,Indiana,LA Lakers,22:30
+NBA,2022-11-29,New York,Detroit,19:00
+NBA,2022-11-29,Golden State,Dallas,19:30
+NBA,2022-11-29,LA Clippers,Portland,22:00
+NBA,2022-11-30,Philadelphia,Cleveland,19:00
+NBA,2022-11-30,Atlanta,Orlando,19:00
+NBA,2022-11-30,Washington,Brooklyn,19:30
+NBA,2022-11-30,Miami,Boston,19:30
+NBA,2022-11-30,Milwaukee,New York,19:30
+NBA,2022-11-30,Memphis,Minnesota,20:00
+NBA,2022-11-30,Toronto,New Orleans,20:00
+NBA,2022-11-30,San Antonio,Okla City,20:00
+NBA,2022-11-30,Houston,Denver,21:00
+NBA,2022-11-30,Chicago,Phoenix,21:00
+NBA,2022-11-30,LA Clippers,Utah,21:00
+NBA,2022-11-30,Indiana,Sacramento,22:00
+NBA,2022-11-30,Portland,LA Lakers,22:30
+NBA,2022-12-1,Dallas,Detroit,19:00
+NBA,2022-12-2,Washington,Charlotte,19:00
+NBA,2022-12-2,Toronto,Brooklyn,19:30
+NBA,2022-12-2,Orlando,Cleveland,19:30
+NBA,2022-12-2,LA Lakers,Milwaukee,19:30
+NBA,2022-12-2,Denver,Atlanta,19:30
+NBA,2022-12-2,Miami,Boston,19:30
+NBA,2022-12-2,Philadelphia,Memphis,20:00
+NBA,2022-12-2,New Orleans,San Antonio,20:00
+NBA,2022-12-2,Houston,Phoenix,21:00
+NBA,2022-12-2,Indiana,Utah,21:00
+NBA,2022-12-2,Chicago,Golden State,22:00
+NBA,2022-12-3,Dallas,New York,00:30
+NBA,2022-12-3,Sacramento,LA Clippers,16:00
+NBA,2022-12-3,Milwaukee,Charlotte,18:00
+NBA,2022-12-3,Orlando,Toronto,20:00
+NBA,2022-12-3,Okla City,Minnesota,20:00
+NBA,2022-12-3,Houston,Golden State,20:30
+NBA,2022-12-3,Portland,Utah,21:00
+NBA,2022-12-4,Denver,New Orleans,15:30
+NBA,2022-12-4,Phoenix,San Antonio,16:00
+NBA,2022-12-4,Boston,Brooklyn,18:00
+NBA,2022-12-4,Memphis,Detroit,18:00
+NBA,2022-12-4,Cleveland,New York,18:00
+NBA,2022-12-4,LA Lakers,Washington,18:00
+NBA,2022-12-4,Chicago,Sacramento,18:00
+NBA,2022-12-4,Indiana,Portland,21:00
+NBA,2022-12-5,LA Clippers,Charlotte,19:00
+NBA,2022-12-5,Milwaukee,Orlando,19:00
+NBA,2022-12-5,Okla City,Atlanta,19:30
+NBA,2022-12-5,Boston,Toronto,19:30
+NBA,2022-12-5,Philadelphia,Houston,20:00
+NBA,2022-12-5,Miami,Memphis,20:00
+NBA,2022-12-5,Phoenix,Dallas,20:30
+NBA,2022-12-5,Indiana,Golden State,22:00
+NBA,2022-12-6,Detroit,Miami,19:30
+NBA,2022-12-6,LA Lakers,Cleveland,19:30
+NBA,2022-12-6,Dallas,Denver,22:00
+NBA,2022-12-7,LA Clippers,Orlando,19:00
+NBA,2022-12-7,Charlotte,Brooklyn,19:30
+NBA,2022-12-7,LA Lakers,Toronto,19:30
+NBA,2022-12-7,Atlanta,New York,19:30
+NBA,2022-12-7,Sacramento,Milwaukee,20:00
+NBA,2022-12-7,Indiana,Minnesota,20:00
+NBA,2022-12-7,Okla City,Memphis,20:00
+NBA,2022-12-7,Washington,Chicago,20:00
+NBA,2022-12-7,Detroit,New Orleans,20:00
+NBA,2022-12-7,Golden State,Utah,21:00
+NBA,2022-12-7,Boston,Phoenix,22:00
+NBA,2022-12-8,LA Clippers,Miami,19:30
+NBA,2022-12-8,Houston,San Antonio,20:30
+NBA,2022-12-8,Denver,Portland,22:00
+NBA,2022-12-9,New York,Charlotte,19:00
+NBA,2022-12-9,Toronto,Orlando,19:00
+NBA,2022-12-9,Washington,Indiana,19:00
+NBA,2022-12-9,Atlanta,Brooklyn,19:30
+NBA,2022-12-9,LA Lakers,Philadelphia,19:30
+NBA,2022-12-9,Sacramento,Cleveland,19:30
+NBA,2022-12-9,Detroit,Memphis,20:00
+NBA,2022-12-9,Phoenix,New Orleans,20:30
+NBA,2022-12-9,Minnesota,Utah,21:00
+NBA,2022-12-9,Milwaukee,Dallas,22:00
+NBA,2022-12-10,San Antonio,Miami,17:00
+NBA,2022-12-10,Brooklyn,Indiana,19:00
+NBA,2022-12-10,LA Clippers,Washington,19:00
+NBA,2022-12-10,Okla City,Cleveland,19:30
+NBA,2022-12-10,Dallas,Chicago,20:00
+NBA,2022-12-10,Boston,Golden State,20:30
+NBA,2022-12-10,Utah,Denver,21:00
+NBA,2022-12-10,Minnesota,Portland,22:00
+NBA,2022-12-11,Phoenix,New Orleans,15:30
+NBA,2022-12-11,Sacramento,New York,18:00
+NBA,2022-12-11,LA Lakers,Detroit,18:00
+NBA,2022-12-11,Charlotte,Philadelphia,18:00
+NBA,2022-12-11,Toronto,Orlando,18:00
+NBA,2022-12-11,Chicago,Atlanta,18:30
+NBA,2022-12-11,Milwaukee,Houston,19:00
+NBA,2022-12-12,Miami,Indiana,19:00
+NBA,2022-12-12,Brooklyn,Washington,19:00
+NBA,2022-12-12,Atlanta,Memphis,20:00
+NBA,2022-12-12,Okla City,Dallas,20:30
+NBA,2022-12-12,Cleveland,San Antonio,20:30
+NBA,2022-12-12,Minnesota,Portland,22:00
+NBA,2022-12-12,Boston,LA Clippers,22:30
+NBA,2022-12-13,Sacramento,Philadelphia,19:00
+NBA,2022-12-13,Golden State,Milwaukee,19:30
+NBA,2022-12-13,Phoenix,Houston,20:00
+NBA,2022-12-13,New Orleans,Utah,21:00
+NBA,2022-12-13,Boston,LA Lakers,22:00
+NBA,2022-12-14,Golden State,Indiana,19:00
+NBA,2022-12-14,Detroit,Charlotte,19:00
+NBA,2022-12-14,Atlanta,Orlando,19:00
+NBA,2022-12-14,Sacramento,Toronto,19:30
+NBA,2022-12-14,New York,Chicago,19:30
+NBA,2022-12-14,Miami,Okla City,20:00
+NBA,2022-12-14,Portland,San Antonio,20:00
+NBA,2022-12-14,Cleveland,Dallas,21:00
+NBA,2022-12-14,Washington,Denver,21:00
+NBA,2022-12-14,Minnesota,LA Clippers,22:00
+NBA,2022-12-15,Miami,Houston,20:00
+NBA,2022-12-15,Milwaukee,Memphis,20:00
+NBA,2022-12-15,New Orleans,Utah,21:00
+NBA,2022-12-15,Phoenix,LA Clippers,22:30
+NBA,2022-12-16,Atlanta,Charlotte,19:00
+NBA,2022-12-16,Sacramento,Detroit,19:00
+NBA,2022-12-16,Orlando,Boston,19:30
+NBA,2022-12-16,Indiana,Cleveland,19:30
+NBA,2022-12-16,Golden State,Philadelphia,19:30
+NBA,2022-12-16,Brooklyn,Toronto,19:30
+NBA,2022-12-16,New York,Chicago,20:00
+NBA,2022-12-16,Minnesota,Okla City,20:00
+NBA,2022-12-16,Portland,Dallas,20:30
+NBA,2022-12-16,Denver,LA Lakers,22:00
+NBA,2022-12-17,Washington,LA Clippers,16:00
+NBA,2022-12-17,Miami,San Antonio,17:00
+NBA,2022-12-17,Dallas,Cleveland,20:00
+NBA,2022-12-17,Portland,Houston,20:00
+NBA,2022-12-17,Utah,Milwaukee,20:00
+NBA,2022-12-17,Memphis,Okla City,20:00
+NBA,2022-12-17,New Orleans,Phoenix,21:00
+NBA,2022-12-18,Orlando,Boston,15:00
+NBA,2022-12-18,New York,Indiana,17:00
+NBA,2022-12-18,Brooklyn,Detroit,18:00
+NBA,2022-12-18,Golden State,Toronto,18:00
+NBA,2022-12-18,Chicago,Minnesota,19:00
+NBA,2022-12-18,Charlotte,Denver,20:00
+NBA,2022-12-18,Washington,LA Lakers,21:30
+NBA,2022-12-19,Toronto,Philadelphia,19:00
+NBA,2022-12-19,Utah,Cleveland,19:00
+NBA,2022-12-19,Orlando,Atlanta,19:30
+NBA,2022-12-19,San Antonio,Houston,20:00
+NBA,2022-12-19,Milwaukee,New Orleans,20:00
+NBA,2022-12-19,Portland,Okla City,20:00
+NBA,2022-12-19,Dallas,Minnesota,20:00
+NBA,2022-12-19,LA Lakers,Phoenix,21:00
+NBA,2022-12-19,Charlotte,Sacramento,22:00
+NBA,2022-12-20,Utah,Detroit,19:00
+NBA,2022-12-20,Chicago,Miami,19:30
+NBA,2022-12-20,Golden State,New York,19:30
+NBA,2022-12-20,Washington,Phoenix,21:00
+NBA,2022-12-20,Memphis,Denver,22:00
+NBA,2022-12-21,Milwaukee,Cleveland,19:00
+NBA,2022-12-21,Detroit,Philadelphia,19:00
+NBA,2022-12-21,Indiana,Boston,19:30
+NBA,2022-12-21,Chicago,Atlanta,19:30
+NBA,2022-12-21,Toronto,New York,19:30
+NBA,2022-12-21,Golden State,Brooklyn,19:30
+NBA,2022-12-21,Dallas,Minnesota,20:00
+NBA,2022-12-21,Orlando,Houston,20:00
+NBA,2022-12-21,Portland,Okla City,20:00
+NBA,2022-12-21,LA Lakers,Sacramento,22:00
+NBA,2022-12-21,Charlotte,LA Clippers,22:30
+NBA,2022-12-22,San Antonio,New Orleans,20:00
+NBA,2022-12-22,Washington,Utah,21:00
+NBA,2022-12-23,San Antonio,Orlando,19:00
+NBA,2022-12-23,LA Clippers,Philadelphia,19:00
+NBA,2022-12-23,Detroit,Atlanta,19:30
+NBA,2022-12-23,Minnesota,Boston,19:30
+NBA,2022-12-23,Chicago,New York,19:30
+NBA,2022-12-23,Milwaukee,Brooklyn,19:30
+NBA,2022-12-23,Toronto,Cleveland,19:30
+NBA,2022-12-23,Indiana,Miami,20:00
+NBA,2022-12-23,Dallas,Houston,20:00
+NBA,2022-12-23,New Orleans,Okla City,20:00
+NBA,2022-12-23,Portland,Denver,21:00
+NBA,2022-12-23,Memphis,Phoenix,22:00
+NBA,2022-12-23,Washington,Sacramento,22:00
+NBA,2022-12-23,Charlotte,LA Lakers,22:30
+NBA,2022-12-25,Philadelphia,New York,00:00
+NBA,2022-12-25,LA Lakers,Dallas,14:30
+NBA,2022-12-25,Milwaukee,Boston,17:00
+NBA,2022-12-25,Memphis,Golden State,20:00
+NBA,2022-12-25,Phoenix,Denver,22:30
+NBA,2022-12-26,Brooklyn,Cleveland,19:00
+NBA,2022-12-26,LA Clippers,Detroit,19:00
+NBA,2022-12-26,Minnesota,Miami,19:30
+NBA,2022-12-26,Houston,Chicago,20:00
+NBA,2022-12-26,Indiana,New Orleans,20:00
+NBA,2022-12-26,Utah,San Antonio,20:00
+NBA,2022-12-26,Charlotte,Portland,22:00
+NBA,2022-12-27,LA Lakers,Orlando,19:00
+NBA,2022-12-27,Philadelphia,Washington,19:00
+NBA,2022-12-27,Houston,Boston,19:30
+NBA,2022-12-27,Atlanta,Indiana,19:30
+NBA,2022-12-27,LA Clippers,Toronto,19:30
+NBA,2022-12-27,Phoenix,Memphis,20:00
+NBA,2022-12-27,San Antonio,Okla City,20:00
+NBA,2022-12-27,New York,Dallas,20:30
+NBA,2022-12-27,Charlotte,Golden State,22:00
+NBA,2022-12-27,Denver,Sacramento,22:00
+NBA,2022-12-28,Phoenix,Washington,19:00
+NBA,2022-12-28,Orlando,Detroit,19:00
+NBA,2022-12-28,Brooklyn,Atlanta,19:30
+NBA,2022-12-28,LA Lakers,Miami,19:30
+NBA,2022-12-28,Milwaukee,Chicago,20:00
+NBA,2022-12-28,Minnesota,New Orleans,20:00
+NBA,2022-12-28,Denver,Sacramento,22:00
+NBA,2022-12-28,Utah,Golden State,22:00
+NBA,2022-12-29,Okla City,Charlotte,19:00
+NBA,2022-12-29,Cleveland,Indiana,19:00
+NBA,2022-12-29,LA Clippers,Boston,19:30
+NBA,2022-12-29,Memphis,Toronto,19:30
+NBA,2022-12-29,New York,San Antonio,20:00
+NBA,2022-12-29,Houston,Dallas,20:30
+NBA,2022-12-30,Washington,Orlando,19:00
+NBA,2022-12-30,Phoenix,Toronto,19:30
+NBA,2022-12-30,LA Lakers,Atlanta,19:30
+NBA,2022-12-30,Minnesota,Milwaukee,20:00
+NBA,2022-12-30,Detroit,Chicago,20:00
+NBA,2022-12-30,Philadelphia,New Orleans,20:30
+NBA,2022-12-30,Miami,Denver,21:00
+NBA,2022-12-30,Portland,Golden State,22:00
+NBA,2022-12-30,Utah,Sacramento,22:00
+NBA,2022-12-31,LA Clippers,Indiana,15:00
+NBA,2022-12-31,Brooklyn,Charlotte,19:00
+NBA,2022-12-31,New York,Houston,19:00
+NBA,2022-12-31,Cleveland,Chicago,19:00
+NBA,2022-12-31,Dallas,San Antonio,19:00
+NBA,2022-12-31,New Orleans,Memphis,20:00
+NBA,2022-12-31,Philadelphia,Okla City,20:00
+NBA,2022-12-31,Detroit,Minnesota,20:00
+NBA,2022-12-31,Miami,Utah,21:00
+NBA,2023-1-1,Sacramento,Memphis,20:00
+NBA,2023-1-1,Boston,Denver,20:00
+NBA,2023-1-1,Washington,Milwaukee,20:00
+NBA,2023-1-2,Phoenix,New York,15:00
+NBA,2023-1-2,LA Lakers,Charlotte,19:00
+NBA,2023-1-2,Chicago,Cleveland,19:00
+NBA,2023-1-2,Toronto,Indiana,19:00
+NBA,2023-1-2,New Orleans,Philadelphia,19:00
+NBA,2023-1-2,San Antonio,Brooklyn,19:30
+NBA,2023-1-2,Dallas,Houston,20:00
+NBA,2023-1-2,Denver,Minnesota,20:00
+NBA,2023-1-2,Atlanta,Golden State,22:00
+NBA,2023-1-2,Detroit,Portland,22:00
+NBA,2023-1-2,Miami,LA Clippers,22:30
+NBA,2023-1-3,Washington,Milwaukee,20:00
+NBA,2023-1-3,Boston,Okla City,20:00
+NBA,2023-1-3,Sacramento,Utah,21:00
+NBA,2023-1-4,Indiana,Philadelphia,19:00
+NBA,2023-1-4,Okla City,Orlando,19:00
+NBA,2023-1-4,Memphis,Charlotte,19:00
+NBA,2023-1-4,Phoenix,Cleveland,19:00
+NBA,2023-1-4,San Antonio,New York,19:30
+NBA,2023-1-4,Milwaukee,Toronto,19:30
+NBA,2023-1-4,Houston,New Orleans,20:00
+NBA,2023-1-4,Portland,Minnesota,20:00
+NBA,2023-1-4,Brooklyn,Chicago,20:00
+NBA,2023-1-4,Detroit,Golden State,22:00
+NBA,2023-1-4,Atlanta,Sacramento,22:00
+NBA,2023-1-4,Miami,LA Lakers,22:00
+NBA,2023-1-5,Memphis,Orlando,19:00
+NBA,2023-1-5,Boston,Dallas,19:30
+NBA,2023-1-5,Utah,Houston,20:00
+NBA,2023-1-5,LA Clippers,Denver,22:00
+NBA,2023-1-6,Portland,Indiana,19:00
+NBA,2023-1-6,Chicago,Philadelphia,19:30
+NBA,2023-1-6,New York,Toronto,19:30
+NBA,2023-1-6,Charlotte,Milwaukee,20:00
+NBA,2023-1-6,Washington,Okla City,20:00
+NBA,2023-1-6,Detroit,San Antonio,20:00
+NBA,2023-1-6,Brooklyn,New Orleans,20:30
+NBA,2023-1-6,LA Clippers,Minnesota,21:00
+NBA,2023-1-6,Cleveland,Denver,21:00
+NBA,2023-1-6,Miami,Phoenix,22:00
+NBA,2023-1-6,Atlanta,LA Lakers,22:30
+NBA,2023-1-7,Boston,San Antonio,18:00
+NBA,2023-1-7,Utah,Chicago,20:00
+NBA,2023-1-7,New Orleans,Dallas,20:00
+NBA,2023-1-7,Orlando,Golden State,20:30
+NBA,2023-1-7,LA Lakers,Sacramento,22:00
+NBA,2023-1-8,Philadelphia,Detroit,15:00
+NBA,2023-1-8,Portland,Toronto,15:30
+NBA,2023-1-8,Charlotte,Indiana,17:00
+NBA,2023-1-8,Brooklyn,Miami,18:00
+NBA,2023-1-8,Utah,Memphis,18:00
+NBA,2023-1-8,Minnesota,Houston,19:00
+NBA,2023-1-8,Dallas,Okla City,19:00
+NBA,2023-1-8,Cleveland,Phoenix,20:00
+NBA,2023-1-8,Atlanta,LA Clippers,21:00
+NBA,2023-1-9,New Orleans,Washington,19:00
+NBA,2023-1-9,Chicago,Boston,19:30
+NBA,2023-1-9,Milwaukee,New York,19:30
+NBA,2023-1-9,San Antonio,Memphis,20:00
+NBA,2023-1-9,LA Lakers,Denver,21:00
+NBA,2023-1-9,Orlando,Sacramento,22:00
+NBA,2023-1-10,Okla City,Miami,19:30
+NBA,2023-1-10,Detroit,Philadelphia,19:30
+NBA,2023-1-10,Charlotte,Toronto,19:30
+NBA,2023-1-10,Cleveland,Utah,21:00
+NBA,2023-1-10,Phoenix,Golden State,22:00
+NBA,2023-1-10,Orlando,Portland,22:00
+NBA,2023-1-10,Dallas,LA Clippers,22:30
+NBA,2023-1-11,Chicago,Washington,19:00
+NBA,2023-1-11,Minnesota,Detroit,19:00
+NBA,2023-1-11,Milwaukee,Atlanta,19:30
+NBA,2023-1-11,New Orleans,Boston,19:30
+NBA,2023-1-11,Indiana,New York,19:30
+NBA,2023-1-11,San Antonio,Memphis,20:00
+NBA,2023-1-11,Phoenix,Denver,21:00
+NBA,2023-1-11,Houston,Sacramento,22:00
+NBA,2023-1-12,Okla City,Philadelphia,19:00
+NBA,2023-1-12,Boston,Brooklyn,19:30
+NBA,2023-1-12,Milwaukee,Miami,19:30
+NBA,2023-1-12,Charlotte,Toronto,19:30
+NBA,2023-1-12,Cleveland,Portland,22:00
+NBA,2023-1-12,Dallas,LA Lakers,22:00
+NBA,2023-1-13,Atlanta,Indiana,19:00
+NBA,2023-1-13,New Orleans,Detroit,19:00
+NBA,2023-1-13,New York,Washington,19:00
+NBA,2023-1-13,Golden State,San Antonio,19:30
+NBA,2023-1-13,Okla City,Chicago,20:00
+NBA,2023-1-13,Phoenix,Minnesota,20:00
+NBA,2023-1-13,Orlando,Utah,21:00
+NBA,2023-1-13,Denver,LA Clippers,22:00
+NBA,2023-1-13,Houston,Sacramento,22:00
+NBA,2023-1-14,Milwaukee,Miami,13:00
+NBA,2023-1-14,Memphis,Indiana,19:00
+NBA,2023-1-14,Boston,Charlotte,19:00
+NBA,2023-1-14,Atlanta,Toronto,19:30
+NBA,2023-1-14,Cleveland,Minnesota,20:00
+NBA,2023-1-14,Philadelphia,Utah,21:00
+NBA,2023-1-14,Dallas,Portland,22:00
+NBA,2023-1-15,New York,Detroit,13:00
+NBA,2023-1-15,Houston,LA Clippers,15:00
+NBA,2023-1-15,Golden State,Chicago,15:30
+NBA,2023-1-15,Okla City,Brooklyn,18:00
+NBA,2023-1-15,Sacramento,San Antonio,19:00
+NBA,2023-1-15,Orlando,Denver,20:00
+NBA,2023-1-15,Dallas,Portland,21:00
+NBA,2023-1-15,Philadelphia,LA Lakers,21:30
+NBA,2023-1-16,Boston,Charlotte,13:00
+NBA,2023-1-16,Indiana,Milwaukee,14:30
+NBA,2023-1-16,New Orleans,Cleveland,15:00
+NBA,2023-1-16,Toronto,New York,15:00
+NBA,2023-1-16,Golden State,Washington,15:00
+NBA,2023-1-16,Miami,Atlanta,15:30
+NBA,2023-1-16,Utah,Minnesota,16:00
+NBA,2023-1-16,Phoenix,Memphis,18:00
+NBA,2023-1-16,Houston,LA Lakers,22:30
+NBA,2023-1-17,Toronto,Milwaukee,19:30
+NBA,2023-1-17,Brooklyn,San Antonio,20:00
+NBA,2023-1-17,Portland,Denver,21:00
+NBA,2023-1-17,Philadelphia,LA Clippers,22:00
+NBA,2023-1-18,Washington,New York,19:30
+NBA,2023-1-18,Atlanta,Dallas,19:30
+NBA,2023-1-18,Charlotte,Houston,20:00
+NBA,2023-1-18,Cleveland,Memphis,20:00
+NBA,2023-1-18,Miami,New Orleans,20:00
+NBA,2023-1-18,Indiana,Okla City,20:00
+NBA,2023-1-18,LA Clippers,Utah,21:00
+NBA,2023-1-18,Minnesota,Denver,22:00
+NBA,2023-1-18,Sacramento,LA Lakers,22:30
+NBA,2023-1-19,Chicago,Detroit,15:00
+NBA,2023-1-19,Golden State,Boston,19:30
+NBA,2023-1-19,Toronto,Minnesota,20:00
+NBA,2023-1-19,Brooklyn,Phoenix,22:00
+NBA,2023-1-19,Philadelphia,Portland,22:00
+NBA,2023-1-20,New Orleans,Orlando,19:00
+NBA,2023-1-20,Golden State,Cleveland,19:30
+NBA,2023-1-20,New York,Atlanta,19:30
+NBA,2023-1-20,Miami,Dallas,19:30
+NBA,2023-1-20,LA Clippers,San Antonio,20:00
+NBA,2023-1-20,Brooklyn,Utah,21:00
+NBA,2023-1-20,Indiana,Denver,21:00
+NBA,2023-1-20,Memphis,LA Lakers,22:00
+NBA,2023-1-20,Okla City,Sacramento,22:00
+NBA,2023-1-21,Boston,Toronto,17:00
+NBA,2023-1-21,Orlando,Washington,19:00
+NBA,2023-1-21,Charlotte,Atlanta,19:30
+NBA,2023-1-21,Milwaukee,Cleveland,19:30
+NBA,2023-1-21,Houston,Minnesota,20:00
+NBA,2023-1-21,Indiana,Phoenix,21:00
+NBA,2023-1-21,Philadelphia,Sacramento,22:00
+NBA,2023-1-22,New Orleans,Miami,15:30
+NBA,2023-1-22,New York,Toronto,18:00
+NBA,2023-1-22,LA Clippers,Dallas,19:30
+NBA,2023-1-22,Okla City,Denver,20:00
+NBA,2023-1-22,Memphis,Phoenix,20:00
+NBA,2023-1-22,Brooklyn,Golden State,20:30
+NBA,2023-1-22,LA Lakers,Portland,21:00
+NBA,2023-1-23,Boston,Orlando,19:00
+NBA,2023-1-23,Milwaukee,Detroit,19:00
+NBA,2023-1-23,Atlanta,Chicago,20:00
+NBA,2023-1-23,Minnesota,Houston,20:00
+NBA,2023-1-23,Charlotte,Utah,21:00
+NBA,2023-1-23,San Antonio,Portland,22:00
+NBA,2023-1-23,Memphis,Sacramento,22:30
+NBA,2023-1-24,Chicago,Indiana,19:00
+NBA,2023-1-24,Boston,Miami,19:30
+NBA,2023-1-24,Cleveland,New York,19:30
+NBA,2023-1-24,Denver,New Orleans,20:00
+NBA,2023-1-24,Washington,Dallas,20:30
+NBA,2023-1-24,Charlotte,Phoenix,21:00
+NBA,2023-1-24,LA Clippers,LA Lakers,22:00
+NBA,2023-1-25,Indiana,Orlando,19:00
+NBA,2023-1-25,Brooklyn,Philadelphia,19:30
+NBA,2023-1-25,Atlanta,Okla City,20:00
+NBA,2023-1-25,Washington,Houston,20:00
+NBA,2023-1-25,Denver,Milwaukee,20:00
+NBA,2023-1-25,Minnesota,New Orleans,20:00
+NBA,2023-1-25,Memphis,Golden State,22:00
+NBA,2023-1-25,Toronto,Sacramento,22:00
+NBA,2023-1-25,Utah,Portland,22:00
+NBA,2023-1-25,San Antonio,LA Lakers,22:30
+NBA,2023-1-26,New York,Boston,19:30
+NBA,2023-1-26,Detroit,Brooklyn,19:30
+NBA,2023-1-26,Chicago,Charlotte,19:30
+NBA,2023-1-26,Cleveland,Houston,20:00
+NBA,2023-1-26,Dallas,Phoenix,22:00
+NBA,2023-1-26,San Antonio,LA Clippers,22:30
+NBA,2023-1-27,Milwaukee,Indiana,19:00
+NBA,2023-1-27,Memphis,Minnesota,19:30
+NBA,2023-1-27,Cleveland,Okla City,20:00
+NBA,2023-1-27,Orlando,Miami,20:00
+NBA,2023-1-27,Toronto,Golden State,22:00
+NBA,2023-1-28,Denver,Philadelphia,15:00
+NBA,2023-1-28,New York,Brooklyn,17:30
+NBA,2023-1-28,Chicago,Orlando,19:00
+NBA,2023-1-28,Houston,Detroit,19:00
+NBA,2023-1-28,LA Clippers,Atlanta,19:30
+NBA,2023-1-28,Sacramento,Minnesota,20:00
+NBA,2023-1-28,Washington,New Orleans,20:00
+NBA,2023-1-28,Phoenix,San Antonio,20:00
+NBA,2023-1-28,LA Lakers,Boston,20:30
+NBA,2023-1-28,Dallas,Utah,21:00
+NBA,2023-1-28,Toronto,Portland,22:00
+NBA,2023-1-29,Miami,Charlotte,13:00
+NBA,2023-1-29,Indiana,Memphis,18:00
+NBA,2023-1-29,LA Clippers,Cleveland,19:00
+NBA,2023-1-29,New Orleans,Milwaukee,20:00
+NBA,2023-1-30,Orlando,Philadelphia,19:00
+NBA,2023-1-30,LA Lakers,Brooklyn,19:30
+NBA,2023-1-30,Sacramento,Minnesota,20:00
+NBA,2023-1-30,Washington,San Antonio,20:00
+NBA,2023-1-30,Golden State,Okla City,20:00
+NBA,2023-1-30,Detroit,Dallas,20:30
+NBA,2023-1-30,Toronto,Phoenix,21:00
+NBA,2023-1-30,Atlanta,Portland,22:00
+NBA,2023-1-31,Miami,Cleveland,19:00
+NBA,2023-1-31,LA Lakers,New York,19:30
+NBA,2023-1-31,Charlotte,Milwaukee,20:00
+NBA,2023-1-31,LA Clippers,Chicago,20:00
+NBA,2023-1-31,New Orleans,Denver,22:00
+NBA,2023-2-1,Orlando,Philadelphia,19:00
+NBA,2023-2-1,Portland,Memphis,19:00
+NBA,2023-2-1,Washington,Detroit,19:00
+NBA,2023-2-1,Brooklyn,Boston,19:30
+NBA,2023-2-1,Okla City,Houston,20:00
+NBA,2023-2-1,Golden State,Minnesota,20:00
+NBA,2023-2-1,Sacramento,San Antonio,20:00
+NBA,2023-2-1,Toronto,Utah,21:00
+NBA,2023-2-1,Atlanta,Phoenix,22:00
+NBA,2023-2-2,LA Lakers,Indiana,19:00
+NBA,2023-2-2,Memphis,Cleveland,19:30
+NBA,2023-2-2,Miami,New York,19:30
+NBA,2023-2-2,Charlotte,Chicago,20:00
+NBA,2023-2-2,New Orleans,Dallas,20:30
+NBA,2023-2-2,Golden State,Denver,21:00
+NBA,2023-2-2,LA Clippers,Milwaukee,22:00
+NBA,2023-2-3,Charlotte,Detroit,19:00
+NBA,2023-2-3,Sacramento,Indiana,19:00
+NBA,2023-2-3,Portland,Washington,19:00
+NBA,2023-2-3,Phoenix,Boston,19:30
+NBA,2023-2-3,Toronto,Houston,20:00
+NBA,2023-2-3,Orlando,Minnesota,20:00
+NBA,2023-2-3,Philadelphia,San Antonio,20:00
+NBA,2023-2-3,Atlanta,Utah,21:00
+NBA,2023-2-4,Washington,Brooklyn,18:00
+NBA,2023-2-4,LA Clippers,New York,19:00
+NBA,2023-2-4,Phoenix,Detroit,19:00
+NBA,2023-2-4,Portland,Chicago,20:00
+NBA,2023-2-4,Miami,Milwaukee,20:00
+NBA,2023-2-4,LA Lakers,New Orleans,20:00
+NBA,2023-2-4,Houston,Okla City,20:00
+NBA,2023-2-4,Dallas,Golden State,20:30
+NBA,2023-2-4,Atlanta,Denver,21:00
+NBA,2023-2-5,Orlando,Charlotte,13:00
+NBA,2023-2-5,Cleveland,Indiana,17:00
+NBA,2023-2-5,Philadelphia,New York,18:00
+NBA,2023-2-5,Toronto,Memphis,18:00
+NBA,2023-2-5,Sacramento,New Orleans,19:00
+NBA,2023-2-5,Denver,Minnesota,19:00
+NBA,2023-2-6,Boston,Detroit,19:00
+NBA,2023-2-6,Cleveland,Washington,19:00
+NBA,2023-2-6,LA Clippers,Brooklyn,19:30
+NBA,2023-2-6,San Antonio,Chicago,20:00
+NBA,2023-2-6,Sacramento,Houston,20:00
+NBA,2023-2-6,Dallas,Utah,21:00
+NBA,2023-2-6,Okla City,Golden State,22:00
+NBA,2023-2-6,Milwaukee,Portland,22:00
+NBA,2023-2-7,New York,Orlando,19:00
+NBA,2023-2-7,Phoenix,Brooklyn,19:30
+NBA,2023-2-7,Atlanta,New Orleans,19:30
+NBA,2023-2-7,Chicago,Memphis,20:00
+NBA,2023-2-7,Minnesota,Denver,22:00
+NBA,2023-2-7,Okla City,LA Lakers,22:30
+NBA,2023-2-8,Detroit,Cleveland,19:00
+NBA,2023-2-8,Charlotte,Washington,19:00
+NBA,2023-2-8,San Antonio,Toronto,19:30
+NBA,2023-2-8,Philadelphia,Boston,19:30
+NBA,2023-2-8,Indiana,Miami,19:30
+NBA,2023-2-8,Sacramento,Houston,20:00
+NBA,2023-2-8,Minnesota,Utah,21:00
+NBA,2023-2-8,Dallas,LA Clippers,22:00
+NBA,2023-2-8,Golden State,Portland,22:00
+NBA,2023-2-9,Denver,Orlando,19:00
+NBA,2023-2-9,Phoenix,Atlanta,19:30
+NBA,2023-2-9,Chicago,Brooklyn,19:30
+NBA,2023-2-9,Milwaukee,LA Lakers,22:00
+NBA,2023-2-10,San Antonio,Detroit,19:00
+NBA,2023-2-10,Phoenix,Indiana,19:00
+NBA,2023-2-10,New York,Philadelphia,19:00
+NBA,2023-2-10,Charlotte,Boston,19:30
+NBA,2023-2-10,Utah,Toronto,19:30
+NBA,2023-2-10,Houston,Miami,20:00
+NBA,2023-2-10,Minnesota,Memphis,20:00
+NBA,2023-2-10,Cleveland,New Orleans,22:00
+NBA,2023-2-10,Okla City,Portland,22:00
+NBA,2023-2-10,Dallas,Sacramento,22:00
+NBA,2023-2-10,Milwaukee,LA Clippers,22:30
+NBA,2023-2-11,Philadelphia,Brooklyn,18:00
+NBA,2023-2-11,Denver,Charlotte,19:00
+NBA,2023-2-11,Miami,Orlando,19:00
+NBA,2023-2-11,Indiana,Washington,19:00
+NBA,2023-2-11,San Antonio,Atlanta,19:30
+NBA,2023-2-11,Utah,New York,19:30
+NBA,2023-2-11,Chicago,Cleveland,20:00
+NBA,2023-2-11,LA Lakers,Golden State,20:30
+NBA,2023-2-11,Dallas,Sacramento,22:00
+NBA,2023-2-12,Memphis,Boston,14:00
+NBA,2023-2-12,Detroit,Toronto,15:00
+NBA,2023-2-13,Houston,Philadelphia,19:00
+NBA,2023-2-13,Utah,Indiana,19:00
+NBA,2023-2-13,San Antonio,Cleveland,19:00
+NBA,2023-2-13,Atlanta,Charlotte,19:00
+NBA,2023-2-13,Denver,Miami,19:30
+NBA,2023-2-13,Brooklyn,New York,19:30
+NBA,2023-2-13,Orlando,Chicago,20:00
+NBA,2023-2-13,New Orleans,Okla City,20:00
+NBA,2023-2-13,Minnesota,Dallas,20:30
+NBA,2023-2-13,LA Lakers,Portland,22:00
+NBA,2023-2-13,Washington,Golden State,22:00
+NBA,2023-2-14,Orlando,Toronto,19:30
+NBA,2023-2-14,Boston,Milwaukee,19:30
+NBA,2023-2-14,Sacramento,Phoenix,21:00
+NBA,2023-2-14,Washington,Portland,22:00
+NBA,2023-2-14,Golden State,LA Clippers,22:00
+NBA,2023-2-15,San Antonio,Charlotte,19:00
+NBA,2023-2-15,Chicago,Indiana,19:00
+NBA,2023-2-15,Cleveland,Philadelphia,19:00
+NBA,2023-2-15,New York,Atlanta,19:30
+NBA,2023-2-15,Detroit,Boston,19:30
+NBA,2023-2-15,Miami,Brooklyn,19:30
+NBA,2023-2-15,Utah,Memphis,20:00
+NBA,2023-2-15,Houston,Okla City,20:00
+NBA,2023-2-15,Dallas,Denver,21:00
+NBA,2023-2-15,New Orleans,LA Lakers,22:00
+NBA,2023-2-16,Milwaukee,Chicago,19:30
+NBA,2023-2-16,Washington,Minnesota,20:00
+NBA,2023-2-16,LA Clippers,Phoenix,22:00
+NBA,2023-2-23,Denver,Cleveland,19:00
+NBA,2023-2-23,Boston,Indiana,19:00
+NBA,2023-2-23,Detroit,Orlando,19:00
+NBA,2023-2-23,Memphis,Philadelphia,19:30
+NBA,2023-2-23,New Orleans,Toronto,19:30
+NBA,2023-2-23,San Antonio,Dallas,20:30
+NBA,2023-2-23,Okla City,Utah,21:00
+NBA,2023-2-23,Golden State,LA Lakers,22:00
+NBA,2023-2-23,Portland,Sacramento,22:00
+NBA,2023-2-24,New York,Washington,19:00
+NBA,2023-2-24,Cleveland,Atlanta,19:30
+NBA,2023-2-24,Miami,Milwaukee,19:30
+NBA,2023-2-24,Charlotte,Minnesota,20:00
+NBA,2023-2-24,Okla City,Phoenix,21:00
+NBA,2023-2-24,Brooklyn,Chicago,22:00
+NBA,2023-2-24,Houston,Golden State,22:00
+NBA,2023-2-24,Sacramento,LA Clippers,22:30
+NBA,2023-2-25,Toronto,Detroit,00:00
+NBA,2023-2-25,Miami,Charlotte,19:00
+NBA,2023-2-25,Indiana,Orlando,19:00
+NBA,2023-2-25,New Orleans,New York,19:30
+NBA,2023-2-25,Denver,Memphis,20:00
+NBA,2023-2-25,Boston,Philadelphia,20:30
+NBA,2023-2-25,San Antonio,Utah,21:00
+NBA,2023-2-26,Phoenix,Milwaukee,13:00
+NBA,2023-2-26,Brooklyn,Atlanta,15:00
+NBA,2023-2-26,Washington,Chicago,15:30
+NBA,2023-2-26,LA Lakers,Dallas,15:30
+NBA,2023-2-26,Toronto,Cleveland,18:00
+NBA,2023-2-26,Sacramento,Okla City,19:00
+NBA,2023-2-26,Minnesota,Golden State,19:30
+NBA,2023-2-26,Houston,Portland,21:00
+NBA,2023-2-26,LA Clippers,Denver,22:00
+NBA,2023-2-27,Detroit,Charlotte,19:00
+NBA,2023-2-27,Miami,Philadelphia,19:00
+NBA,2023-2-27,Boston,New York,19:30
+NBA,2023-2-27,Orlando,New Orleans,20:00
+NBA,2023-2-28,Washington,Atlanta,19:30
+NBA,2023-2-28,Milwaukee,Brooklyn,19:30
+NBA,2023-2-28,Chicago,Toronto,19:30
+NBA,2023-2-28,Denver,Houston,20:00
+NBA,2023-2-28,LA Lakers,Memphis,20:00
+NBA,2023-2-28,Sacramento,Okla City,20:00
+NBA,2023-2-28,Indiana,Dallas,20:30
+NBA,2023-2-28,San Antonio,Utah,21:00
+NBA,2023-2-28,Portland,Golden State,22:00
+NBA,2023-2-28,Minnesota,LA Clippers,22:00
+NBA,2023-3-1,Phoenix,Charlotte,19:00
+NBA,2023-3-1,Chicago,Detroit,19:00
+NBA,2023-3-1,Cleveland,Boston,19:30
+NBA,2023-3-1,Philadelphia,Miami,19:30
+NBA,2023-3-1,Brooklyn,New York,19:30
+NBA,2023-3-1,Memphis,Houston,20:00
+NBA,2023-3-1,Orlando,Milwaukee,20:00
+NBA,2023-3-1,LA Lakers,Okla City,20:00
+NBA,2023-3-1,New Orleans,Portland,22:00
+NBA,2023-3-2,Toronto,Washington,19:00
+NBA,2023-3-2,Philadelphia,Dallas,19:30
+NBA,2023-3-2,Indiana,San Antonio,20:30
+NBA,2023-3-2,LA Clippers,Golden State,22:00
+NBA,2023-3-3,Orlando,Charlotte,19:00
+NBA,2023-3-3,Portland,Atlanta,19:30
+NBA,2023-3-3,Brooklyn,Boston,19:30
+NBA,2023-3-3,New York,Miami,20:00
+NBA,2023-3-3,Phoenix,Chicago,20:00
+NBA,2023-3-3,Utah,Okla City,20:00
+NBA,2023-3-3,Memphis,Denver,22:00
+NBA,2023-3-3,New Orleans,Golden State,22:00
+NBA,2023-3-3,LA Clippers,Sacramento,22:00
+NBA,2023-3-3,Minnesota,LA Lakers,22:30
+NBA,2023-3-4,Toronto,Washington,17:00
+NBA,2023-3-4,Detroit,Cleveland,19:30
+NBA,2023-3-4,Atlanta,Miami,20:00
+NBA,2023-3-4,Houston,San Antonio,20:00
+NBA,2023-3-4,Philadelphia,Milwaukee,20:30
+NBA,2023-3-4,Minnesota,Sacramento,22:00
+NBA,2023-3-5,Phoenix,Dallas,13:00
+NBA,2023-3-5,Indiana,Chicago,15:30
+NBA,2023-3-5,Golden State,LA Lakers,15:30
+NBA,2023-3-5,Charlotte,Brooklyn,18:00
+NBA,2023-3-5,Portland,Orlando,18:00
+NBA,2023-3-5,San Antonio,Houston,19:00
+NBA,2023-3-5,Utah,Okla City,19:00
+NBA,2023-3-5,New York,Boston,19:30
+NBA,2023-3-5,Memphis,LA Clippers,22:00
+NBA,2023-3-6,Milwaukee,Washington,19:00
+NBA,2023-3-6,Philadelphia,Indiana,19:00
+NBA,2023-3-6,Boston,Cleveland,19:00
+NBA,2023-3-6,Atlanta,Miami,19:30
+NBA,2023-3-6,Toronto,Denver,21:00
+NBA,2023-3-6,New Orleans,Sacramento,22:00
+NBA,2023-3-7,Portland,Detroit,19:00
+NBA,2023-3-7,Milwaukee,Orlando,19:00
+NBA,2023-3-7,Charlotte,New York,19:30
+NBA,2023-3-7,Philadelphia,Minnesota,19:30
+NBA,2023-3-7,Brooklyn,Houston,20:00
+NBA,2023-3-7,Golden State,Okla City,20:00
+NBA,2023-3-7,Utah,Dallas,20:30
+NBA,2023-3-7,Memphis,LA Lakers,22:00
+NBA,2023-3-8,Atlanta,Washington,19:00
+NBA,2023-3-8,Portland,Boston,19:30
+NBA,2023-3-8,Dallas,New Orleans,19:30
+NBA,2023-3-8,Cleveland,Miami,19:30
+NBA,2023-3-8,Okla City,Phoenix,21:00
+NBA,2023-3-8,Chicago,Denver,21:00
+NBA,2023-3-8,Toronto,LA Clippers,22:00
+NBA,2023-3-9,Charlotte,Detroit,19:00
+NBA,2023-3-9,Houston,Indiana,19:00
+NBA,2023-3-9,Utah,Orlando,19:00
+NBA,2023-3-9,Brooklyn,Milwaukee,19:30
+NBA,2023-3-9,Golden State,Memphis,22:00
+NBA,2023-3-9,New York,Sacramento,22:00
+NBA,2023-3-10,Portland,Philadelphia,19:00
+NBA,2023-3-10,Atlanta,Washington,19:00
+NBA,2023-3-10,Cleveland,Miami,20:00
+NBA,2023-3-10,Brooklyn,Minnesota,20:00
+NBA,2023-3-10,Denver,San Antonio,20:00
+NBA,2023-3-10,Toronto,LA Lakers,22:30
+NBA,2023-3-11,New York,LA Clippers,16:00
+NBA,2023-3-11,Miami,Orlando,19:00
+NBA,2023-3-11,Indiana,Detroit,19:00
+NBA,2023-3-11,Utah,Charlotte,19:00
+NBA,2023-3-11,Boston,Atlanta,19:30
+NBA,2023-3-11,Dallas,Memphis,20:00
+NBA,2023-3-11,Chicago,Houston,20:00
+NBA,2023-3-11,Okla City,New Orleans,20:30
+NBA,2023-3-11,Milwaukee,Golden State,20:30
+NBA,2023-3-11,Sacramento,Phoenix,22:00
+NBA,2023-3-12,Brooklyn,Denver,15:30
+NBA,2023-3-12,Cleveland,Charlotte,17:00
+NBA,2023-3-12,Washington,Philadelphia,18:00
+NBA,2023-3-12,Okla City,San Antonio,19:00
+NBA,2023-3-12,Portland,New Orleans,19:00
+NBA,2023-3-12,New York,LA Lakers,21:00
+NBA,2023-3-13,Indiana,Detroit,19:00
+NBA,2023-3-13,Memphis,Dallas,19:30
+NBA,2023-3-13,Utah,Miami,19:30
+NBA,2023-3-13,Minnesota,Atlanta,19:30
+NBA,2023-3-13,Boston,Houston,20:00
+NBA,2023-3-13,Milwaukee,Sacramento,22:00
+NBA,2023-3-13,Phoenix,Golden State,22:00
+NBA,2023-3-14,Cleveland,Charlotte,19:00
+NBA,2023-3-14,Detroit,Washington,19:00
+NBA,2023-3-14,Denver,Toronto,19:30
+NBA,2023-3-14,LA Lakers,New Orleans,20:00
+NBA,2023-3-14,Brooklyn,Okla City,20:00
+NBA,2023-3-14,Orlando,San Antonio,20:00
+NBA,2023-3-14,Milwaukee,Phoenix,22:00
+NBA,2023-3-14,New York,Portland,22:00
+NBA,2023-3-15,Memphis,Miami,19:30
+NBA,2023-3-15,Philadelphia,Cleveland,19:30
+NBA,2023-3-15,LA Lakers,Houston,20:00
+NBA,2023-3-15,Sacramento,Chicago,20:00
+NBA,2023-3-15,Boston,Minnesota,20:00
+NBA,2023-3-15,Dallas,San Antonio,20:30
+NBA,2023-3-15,Golden State,LA Clippers,22:00
+NBA,2023-3-16,Denver,Detroit,19:00
+NBA,2023-3-16,Sacramento,Brooklyn,19:30
+NBA,2023-3-16,Okla City,Toronto,19:30
+NBA,2023-3-16,Indiana,Milwaukee,20:00
+NBA,2023-3-16,Orlando,Phoenix,22:00
+NBA,2023-3-17,Philadelphia,Charlotte,19:00
+NBA,2023-3-17,Golden State,Atlanta,19:30
+NBA,2023-3-17,Washington,Cleveland,19:30
+NBA,2023-3-17,Memphis,San Antonio,20:00
+NBA,2023-3-17,Minnesota,Chicago,20:00
+NBA,2023-3-17,New Orleans,Houston,20:00
+NBA,2023-3-17,Boston,Portland,22:00
+NBA,2023-3-17,Dallas,LA Lakers,22:30
+NBA,2023-3-18,Denver,New York,13:00
+NBA,2023-3-18,Orlando,LA Clippers,15:00
+NBA,2023-3-18,Philadelphia,Indiana,19:00
+NBA,2023-3-18,Minnesota,Toronto,19:00
+NBA,2023-3-18,Sacramento,Washington,20:00
+NBA,2023-3-18,Miami,Chicago,20:00
+NBA,2023-3-18,Golden State,Memphis,20:00
+NBA,2023-3-18,Boston,Utah,21:00
+NBA,2023-3-19,Denver,Brooklyn,15:30
+NBA,2023-3-19,Phoenix,Okla City,15:30
+NBA,2023-3-19,Atlanta,San Antonio,16:00
+NBA,2023-3-19,Miami,Detroit,18:00
+NBA,2023-3-19,New Orleans,Houston,19:00
+NBA,2023-3-19,Toronto,Milwaukee,20:00
+NBA,2023-3-19,LA Clippers,Portland,21:00
+NBA,2023-3-19,Orlando,LA Lakers,21:30
+NBA,2023-3-20,Chicago,Philadelphia,19:00
+NBA,2023-3-20,Indiana,Charlotte,19:00
+NBA,2023-3-20,Minnesota,New York,19:30
+NBA,2023-3-20,Golden State,Houston,20:00
+NBA,2023-3-20,Dallas,Memphis,20:00
+NBA,2023-3-20,Sacramento,Utah,21:00
+NBA,2023-3-21,Washington,Orlando,19:00
+NBA,2023-3-21,Detroit,Atlanta,19:30
+NBA,2023-3-21,Cleveland,Brooklyn,19:30
+NBA,2023-3-21,San Antonio,New Orleans,20:00
+NBA,2023-3-21,Boston,Sacramento,22:00
+NBA,2023-3-21,Okla City,LA Clippers,22:30
+NBA,2023-3-22,Denver,Washington,19:00
+NBA,2023-3-22,New York,Miami,19:30
+NBA,2023-3-22,Indiana,Toronto,19:30
+NBA,2023-3-22,Golden State,Dallas,19:30
+NBA,2023-3-22,Philadelphia,Chicago,20:00
+NBA,2023-3-22,Houston,Memphis,20:00
+NBA,2023-3-22,San Antonio,Milwaukee,20:00
+NBA,2023-3-22,Atlanta,Minnesota,20:00
+NBA,2023-3-22,Portland,Utah,21:00
+NBA,2023-3-22,Phoenix,LA Lakers,22:00
+NBA,2023-3-23,New York,Orlando,19:00
+NBA,2023-3-23,Cleveland,Brooklyn,19:30
+NBA,2023-3-23,Charlotte,New Orleans,20:00
+NBA,2023-3-23,Okla City,LA Clippers,22:30
+NBA,2023-3-24,San Antonio,Washington,19:00
+NBA,2023-3-24,Indiana,Boston,19:00
+NBA,2023-3-24,Detroit,Toronto,19:30
+NBA,2023-3-24,Houston,Memphis,20:00
+NBA,2023-3-24,Charlotte,Dallas,20:30
+NBA,2023-3-24,Milwaukee,Utah,21:00
+NBA,2023-3-24,Philadelphia,Golden State,22:00
+NBA,2023-3-24,Chicago,Portland,22:00
+NBA,2023-3-24,Phoenix,Sacramento,22:00
+NBA,2023-3-24,Okla City,LA Lakers,22:30
+NBA,2023-3-25,Indiana,Atlanta,17:00
+NBA,2023-3-25,Brooklyn,Miami,20:00
+NBA,2023-3-25,Milwaukee,Denver,21:00
+NBA,2023-3-25,Philadelphia,Phoenix,22:00
+NBA,2023-3-25,Utah,Sacramento,22:00
+NBA,2023-3-25,New Orleans,LA Clippers,22:30
+NBA,2023-3-26,Dallas,Charlotte,13:00
+NBA,2023-3-26,Chicago,LA Lakers,15:30
+NBA,2023-3-26,Memphis,Atlanta,18:00
+NBA,2023-3-26,San Antonio,Boston,18:00
+NBA,2023-3-26,Washington,Toronto,18:00
+NBA,2023-3-26,Houston,Cleveland,18:00
+NBA,2023-3-26,Brooklyn,Orlando,18:00
+NBA,2023-3-26,Okla City,Portland,19:00
+NBA,2023-3-26,Minnesota,Golden State,20:30
+NBA,2023-3-27,Dallas,Indiana,19:00
+NBA,2023-3-27,Milwaukee,Detroit,19:00
+NBA,2023-3-27,Houston,New York,19:30
+NBA,2023-3-27,Phoenix,Utah,21:00
+NBA,2023-3-27,Philadelphia,Denver,21:30
+NBA,2023-3-27,New Orleans,Portland,22:00
+NBA,2023-3-27,Minnesota,Sacramento,22:00
+NBA,2023-3-27,Chicago,LA Clippers,22:30
+NBA,2023-3-28,Boston,Washington,19:00
+NBA,2023-3-28,Miami,Toronto,19:30
+NBA,2023-3-28,Cleveland,Atlanta,19:30
+NBA,2023-3-28,Charlotte,Okla City,20:00
+NBA,2023-3-28,Orlando,Memphis,20:00
+NBA,2023-3-28,New Orleans,Golden State,22:00
+NBA,2023-3-29,Milwaukee,Indiana,19:00
+NBA,2023-3-29,Dallas,Philadelphia,19:30
+NBA,2023-3-29,Miami,New York,19:30
+NBA,2023-3-29,Houston,Brooklyn,19:30
+NBA,2023-3-29,LA Lakers,Chicago,20:00
+NBA,2023-3-29,Utah,San Antonio,20:00
+NBA,2023-3-29,Detroit,Okla City,20:00
+NBA,2023-3-29,LA Clippers,Memphis,20:00
+NBA,2023-3-29,Minnesota,Phoenix,22:00
+NBA,2023-3-29,Sacramento,Portland,22:00
+NBA,2023-3-30,Boston,Milwaukee,19:30
+NBA,2023-3-30,New Orleans,Denver,22:00
+NBA,2023-3-31,Chicago,Charlotte,19:00
+NBA,2023-3-31,Okla City,Indiana,19:00
+NBA,2023-3-31,Orlando,Washington,19:00
+NBA,2023-3-31,Toronto,Philadelphia,19:00
+NBA,2023-3-31,New York,Cleveland,19:30
+NBA,2023-3-31,Utah,Boston,19:30
+NBA,2023-3-31,Atlanta,Brooklyn,19:30
+NBA,2023-3-31,LA Clippers,Memphis,20:00
+NBA,2023-3-31,Detroit,Houston,20:00
+NBA,2023-3-31,LA Lakers,Minnesota,20:00
+NBA,2023-3-31,San Antonio,Golden State,22:00
+NBA,2023-3-31,Sacramento,Portland,22:00
+NBA,2023-3-31,Denver,Phoenix,22:30
+NBA,2023-4-1,Dallas,Miami,19:30
+NBA,2023-4-1,LA Clippers,New Orleans,20:30
+NBA,2023-4-2,Toronto,Charlotte,13:00
+NBA,2023-4-2,Utah,Brooklyn,15:30
+NBA,2023-4-2,Memphis,Chicago,15:30
+NBA,2023-4-2,Portland,Minnesota,15:30
+NBA,2023-4-2,Dallas,Atlanta,18:00
+NBA,2023-4-2,Washington,New York,18:00
+NBA,2023-4-2,Detroit,Orlando,18:00
+NBA,2023-4-2,San Antonio,Sacramento,18:00
+NBA,2023-4-2,LA Lakers,Houston,19:00
+NBA,2023-4-2,Phoenix,Okla City,19:00
+NBA,2023-4-2,Indiana,Cleveland,20:00
+NBA,2023-4-2,Philadelphia,Milwaukee,20:00
+NBA,2023-4-2,Golden State,Denver,20:30
+NBA,2023-4-4,Toronto,Charlotte,19:00
+NBA,2023-4-4,Miami,Detroit,19:00
+NBA,2023-4-4,Cleveland,Orlando,19:00
+NBA,2023-4-4,Milwaukee,Washington,19:00
+NBA,2023-4-4,Minnesota,Brooklyn,19:30
+NBA,2023-4-4,Boston,Philadelphia,20:00
+NBA,2023-4-4,Atlanta,Chicago,20:00
+NBA,2023-4-4,Denver,Houston,20:00
+NBA,2023-4-4,Portland,Memphis,20:00
+NBA,2023-4-4,Sacramento,New Orleans,20:00
+NBA,2023-4-4,LA Lakers,Utah,21:00
+NBA,2023-4-4,Okla City,Golden State,22:00
+NBA,2023-4-4,San Antonio,Phoenix,22:00
+NBA,2023-4-5,Brooklyn,Detroit,19:00
+NBA,2023-4-5,New York,Indiana,19:00
+NBA,2023-4-5,Washington,Atlanta,19:30
+NBA,2023-4-5,Toronto,Boston,19:30
+NBA,2023-4-5,Chicago,Milwaukee,19:30
+NBA,2023-4-5,Memphis,New Orleans,20:00
+NBA,2023-4-5,Sacramento,Dallas,20:30
+NBA,2023-4-5,LA Lakers,LA Clippers,22:00
+NBA,2023-4-6,Cleveland,Orlando,19:00
+NBA,2023-4-6,Miami,Philadelphia,19:30
+NBA,2023-4-6,Portland,San Antonio,20:00
+NBA,2023-4-6,Okla City,Utah,21:00
+NBA,2023-4-6,Denver,Phoenix,22:00
+NBA,2023-4-7,Houston,Charlotte,19:00
+NBA,2023-4-7,Detroit,Indiana,19:00
+NBA,2023-4-7,Miami,Washington,19:00
+NBA,2023-4-7,Philadelphia,Atlanta,19:30
+NBA,2023-4-7,Toronto,Boston,19:30
+NBA,2023-4-7,Orlando,Brooklyn,19:30
+NBA,2023-4-7,Memphis,Milwaukee,20:00
+NBA,2023-4-7,New York,New Orleans,20:00
+NBA,2023-4-7,Chicago,Dallas,20:30
+NBA,2023-4-7,Golden State,Sacramento,22:00
+NBA,2023-4-7,Phoenix,LA Lakers,22:30
+NBA,2023-4-8,Denver,Utah,15:30
+NBA,2023-4-8,Portland,LA Clippers,16:00
+NBA,2023-4-8,Minnesota,San Antonio,16:00
+NBA,2023-4-9,Atlanta,Boston,13:00
+NBA,2023-4-9,Philadelphia,Brooklyn,13:00
+NBA,2023-4-9,Charlotte,Cleveland,13:00
+NBA,2023-4-9,Orlando,Miami,13:00
+NBA,2023-4-9,Indiana,New York,13:00
+NBA,2023-4-9,Milwaukee,Toronto,13:00
+NBA,2023-4-9,Houston,Washington,13:00
+NBA,2023-4-9,Detroit,Chicago,13:00
+NBA,2023-4-9,San Antonio,Dallas,15:30
+NBA,2023-4-9,New Orleans,Minnesota,15:30
+NBA,2023-4-9,Memphis,Okla City,15:30
+NBA,2023-4-9,Sacramento,Denver,15:30
+NBA,2023-4-9,Utah,LA Lakers,15:30
+NBA,2023-4-9,LA Clippers,Phoenix,15:30
+NBA,2023-4-9,Golden State,Portland,15:30

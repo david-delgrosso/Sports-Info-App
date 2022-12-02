@@ -1,6 +1,6 @@
 import requests as re
 from bs4 import BeautifulSoup as bs
-from .utils import convert_time
+from .utils import *
 from .models import Schedule
 
 
@@ -26,11 +26,5 @@ def get_games(url, **kwargs):
             games.append(game_obj)
         else:
             is_first = False
-
-    return games
-
-
-def load_nba_schedule(**kwargs):
-    games = []
 
     return games

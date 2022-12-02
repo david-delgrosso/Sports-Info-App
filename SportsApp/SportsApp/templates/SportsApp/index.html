@@ -82,6 +82,33 @@
         </div>
     </section>
 
+    <section class="p-1">
+        <div class="container">
+            <h3>NBA Games</h3>
+            <hr>
+            <table class="table" id="table" data-filter-control="true">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Away</th>
+                        <th scope="col">Home</th>
+                        <th scope="col">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in nba_games %}
+                    <tr>
+                        <td>{{ game.date }}</td>
+                        <td>{{ game.away_team }}</td>
+                        <td>{{ game.home_team }}</td>
+                        <td>{{ game.time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
 </body>
 
 </html>
