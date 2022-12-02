@@ -1,9 +1,12 @@
 import requests as re
 from bs4 import BeautifulSoup as bs
 from .utils import *
-from .models import Schedule
+from .models import NBASchedule
 
+def placeholder(**kwargs):
+    pass
 
+"""
 def get_games(url, **kwargs):
     page = re.get(url)
     soup = bs(page.content, 'html.parser')
@@ -28,3 +31,4 @@ def get_games(url, **kwargs):
             is_first = False
 
     return games
+"""

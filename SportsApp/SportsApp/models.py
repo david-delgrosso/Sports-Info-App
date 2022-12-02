@@ -1,8 +1,10 @@
 from django.db import models
 
-class Schedule(models.Model):
+class NBASchedule(models.Model):
     home_team = models.CharField(max_length=30)
+    home_city = models.CharField(max_length=30)
     away_team = models.CharField(max_length=30)
+    away_city = models.CharField(max_length=30)
     time = models.TimeField('%H:%M')
     date = models.DateField()
     sport = models.CharField(max_length=10)

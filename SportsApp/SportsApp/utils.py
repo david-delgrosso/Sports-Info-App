@@ -1,6 +1,7 @@
 from datetime import *
-from os import path
-from .models import Schedule
+import os
+from .models import NBASchedule
+from .constants import *
 
 def convert_time(time_in):
     if time_in.endswith('PM'):
@@ -38,7 +39,7 @@ def load_nba_schedule(**kwargs):
     process_nba_schedule_raw()
     load_nba_schedule_to_db()
 
-    games = Schedule.objects.all()
+    games = NBASchedule.objects.all()
 
     return games
 
@@ -46,7 +47,7 @@ def process_nba_schedule_raw():
 
     raw_filename = '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/nba_schedule_raw.csv'
     proc_filename = '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/nba_schedule.csv'
-    col_names = "sport,date,home_team,away_team,time"
+    col_names = "sport,date,home_city,home_team,away_city,away_team,time"
     days_of_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
     with open(raw_filename,'r') as fraw:
@@ -71,13 +72,15 @@ def process_nba_schedule_raw():
                 else:
                     teams_sp = teams.split('vs.')
 
-                away_team = teams_sp[0][:-1]
-                home_team = teams_sp[1][1:]
+                away_team, away_city = get_nba_team_city(teams_sp[0][:-1])
+                home_team, home_city = get_nba_team_city(teams_sp[1][1:])
 
             write_line = "NBA" + ','
             write_line += str(date) + ','
-            write_line += str(away_team) + ','
+            write_line += str(home_city) + ','
             write_line += str(home_team) + ','
+            write_line += str(away_city) + ','
+            write_line += str(away_team) + ','
             write_line += str(time)
 
             fproc.write(write_line)
@@ -95,9 +98,20 @@ def load_nba_schedule_to_db():
             continue
 
         line_sp = line.split(',')
-        print(line_sp)
-        sch_obj = Schedule.objects.create(sport=line_sp[0],
-                                          date=line_sp[1],
-                                          away_team=line_sp[2],
-                                          home_team=line_sp[3],
-                                          time=line_sp[4])
+        sch_obj = NBASchedule.objects.create(sport=line_sp[0],
+                                             date=line_sp[1],
+                                             home_city=line_sp[2],
+                                             home_team=line_sp[3],
+                                             away_city=line_sp[4],
+                                             away_team=line_sp[5],
+                                             time=line_sp[6])
+
+def get_nba_team_city(team_in):
+    name = NBA_TEAMS_DICT[team_in]
+    city = NBA_CITY_DICT[team_in]
+    return name, city
+
+def get_todays_games(sport):
+    today = str(datetime.now().strftime("%Y-%m-%d"))
+    games = NBASchedule.objects.filter(sport=sport, date=today)
+    return games
