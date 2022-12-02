@@ -1,6 +1,7 @@
 from django.db import models
 
 class NBASchedule(models.Model):
+    id = models.IntegerField(primary_key=True)
     home_team = models.CharField(max_length=30)
     home_city = models.CharField(max_length=30)
     away_team = models.CharField(max_length=30)

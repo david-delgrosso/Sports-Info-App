@@ -2,7 +2,10 @@ from datetime import *
 import os
 from .models import NBASchedule
 from .constants import *
+from .restapis import *
+import json
 
+# general utilities
 def convert_time(time_in):
     if time_in.endswith('PM'):
                     time_sp = time_in.split(':')
@@ -33,15 +36,15 @@ def convert_date(date_in):
     date_out = str(year_dict[date_sp[0]]) + '-' + str(month_dict[date_sp[0]]) + '-' + date_sp[1]
     return date_out
 
-def load_nba_schedule(**kwargs):
-    games = []
+def get_todays_games(sport):
+    today = str(datetime.now().strftime("%Y-%m-%d"))
+    games = NBASchedule.objects.filter(sport=sport, date=today)
+    return games
 
+# NBA utilities
+def load_nba_schedule(**kwargs):
     process_nba_schedule_raw()
     load_nba_schedule_to_db()
-
-    games = NBASchedule.objects.all()
-
-    return games
 
 def process_nba_schedule_raw():
 
@@ -86,6 +89,7 @@ def process_nba_schedule_raw():
             fproc.write(write_line)
             fproc.write('\n')
 
+"""
 def load_nba_schedule_to_db():
     filename = '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/nba_schedule.csv'
     with open(filename,'r') as f:
@@ -105,13 +109,37 @@ def load_nba_schedule_to_db():
                                              away_city=line_sp[4],
                                              away_team=line_sp[5],
                                              time=line_sp[6])
+"""
+def load_nba_schedule_to_db():
+    f = open('nba_season_2022.json')
+    data = json.load(f)
+
+    for game in data['response']:
+        date_str = game['date']['start'][:-5].replace('T',' ')
+        game_datetime = datetime.strptime(date_str,'%Y-%m-%d %H:%M:%S') - timedelta(hours=5)
+        game_date = game_datetime.date()
+        game_time = game_datetime.time()
+
+        home_team = game['teams']['home']['nickname']
+        home_city = game['teams']['home']['name'][:-len(home_team)-1]
+        away_team = game['teams']['visitors']['nickname']
+        away_city = game['teams']['visitors']['name'][:-len(away_team)-1]
+
+        sch_obj = NBASchedule.objects.create(id=game['id'],
+                                             sport="NBA",
+                                             date=game_date,
+                                             home_city=home_city,
+                                             home_team=home_team,
+                                             away_city=away_city,
+                                             away_team=away_team,
+                                             time=game_time)
+        
 
 def get_nba_team_city(team_in):
     name = NBA_TEAMS_DICT[team_in]
     city = NBA_CITY_DICT[team_in]
     return name, city
 
-def get_todays_games(sport):
-    today = str(datetime.now().strftime("%Y-%m-%d"))
-    games = NBASchedule.objects.filter(sport=sport, date=today)
-    return games
+def get_nba_schedule():
+    #request_nba_schedule_to_json()
+    load_nba_schedule_to_db()
