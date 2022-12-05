@@ -93,7 +93,7 @@
                     <tr>
                         <td>{{ game.date }}</td>
                         <td>{{ game.away_city }} {{ game.away_team }}</td>
-                        <td>@</td>
+                        <td><a href="{% url 'load_nba_game' game.id %}">@</a></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.time }}</td>
                     </tr>

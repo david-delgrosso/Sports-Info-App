@@ -9,9 +9,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-    <title>David's Sports App</title>
+    <title>Test Web App</title>
 </head>
 
 <body>
@@ -19,7 +17,7 @@
     <nav class="navbar navbar-expand-lg bg-success navbar-dark py-3">
         <!-- fixed-top -->
         <div class="container">
-            <a href="#" class="navbar-brand">David's Sports App</a>
+            <a href="/" class="navbar-brand">Test Web App</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
@@ -28,13 +26,13 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="#learn" class="nav-link">What You'll Learn</a>
+                        <a href="#learn" class="nav-link">Sports</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#questions" class="nav-link">Questions</a>
+                        <a href="#learn" class="nav-link">Models</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#instructors" class="nav-link">Instructors</a>
+                        <a href="#questions" class="nav-link">New Item</a>
                     </li>
                 </ul>
             </div>
@@ -42,23 +40,29 @@
     </nav>
 
     <!-- Games Display -->
-    <section class="bg-light pt-1">
-        <table class="table">
+    <section class="p-1">
+        <div class="container">
+            <h3 class="text-center">NBA Game</h3>
+            <h3 class="text-center">{{game.away_city}} {{game.away_team}} @ {{game.home_city}} {{game.home_team}}</h3>
+            <h4 class="text_center">{{game.time}}</h4>
+        </div>
+        <hr>
+        <table class="table" id="table" data-filter-control="true">
             <thead>
                 <tr>
+                    <th scope="col">Stat</th>
                     <th scope="col">Away</th>
-                    <th scope="col"></th>
                     <th scope="col">Home</th>
-                    <th scope="col">Time</th>
                 </tr>
             </thead>
             <tbody>
-                {% for game in games %}
+                {% for game in nba_games %}
                 <tr>
-                    <td>{{game.away_team}}</td>
-                    <td>@</td>
-                    <td>{{game.home_team}}</td>
-                    <td>{{game.time}}</td>
+                    <td>{{ game.date }}</td>
+                    <td>{{ game.away_city }} {{ game.away_team }}</td>
+                    <td><a href="{% url 'load_nba_game' game.id %}">@</a></td>
+                    <td>{{ game.home_city }} {{ game.home_team }}</td>
+                    <td>{{ game.time }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
