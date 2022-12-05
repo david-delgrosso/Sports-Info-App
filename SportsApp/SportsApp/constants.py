@@ -1,3 +1,5 @@
+from datetime import *
+
 
 NBA_TEAMS_DICT = {
     "76ers"         : "Philadelphia"  ,
@@ -31,3 +33,38 @@ NBA_TEAMS_DICT = {
     "Clippers"      : "Los Angeles"   ,
     "Bucks"         : "Milwaukee"     
 }
+
+NBA_API_ID_DICT = {
+    "76ers"         : 27   ,
+    "Celtics"       : 2    ,
+    "Lakers"        : 17   ,
+    "Warriors"      : 11   ,
+    "Magic"         : 26   ,
+    "Pistons"       : 10   ,
+    "Wizards"       : 41   ,
+    "Pacers"        : 15   ,
+    "Rockets"       : 14   ,
+    "Hawks"         : 1    ,
+    "Pelicans"      : 23   ,
+    "Nets"          : 4    ,
+    "Bulls"         : 6    ,
+    "Heat"          : 20   ,
+    "Cavaliers"     : 7    ,
+    "Raptors"       : 38   ,
+    "Knicks"        : 24   ,
+    "Grizzlies"     : 19   ,
+    "Thunder"       : 25   ,
+    "Timberwolves"  : 22   ,
+    "Hornets"       : 5    ,
+    "Spurs"         : 31   ,
+    "Nuggets"       : 9    ,
+    "Jazz"          : 40   ,
+    "Mavericks"     : 8    ,
+    "Suns"          : 28   ,
+    "Trail Blazers" : 29   ,
+    "Kings"         : 30   ,
+    "Clippers"      : 16   ,
+    "Bucks"         : 21     
+}
+
+NBA_SEASON_START_DATE_2022 = datetime.strptime("2022-10-18", '%Y-%m-%d')

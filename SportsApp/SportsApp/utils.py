@@ -28,18 +28,21 @@ def load_nba_schedule_to_db():
         game_date = game_datetime.date()
         game_time = game_datetime.time()
 
-        home_team_name = game['teams']['home']['nickname']
+        if game_datetime < NBA_SEASON_START_DATE_2022:
+            continue
+
+        home_team_id = game['teams']['home']['id']
         try:
-            home_team = NBATeam.objects.get(name=home_team_name)
+            home_team = NBATeam.objects.get(id=home_team_id)
         except:
-            print(str(home_team_name) + " was not recognized as an NBA team. The game was not added to the schedule.")
+            print(str(game['teams']['home']['name']) + " was not recognized as an NBA team. The game was not added to the schedule.")
             continue
     
-        away_team_name = game['teams']['visitors']['nickname']
+        away_team_id = game['teams']['visitors']['id']
         try:
-            away_team = NBATeam.objects.get(name=away_team_name)
+            away_team = NBATeam.objects.get(id=away_team_id)
         except:
-            print(str(away_team_name) + " was not recognized as an NBA team. The game was not added to the schedule.")
+            print(str(game['teams']['visitors']['name']) + " was not recognized as an NBA team. The game was not added to the schedule.")
             continue
 
         sch_obj = NBASchedule.objects.create(id=game['id'],
@@ -55,6 +58,7 @@ def get_nba_schedule():
 
 def load_nba_teams_to_db():
     for k,v in NBA_TEAMS_DICT.items():
-        team_obj = NBATeam.objects.create(name=k,
+        team_obj = NBATeam.objects.create(id=NBA_API_ID_DICT[k],
+                                          name=k,
                                           city=v,
                                           sport="NBA")
