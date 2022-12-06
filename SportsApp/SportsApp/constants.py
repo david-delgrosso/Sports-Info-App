@@ -1,5 +1,6 @@
 from datetime import *
 
+NBA_SEASON_START_DATE_2022 = datetime.strptime("2022-10-18", '%Y-%m-%d')
 
 NBA_TEAMS_DICT = {
     "76ers"         : "Philadelphia"  ,
@@ -67,4 +68,6 @@ NBA_API_ID_DICT = {
     "Bucks"         : 21     
 }
 
-NBA_SEASON_START_DATE_2022 = datetime.strptime("2022-10-18", '%Y-%m-%d')
+NBA_STAT_NAMES_LIST = ["PPG","FGM","FGA","FG%","FTM","FTA","FT%","3PM",
+                       "3PA","3P%","ORB","DRB","TRB","AST","PF","ST","TO",
+                       "BK","+/-"]

@@ -38,8 +38,27 @@ def populate_nba_teams_db(request):
     context['info_message'] = "Successfully Loaded NBA Teams to Database"
     return render(request, 'SportsApp/index.html', context)
 
+# Populate NBA team stats for each game that has already been played
+def populate_nba_game_stats(request):
+    context = {}
+    backfill_nba_stats()
+    context['info_message'] = "Successfully Back-filled NBA Stats to Database"
+    return render(request, 'SportsApp/index.html', context)
 
+# Calculate NBA team stats based on previous games played
+def calculate_nba_team_stats(request):
+    context = {}
+    update_nba_team_stats()
+    context['info_message'] = "Successfully Calculated NBA Team Stats"
+    return render(request, 'SportsApp/index.html', context)
+
+# Load page displaying info for a single NBA game
 def load_nba_game(request,id):
     context = {}
     context['game'] = NBASchedule.objects.get(id=id)
     return render(request, 'SportsApp/game.html', context)
+
+def load_nba_home(request):
+    context = {}
+    context['nba_games'] = get_todays_games('NBA')
+    return render(request, 'SportsApp/nba_home.html', context)
