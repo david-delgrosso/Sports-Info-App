@@ -32,4 +32,7 @@ urlpatterns = [
     path(route='f', view=views.calculate_nba_team_stats, name='calculate_nba_team_stats'),
     path(route='NBA', view=views.load_nba_home, name='load_nba_home'),
     path(route='NBA/<str:id>', view=views.load_nba_game, name='load_nba_game'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

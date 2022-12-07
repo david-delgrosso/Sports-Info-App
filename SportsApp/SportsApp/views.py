@@ -58,6 +58,7 @@ def load_nba_game(request,id):
     context['game'] = NBASchedule.objects.get(id=id)
     return render(request, 'SportsApp/game.html', context)
 
+# Load page displaying 
 def load_nba_home(request):
     context = {}
     context['nba_games'] = get_todays_games('NBA')
