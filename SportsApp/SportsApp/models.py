@@ -105,6 +105,14 @@ class NBAScheduleTemplate(models.Model):
     away_blocks    = models.IntegerField(blank=True, null=True)
     away_plusMinus = models.IntegerField(blank=True, null=True)
 
+    home_games       = models.IntegerField(default=0)
+    home_wins        = models.IntegerField(default=0)
+    home_losses      = models.IntegerField(default=0)
+    home_win_pct     = models.FloatField(default=0.0)
+    home_opp_wins    = models.IntegerField(default=0)
+    home_opp_losses  = models.IntegerField(default=0)
+    home_opp_win_pct = models.FloatField(default=0.0)
+
     home_points_pg    = models.FloatField(default=0.0)
     home_fgm_pg       = models.FloatField(default=0.0)
     home_fga_pg       = models.FloatField(default=0.0)
@@ -144,6 +152,14 @@ class NBAScheduleTemplate(models.Model):
     home_opp_turnovers_pg = models.FloatField(default=0.0)
     home_opp_blocks_pg    = models.FloatField(default=0.0)
     home_opp_plusMinus_pg = models.FloatField(default=0.0)
+
+    away_games       = models.IntegerField(default=0)
+    away_wins        = models.IntegerField(default=0)
+    away_losses      = models.IntegerField(default=0)
+    away_win_pct     = models.FloatField(default=0.0)
+    away_opp_wins    = models.IntegerField(default=0)
+    away_opp_losses  = models.IntegerField(default=0)
+    away_opp_win_pct = models.FloatField(default=0.0)
 
     away_points_pg    = models.FloatField(default=0.0)
     away_fgm_pg       = models.FloatField(default=0.0)

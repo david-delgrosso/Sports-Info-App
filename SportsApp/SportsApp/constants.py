@@ -1,5 +1,7 @@
 from datetime import *
 
+NBA_SEASON = 2018
+
 NBA_SEASON_START_DATE_DICT = {
     '2022' : datetime.strptime("2022-10-18", '%Y-%m-%d'),
     '2021' : datetime.strptime("2021-10-19", '%Y-%m-%d'),

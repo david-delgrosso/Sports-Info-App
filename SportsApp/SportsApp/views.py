@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .restapis import *
 from .models import NBASchedule2022
 from .utils import *
+from .constants import *
 
 # Load home page
 def home(request):
@@ -13,17 +14,14 @@ def home(request):
 # Clear NBA Schedule database
 def clear_nba_schedule(request):
     context = {}
-    NBASchedule2022.objects.all().delete()
+    clear_nba_schedule_db(NBA_SEASON)
     context['info_message'] = "Successfully Cleared NBA Schedule Database"
     return render(request, 'SportsApp/index.html', context)
 
 # Populate NBA Schedule database
 def populate_nba_schedule_db(request):
     context = {}
-    years = [2017, 2018, 2019, 2020, 2021, 2022]
-    for year in years:
-        get_nba_schedule(year)
-    #get_nba_schedule(2022)
+    get_nba_schedule(NBA_SEASON)
     context['info_message'] = "Successfully Loaded NBA Schedule to Database"
     return render(request, 'SportsApp/index.html', context)
 
@@ -44,14 +42,14 @@ def populate_nba_teams_db(request):
 # Populate NBA team stats for each game that has already been played
 def populate_nba_game_stats(request):
     context = {}
-    backfill_nba_stats()
+    backfill_nba_boxscores(NBA_SEASON)
     context['info_message'] = "Successfully Back-filled NBA Stats to Database"
     return render(request, 'SportsApp/index.html', context)
 
 # Calculate NBA team stats based on previous games played
 def calculate_nba_team_stats(request):
     context = {}
-    update_nba_team_stats()
+    update_nba_team_stats(NBA_SEASON)
     context['info_message'] = "Successfully Calculated NBA Team Stats"
     return render(request, 'SportsApp/index.html', context)
 
