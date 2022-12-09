@@ -3,11 +3,11 @@ import json
 from .config import *
 
 
-def request_nba_schedule_to_json():
+def request_nba_schedule_to_json(year):
     
     url = "https://api-nba-v1.p.rapidapi.com/games"
 
-    querystring = {"season":"2022"}
+    querystring = {"season":str(year)}
 
     headers = API_NBA_HEADERS
 
@@ -16,7 +16,7 @@ def request_nba_schedule_to_json():
     re_json = response.json()
     json_object = json.dumps(re_json, indent=4)
 
-    filename = "nba_season_2022.json"
+    filename = "nba_season_" + str(year) + ".json"
     with open(filename,'w') as f:
         f.write(json_object)
 

@@ -57,14 +57,13 @@ class NBATeam(models.Model):
     def __str__(self):
         return str(self.city) + ' ' + (self.name)
 
-class NBASchedule(models.Model):
-    id        = models.IntegerField(primary_key=True)
-    home_team = models.ForeignKey(NBATeam, related_name="home_team", on_delete=models.CASCADE)
-    away_team = models.ForeignKey(NBATeam, related_name="away_team", on_delete=models.CASCADE)
-    time      = models.TimeField('%H:%M')
-    date      = models.DateField()
-    sport     = models.CharField(max_length=10)
-    played    = models.BooleanField(default='False')
+class NBAScheduleTemplate(models.Model):
+    id         = models.IntegerField(primary_key=True)
+    time       = models.TimeField('%H:%M')
+    date       = models.DateField()
+    sport      = models.CharField(max_length=10)
+    played     = models.BooleanField(default='False')
+    first_game = models.BooleanField(default='False')
 
     home_points    = models.IntegerField(blank=True, null=True)
     home_fgm       = models.IntegerField(blank=True, null=True)
@@ -106,5 +105,116 @@ class NBASchedule(models.Model):
     away_blocks    = models.IntegerField(blank=True, null=True)
     away_plusMinus = models.IntegerField(blank=True, null=True)
 
+    home_points_pg    = models.FloatField(default=0.0)
+    home_fgm_pg       = models.FloatField(default=0.0)
+    home_fga_pg       = models.FloatField(default=0.0)
+    home_fgp          = models.FloatField(default=0.0)
+    home_ftm_pg       = models.FloatField(default=0.0)
+    home_fta_pg       = models.FloatField(default=0.0)
+    home_ftp          = models.FloatField(default=0.0)
+    home_tpm_pg       = models.FloatField(default=0.0)
+    home_tpa_pg       = models.FloatField(default=0.0)
+    home_tpp          = models.FloatField(default=0.0)
+    home_offReb_pg    = models.FloatField(default=0.0)
+    home_defReb_pg    = models.FloatField(default=0.0)
+    home_totReb_pg    = models.FloatField(default=0.0)
+    home_assists_pg   = models.FloatField(default=0.0)
+    home_pFouls_pg    = models.FloatField(default=0.0)
+    home_steals_pg    = models.FloatField(default=0.0)
+    home_turnovers_pg = models.FloatField(default=0.0)
+    home_blocks_pg    = models.FloatField(default=0.0)
+    home_plusMinus_pg = models.FloatField(default=0.0)
+
+    home_opp_points_pg    = models.FloatField(default=0.0)
+    home_opp_fgm_pg       = models.FloatField(default=0.0)
+    home_opp_fga_pg       = models.FloatField(default=0.0)
+    home_opp_fgp          = models.FloatField(default=0.0)
+    home_opp_ftm_pg       = models.FloatField(default=0.0)
+    home_opp_fta_pg       = models.FloatField(default=0.0)
+    home_opp_ftp          = models.FloatField(default=0.0)
+    home_opp_tpm_pg       = models.FloatField(default=0.0)
+    home_opp_tpa_pg       = models.FloatField(default=0.0)
+    home_opp_tpp          = models.FloatField(default=0.0)
+    home_opp_offReb_pg    = models.FloatField(default=0.0)
+    home_opp_defReb_pg    = models.FloatField(default=0.0)
+    home_opp_totReb_pg    = models.FloatField(default=0.0)
+    home_opp_assists_pg   = models.FloatField(default=0.0)
+    home_opp_pFouls_pg    = models.FloatField(default=0.0)
+    home_opp_steals_pg    = models.FloatField(default=0.0)
+    home_opp_turnovers_pg = models.FloatField(default=0.0)
+    home_opp_blocks_pg    = models.FloatField(default=0.0)
+    home_opp_plusMinus_pg = models.FloatField(default=0.0)
+
+    away_points_pg    = models.FloatField(default=0.0)
+    away_fgm_pg       = models.FloatField(default=0.0)
+    away_fga_pg       = models.FloatField(default=0.0)
+    away_fgp          = models.FloatField(default=0.0)
+    away_ftm_pg       = models.FloatField(default=0.0)
+    away_fta_pg       = models.FloatField(default=0.0)
+    away_ftp          = models.FloatField(default=0.0)
+    away_tpm_pg       = models.FloatField(default=0.0)
+    away_tpa_pg       = models.FloatField(default=0.0)
+    away_tpp          = models.FloatField(default=0.0)
+    away_offReb_pg    = models.FloatField(default=0.0)
+    away_defReb_pg    = models.FloatField(default=0.0)
+    away_totReb_pg    = models.FloatField(default=0.0)
+    away_assists_pg   = models.FloatField(default=0.0)
+    away_pFouls_pg    = models.FloatField(default=0.0)
+    away_steals_pg    = models.FloatField(default=0.0)
+    away_turnovers_pg = models.FloatField(default=0.0)
+    away_blocks_pg    = models.FloatField(default=0.0)
+    away_plusMinus_pg = models.FloatField(default=0.0)
+
+    away_opp_points_pg    = models.FloatField(default=0.0)
+    away_opp_fgm_pg       = models.FloatField(default=0.0)
+    away_opp_fga_pg       = models.FloatField(default=0.0)
+    away_opp_fgp          = models.FloatField(default=0.0)
+    away_opp_ftm_pg       = models.FloatField(default=0.0)
+    away_opp_fta_pg       = models.FloatField(default=0.0)
+    away_opp_ftp          = models.FloatField(default=0.0)
+    away_opp_tpm_pg       = models.FloatField(default=0.0)
+    away_opp_tpa_pg       = models.FloatField(default=0.0)
+    away_opp_tpp          = models.FloatField(default=0.0)
+    away_opp_offReb_pg    = models.FloatField(default=0.0)
+    away_opp_defReb_pg    = models.FloatField(default=0.0)
+    away_opp_totReb_pg    = models.FloatField(default=0.0)
+    away_opp_assists_pg   = models.FloatField(default=0.0)
+    away_opp_pFouls_pg    = models.FloatField(default=0.0)
+    away_opp_steals_pg    = models.FloatField(default=0.0)
+    away_opp_turnovers_pg = models.FloatField(default=0.0)
+    away_opp_blocks_pg    = models.FloatField(default=0.0)
+    away_opp_plusMinus_pg = models.FloatField(default=0.0)
+
     def __str__(self):
         return str(self.home_team) + " vs " + str(self.away_team) + " @ " + str(self.time)
+
+    class Meta:
+        abstract = True
+
+class NBASchedule2022(NBAScheduleTemplate):
+    home_team = models.ForeignKey(NBATeam, related_name="home_team_2022", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(NBATeam, related_name="away_team_2022", on_delete=models.CASCADE)
+
+class NBASchedule2021(NBAScheduleTemplate):
+    home_team = models.ForeignKey(NBATeam, related_name="home_team_2021", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(NBATeam, related_name="away_team_2021", on_delete=models.CASCADE)
+
+class NBASchedule2020(NBAScheduleTemplate):
+    home_team = models.ForeignKey(NBATeam, related_name="home_team_2020", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(NBATeam, related_name="away_team_2020", on_delete=models.CASCADE)
+
+class NBASchedule2019(NBAScheduleTemplate):
+    home_team = models.ForeignKey(NBATeam, related_name="home_team_2019", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(NBATeam, related_name="away_team_2019", on_delete=models.CASCADE)
+
+class NBASchedule2018(NBAScheduleTemplate):
+    home_team = models.ForeignKey(NBATeam, related_name="home_team_2018", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(NBATeam, related_name="away_team_2018", on_delete=models.CASCADE)
+
+class NBASchedule2017(NBAScheduleTemplate):
+    home_team = models.ForeignKey(NBATeam, related_name="home_team_2017", on_delete=models.CASCADE)
+    away_team = models.ForeignKey(NBATeam, related_name="away_team_2017", on_delete=models.CASCADE)
+
+
+
+

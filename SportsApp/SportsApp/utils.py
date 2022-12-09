@@ -16,7 +16,7 @@ def convert_date(date_in):
 # Returns a list of today's game objects
 def get_todays_games(sport):
     today = str(datetime.now().strftime("%Y-%m-%d"))
-    games = NBASchedule.objects.filter(sport=sport, date=today)
+    games = NBASchedule2022.objects.filter(sport=sport, date=today)
     return games
 
 def reset_nba_team_fields():
@@ -74,22 +74,33 @@ def reset_nba_team_fields():
 
 # NBA utilities
 # Populate NBA Schedule database from json file
-def load_nba_schedule_to_db():
+def load_nba_schedule_to_db(year):
+
     # Load json data
-    f = open('nba_season_2022.json')
+    filename = "nba_season_" + str(year) + ".json"
+    f = open(filename)
     data = json.load(f)
 
     # Iterate over games
     for game in data['response']:
 
         # Determine game start time
-        date_str = game['date']['start'][:-5].replace('T',' ')
-        game_datetime = datetime.strptime(date_str,'%Y-%m-%d %H:%M:%S') - timedelta(hours=5)
-        game_date = game_datetime.date()
-        game_time = game_datetime.time()
+        date_str = str(game['date']['start'])
+        if len(date_str) > 10:
+            date_str = date_str[:-5].replace('T',' ')
+            game_datetime = datetime.strptime(date_str,'%Y-%m-%d %H:%M:%S') - timedelta(hours=5)
+            game_date = game_datetime.date()
+            game_time = game_datetime.time()
+        elif len(date_str) == 10:
+            if year == 2022:
+                raise Exception("Current schedule date needs a time")
+            else:
+                game_datetime = datetime.strptime(date_str,'%Y-%m-%d')
+                game_date = game_datetime.date()
+                game_time = game_datetime.time()
 
         # Ignore preseason games
-        if game_datetime < NBA_SEASON_START_DATE_2022:
+        if game_datetime < NBA_SEASON_START_DATE_DICT[str(year)]:
             continue
 
         # Find home and away team objects
@@ -109,17 +120,66 @@ def load_nba_schedule_to_db():
             continue
 
         # Add game to schedule database
-        sch_obj = NBASchedule.objects.create(id=game['id'],
-                                             sport="NBA",
-                                             date=game_date,
-                                             home_team=home_team,
-                                             away_team=away_team,
-                                             time=game_time)
+        if year == 2022:
+            sch_obj = NBASchedule2022.objects.create(id=game['id'],
+                                                     sport="NBA",
+                                                     date=game_date,
+                                                     home_team=home_team,
+                                                     away_team=away_team,
+                                                     time=game_time)
+        elif year == 2021:
+            sch_obj = NBASchedule2021.objects.create(id=game['id'],
+                                                     sport="NBA",
+                                                     date=game_date,
+                                                     home_team=home_team,
+                                                     away_team=away_team,
+                                                     time=game_time)
+        elif year == 2020:
+            sch_obj = NBASchedule2020.objects.create(id=game['id'],
+                                                     sport="NBA",
+                                                     date=game_date,
+                                                     home_team=home_team,
+                                                     away_team=away_team,
+                                                     time=game_time)
+        elif year == 2019:
+            sch_obj = NBASchedule2019.objects.create(id=game['id'],
+                                                     sport="NBA",
+                                                     date=game_date,
+                                                     home_team=home_team,
+                                                     away_team=away_team,
+                                                     time=game_time)
+        elif year == 2018:
+            sch_obj = NBASchedule2018.objects.create(id=game['id'],
+                                                     sport="NBA",
+                                                     date=game_date,
+                                                     home_team=home_team,
+                                                     away_team=away_team,
+                                                     time=game_time)
+        elif year == 2017:
+            sch_obj = NBASchedule2017.objects.create(id=game['id'],
+                                                     sport="NBA",
+                                                     date=game_date,
+                                                     home_team=home_team,
+                                                     away_team=away_team,
+                                                     time=game_time)
         
 # Parent function for generating NBA Schedule database        
-def get_nba_schedule():
-    #request_nba_schedule_to_json()
-    load_nba_schedule_to_db()
+def get_nba_schedule(year):
+    if year == 2022:
+        NBASchedule2022.objects.all().delete()
+    elif year == 2021:
+        NBASchedule2021.objects.all().delete()
+    elif year == 2020:
+        NBASchedule2020.objects.all().delete()
+    elif year == 2019:
+        NBASchedule2019.objects.all().delete()
+    elif year == 2018:
+        NBASchedule2018.objects.all().delete()
+    elif year == 2017:
+        NBASchedule2017.objects.all().delete()
+
+    #request_nba_schedule_to_json(year)
+    load_nba_schedule_to_db(year)
 
 # Load NBA Teams dictionary into NBA Teams database
 def load_nba_teams_to_db():
@@ -130,7 +190,7 @@ def load_nba_teams_to_db():
                                           sport="NBA")
 
 def backfill_nba_stats():
-    games = NBASchedule.objects.all()
+    games = NBASchedule2022.objects.all()
     i = 0
     for game in games:
         
@@ -218,7 +278,7 @@ def backfill_nba_stats():
 
 # Parse NBA Schedule database to calculate aggregate team stats
 def update_nba_team_stats():
-    games = NBASchedule.objects.all()
+    games = NBASchedule2022.objects.all()
     reset_nba_team_fields()
     for game in games:
         if game.played:

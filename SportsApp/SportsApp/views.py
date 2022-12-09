@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .restapis import *
-from .models import NBASchedule
+from .models import NBASchedule2022
 from .utils import *
 
 # Load home page
@@ -13,14 +13,17 @@ def home(request):
 # Clear NBA Schedule database
 def clear_nba_schedule(request):
     context = {}
-    NBASchedule.objects.all().delete()
+    NBASchedule2022.objects.all().delete()
     context['info_message'] = "Successfully Cleared NBA Schedule Database"
     return render(request, 'SportsApp/index.html', context)
 
 # Populate NBA Schedule database
 def populate_nba_schedule_db(request):
     context = {}
-    get_nba_schedule()
+    years = [2017, 2018, 2019, 2020, 2021, 2022]
+    for year in years:
+        get_nba_schedule(year)
+    #get_nba_schedule(2022)
     context['info_message'] = "Successfully Loaded NBA Schedule to Database"
     return render(request, 'SportsApp/index.html', context)
 
@@ -55,7 +58,7 @@ def calculate_nba_team_stats(request):
 # Load page displaying info for a single NBA game
 def load_nba_game(request,id):
     context = {}
-    context['game'] = NBASchedule.objects.get(id=id)
+    context['game'] = NBASchedule2022.objects.get(id=id)
     return render(request, 'SportsApp/game.html', context)
 
 # Load page displaying 

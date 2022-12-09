@@ -24,8 +24,8 @@ app_name = 'SportsApp'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(route='', view=views.home, name='home'),
-    #path(route='a', view=views.clear_nba_schedule, name='clear_nba_schedule'),
-    #path(route='b', view=views.populate_nba_schedule_db, name='populate_nba_schedule_db'),
+    path(route='a', view=views.clear_nba_schedule, name='clear_nba_schedule'),
+    path(route='b', view=views.populate_nba_schedule_db, name='populate_nba_schedule_db'),
     #path(route='c', view=views.clear_nba_teams_db, name='clear_nba_teams_db'),
     #path(route='d', view=views.populate_nba_teams_db, name='populate_nba_teams_db'),
     path(route='e', view=views.populate_nba_game_stats, name='populate_nba_game_stats'),

@@ -1,6 +1,13 @@
 from datetime import *
 
-NBA_SEASON_START_DATE_2022 = datetime.strptime("2022-10-18", '%Y-%m-%d')
+NBA_SEASON_START_DATE_DICT = {
+    '2022' : datetime.strptime("2022-10-18", '%Y-%m-%d'),
+    '2021' : datetime.strptime("2021-10-19", '%Y-%m-%d'),
+    '2020' : datetime.strptime("2020-12-22", '%Y-%m-%d'),
+    '2019' : datetime.strptime("2019-10-22", '%Y-%m-%d'),
+    '2018' : datetime.strptime("2018-10-16", '%Y-%m-%d'),
+    '2017' : datetime.strptime("2017-10-17", '%Y-%m-%d'),
+}
 
 NBA_TEAMS_DICT = {
     "76ers"         : "Philadelphia"  ,
