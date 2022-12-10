@@ -217,18 +217,13 @@ def backfill_nba_boxscores(year):
         game_stats_json = json.loads(game_stats_str)
 
         # Break if game has not been played yet, otherwise wait 60s and submit request again
-        # try:
-        #     if len(game_stats_json['response']) == 0:
-        #         continue
-        # except:
-        #     time.sleep(60)
-        #     game_stats_str = request_nba_game_stats(str(game.id))
-        #     game_stats_json = json.loads(game_stats_str)
         try:
             if len(game_stats_json['response']) == 0:
                 continue
         except:
-            continue
+            time.sleep(60)
+            game_stats_str = request_nba_game_stats(str(game.id))
+            game_stats_json = json.loads(game_stats_str)
 
         # Maximum iterations fail check
         if i > 1500:
