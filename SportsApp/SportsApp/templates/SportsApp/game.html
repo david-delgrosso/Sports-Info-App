@@ -39,7 +39,6 @@
                         <th scope="col">Stat</th>
                         <th scope="col">Away</th>
                         <th scope="col">Home</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,21 +46,11 @@
                         <td>PPG</td>
                         <td>{{game.away_team.points_pg|floatformat:"1"}}</td>
                         <td>{{game.home_team.points_pg|floatformat:"1"}}</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%"></div>
-                            </div>
-                        </td>
                     </tr>
                     <tr>
                         <td>FGM</td>
                         <td>{{game.away_team.fgm_pg|floatformat:"1"}}</td>
                         <td>{{game.home_team.fgm_pg|floatformat:"1"}}</td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%"></div>
-                            </div>
-                        </td>
                     </tr>
                     <tr>
                         <td>FGA</td>
@@ -147,6 +136,31 @@
                         <td>+/-</td>
                         <td>{{game.away_team.plusMinus_pg|floatformat:"1"}}</td>
                         <td>{{game.home_team.plusMinus_pg|floatformat:"1"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <section class="p1">
+        <div class="container">
+            <hr class="bg-light">
+            <h3 class="text-center text-light">Models</h3>
+            <hr class="bg-light">
+            <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
+                <thead>
+                    <tr>
+                        <th scope="col">Stat</th>
+                        <th scope="col">Away</th>
+                        <th scope="col">Home</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Points</td>
+                        <td>{{ preds.lin_reg.away_score }}</td>
+                        <td>{{ preds.lin_reg.home_score }}</td>
                     </tr>
                 </tbody>
             </table>

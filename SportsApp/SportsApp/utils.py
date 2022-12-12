@@ -1,10 +1,13 @@
 import datetime
-import os
+import csv
 from .models import *
 from .constants import *
 import json
 from .restapis import *
 import time
+import pickle
+from sklearn import linear_model
+import pandas as pd
 
 # general utilities
 def convert_time(time_in):
@@ -221,6 +224,7 @@ def backfill_nba_boxscores(year):
             if len(game_stats_json['response']) == 0:
                 continue
         except:
+            print("Waiting 60 seconds...")
             time.sleep(60)
             game_stats_str = request_nba_game_stats(str(game.id))
             game_stats_json = json.loads(game_stats_str)
@@ -228,48 +232,91 @@ def backfill_nba_boxscores(year):
         # Maximum iterations fail check
         if i > 1500:
             break
-
-        # Save away team stats
-        game.away_points    = game_stats_json['response'][0]['statistics'][0]['points']
-        game.away_fgm       = game_stats_json['response'][0]['statistics'][0]['fgm']
-        game.away_fga       = game_stats_json['response'][0]['statistics'][0]['fga']
-        game.away_fgp       = game_stats_json['response'][0]['statistics'][0]['fgp']
-        game.away_ftm       = game_stats_json['response'][0]['statistics'][0]['ftm']
-        game.away_fta       = game_stats_json['response'][0]['statistics'][0]['fta']
-        game.away_ftp       = game_stats_json['response'][0]['statistics'][0]['ftp']
-        game.away_tpm       = game_stats_json['response'][0]['statistics'][0]['tpm']
-        game.away_tpa       = game_stats_json['response'][0]['statistics'][0]['tpa']
-        game.away_tpp       = game_stats_json['response'][0]['statistics'][0]['tpp']
-        game.away_offReb    = game_stats_json['response'][0]['statistics'][0]['offReb']
-        game.away_defReb    = game_stats_json['response'][0]['statistics'][0]['defReb']
-        game.away_totReb    = game_stats_json['response'][0]['statistics'][0]['totReb']
-        game.away_assists   = game_stats_json['response'][0]['statistics'][0]['assists']
-        game.away_pFouls    = game_stats_json['response'][0]['statistics'][0]['pFouls']
-        game.away_steals    = game_stats_json['response'][0]['statistics'][0]['steals']
-        game.away_turnovers = game_stats_json['response'][0]['statistics'][0]['turnovers']
-        game.away_blocks    = game_stats_json['response'][0]['statistics'][0]['blocks']
-        game.away_plusMinus = game_stats_json['response'][0]['statistics'][0]['plusMinus']
         
-        # Save home stats
-        game.home_points    = game_stats_json['response'][1]['statistics'][0]['points']
-        game.home_fgm       = game_stats_json['response'][1]['statistics'][0]['fgm']
-        game.home_fga       = game_stats_json['response'][1]['statistics'][0]['fga']
-        game.home_fgp       = game_stats_json['response'][1]['statistics'][0]['fgp']
-        game.home_ftm       = game_stats_json['response'][1]['statistics'][0]['ftm']
-        game.home_fta       = game_stats_json['response'][1]['statistics'][0]['fta']
-        game.home_ftp       = game_stats_json['response'][1]['statistics'][0]['ftp']
-        game.home_tpm       = game_stats_json['response'][1]['statistics'][0]['tpm']
-        game.home_tpa       = game_stats_json['response'][1]['statistics'][0]['tpa']
-        game.home_tpp       = game_stats_json['response'][1]['statistics'][0]['tpp']
-        game.home_offReb    = game_stats_json['response'][1]['statistics'][0]['offReb']
-        game.home_defReb    = game_stats_json['response'][1]['statistics'][0]['defReb']
-        game.home_totReb    = game_stats_json['response'][1]['statistics'][0]['totReb']
-        game.home_assists   = game_stats_json['response'][1]['statistics'][0]['assists']
-        game.home_pFouls    = game_stats_json['response'][1]['statistics'][0]['pFouls']
-        game.home_steals    = game_stats_json['response'][1]['statistics'][0]['steals']
-        game.home_turnovers = game_stats_json['response'][1]['statistics'][0]['turnovers']
-        game.home_blocks    = game_stats_json['response'][1]['statistics'][0]['blocks']
-        game.home_plusMinus = game_stats_json['response'][1]['statistics'][0]['plusMinus']
+        if year == 2022:
+            # Save home team stats
+            game.home_points    = game_stats_json['response'][0]['statistics'][0]['points']
+            game.home_fgm       = game_stats_json['response'][0]['statistics'][0]['fgm']
+            game.home_fga       = game_stats_json['response'][0]['statistics'][0]['fga']
+            game.home_fgp       = game_stats_json['response'][0]['statistics'][0]['fgp']
+            game.home_ftm       = game_stats_json['response'][0]['statistics'][0]['ftm']
+            game.home_fta       = game_stats_json['response'][0]['statistics'][0]['fta']
+            game.home_ftp       = game_stats_json['response'][0]['statistics'][0]['ftp']
+            game.home_tpm       = game_stats_json['response'][0]['statistics'][0]['tpm']
+            game.home_tpa       = game_stats_json['response'][0]['statistics'][0]['tpa']
+            game.home_tpp       = game_stats_json['response'][0]['statistics'][0]['tpp']
+            game.home_offReb    = game_stats_json['response'][0]['statistics'][0]['offReb']
+            game.home_defReb    = game_stats_json['response'][0]['statistics'][0]['defReb']
+            game.home_totReb    = game_stats_json['response'][0]['statistics'][0]['totReb']
+            game.home_assists   = game_stats_json['response'][0]['statistics'][0]['assists']
+            game.home_pFouls    = game_stats_json['response'][0]['statistics'][0]['pFouls']
+            game.home_steals    = game_stats_json['response'][0]['statistics'][0]['steals']
+            game.home_turnovers = game_stats_json['response'][0]['statistics'][0]['turnovers']
+            game.home_blocks    = game_stats_json['response'][0]['statistics'][0]['blocks']
+            game.home_plusMinus = game_stats_json['response'][0]['statistics'][0]['plusMinus']
+            
+            # Save away stats
+            game.away_points    = game_stats_json['response'][1]['statistics'][0]['points']
+            game.away_fgm       = game_stats_json['response'][1]['statistics'][0]['fgm']
+            game.away_fga       = game_stats_json['response'][1]['statistics'][0]['fga']
+            game.away_fgp       = game_stats_json['response'][1]['statistics'][0]['fgp']
+            game.away_ftm       = game_stats_json['response'][1]['statistics'][0]['ftm']
+            game.away_fta       = game_stats_json['response'][1]['statistics'][0]['fta']
+            game.away_ftp       = game_stats_json['response'][1]['statistics'][0]['ftp']
+            game.away_tpm       = game_stats_json['response'][1]['statistics'][0]['tpm']
+            game.away_tpa       = game_stats_json['response'][1]['statistics'][0]['tpa']
+            game.away_tpp       = game_stats_json['response'][1]['statistics'][0]['tpp']
+            game.away_offReb    = game_stats_json['response'][1]['statistics'][0]['offReb']
+            game.away_defReb    = game_stats_json['response'][1]['statistics'][0]['defReb']
+            game.away_totReb    = game_stats_json['response'][1]['statistics'][0]['totReb']
+            game.away_assists   = game_stats_json['response'][1]['statistics'][0]['assists']
+            game.away_pFouls    = game_stats_json['response'][1]['statistics'][0]['pFouls']
+            game.away_steals    = game_stats_json['response'][1]['statistics'][0]['steals']
+            game.away_turnovers = game_stats_json['response'][1]['statistics'][0]['turnovers']
+            game.away_blocks    = game_stats_json['response'][1]['statistics'][0]['blocks']
+            game.away_plusMinus = game_stats_json['response'][1]['statistics'][0]['plusMinus']
+        else:
+            # Save away team stats
+            game.away_points    = game_stats_json['response'][0]['statistics'][0]['points']
+            game.away_fgm       = game_stats_json['response'][0]['statistics'][0]['fgm']
+            game.away_fga       = game_stats_json['response'][0]['statistics'][0]['fga']
+            game.away_fgp       = game_stats_json['response'][0]['statistics'][0]['fgp']
+            game.away_ftm       = game_stats_json['response'][0]['statistics'][0]['ftm']
+            game.away_fta       = game_stats_json['response'][0]['statistics'][0]['fta']
+            game.away_ftp       = game_stats_json['response'][0]['statistics'][0]['ftp']
+            game.away_tpm       = game_stats_json['response'][0]['statistics'][0]['tpm']
+            game.away_tpa       = game_stats_json['response'][0]['statistics'][0]['tpa']
+            game.away_tpp       = game_stats_json['response'][0]['statistics'][0]['tpp']
+            game.away_offReb    = game_stats_json['response'][0]['statistics'][0]['offReb']
+            game.away_defReb    = game_stats_json['response'][0]['statistics'][0]['defReb']
+            game.away_totReb    = game_stats_json['response'][0]['statistics'][0]['totReb']
+            game.away_assists   = game_stats_json['response'][0]['statistics'][0]['assists']
+            game.away_pFouls    = game_stats_json['response'][0]['statistics'][0]['pFouls']
+            game.away_steals    = game_stats_json['response'][0]['statistics'][0]['steals']
+            game.away_turnovers = game_stats_json['response'][0]['statistics'][0]['turnovers']
+            game.away_blocks    = game_stats_json['response'][0]['statistics'][0]['blocks']
+            game.away_plusMinus = game_stats_json['response'][0]['statistics'][0]['plusMinus']
+            
+            # Save home stats
+            game.home_points    = game_stats_json['response'][1]['statistics'][0]['points']
+            game.home_fgm       = game_stats_json['response'][1]['statistics'][0]['fgm']
+            game.home_fga       = game_stats_json['response'][1]['statistics'][0]['fga']
+            game.home_fgp       = game_stats_json['response'][1]['statistics'][0]['fgp']
+            game.home_ftm       = game_stats_json['response'][1]['statistics'][0]['ftm']
+            game.home_fta       = game_stats_json['response'][1]['statistics'][0]['fta']
+            game.home_ftp       = game_stats_json['response'][1]['statistics'][0]['ftp']
+            game.home_tpm       = game_stats_json['response'][1]['statistics'][0]['tpm']
+            game.home_tpa       = game_stats_json['response'][1]['statistics'][0]['tpa']
+            game.home_tpp       = game_stats_json['response'][1]['statistics'][0]['tpp']
+            game.home_offReb    = game_stats_json['response'][1]['statistics'][0]['offReb']
+            game.home_defReb    = game_stats_json['response'][1]['statistics'][0]['defReb']
+            game.home_totReb    = game_stats_json['response'][1]['statistics'][0]['totReb']
+            game.home_assists   = game_stats_json['response'][1]['statistics'][0]['assists']
+            game.home_pFouls    = game_stats_json['response'][1]['statistics'][0]['pFouls']
+            game.home_steals    = game_stats_json['response'][1]['statistics'][0]['steals']
+            game.home_turnovers = game_stats_json['response'][1]['statistics'][0]['turnovers']
+            game.home_blocks    = game_stats_json['response'][1]['statistics'][0]['blocks']
+            game.home_plusMinus = game_stats_json['response'][1]['statistics'][0]['plusMinus']
         
         # Set game played flag
         game.played = True
@@ -297,108 +344,114 @@ def update_nba_team_stats(year):
     reset_nba_team_fields()
 
     for game in games:
+
+        home_team = game.home_team
+        away_team = game.away_team
+
+        if ( ( home_team.games == 0 ) or ( away_team.games == 0 ) ):
+            game.first_game = True
+
+        game.home_games       = home_team.games
+        game.home_wins        = home_team.wins
+        game.home_losses      = home_team.losses
+        game.home_win_pct     = home_team.win_pct
+        game.home_opp_wins    = home_team.opp_wins
+        game.home_opp_losses  = home_team.opp_losses
+        game.home_opp_win_pct = home_team.opp_win_pct
+
+        game.home_points_pg    = home_team.points_pg
+        game.home_fgm_pg       = home_team.fgm_pg
+        game.home_fga_pg       = home_team.fga_pg
+        game.home_fgp          = home_team.fgp
+        game.home_ftm_pg       = home_team.ftm_pg
+        game.home_fta_pg       = home_team.fta_pg
+        game.home_ftp          = home_team.ftp
+        game.home_tpm_pg       = home_team.tpm_pg
+        game.home_tpa_pg       = home_team.tpa_pg
+        game.home_tpp          = home_team.tpp
+        game.home_offReb_pg    = home_team.offReb_pg
+        game.home_defReb_pg    = home_team.defReb_pg
+        game.home_totReb_pg    = home_team.totReb_pg
+        game.home_assists_pg   = home_team.assists_pg
+        game.home_pFouls_pg    = home_team.pFouls_pg
+        game.home_steals_pg    = home_team.steals_pg
+        game.home_turnovers_pg = home_team.turnovers_pg
+        game.home_blocks_pg    = home_team.blocks_pg
+        game.home_plusMinus_pg = home_team.plusMinus_pg
+
+        game.home_opp_points_pg    = home_team.opp_points_pg
+        game.home_opp_fgm_pg       = home_team.opp_fgm_pg
+        game.home_opp_fga_pg       = home_team.opp_fga_pg
+        game.home_opp_fgp          = home_team.opp_fgp
+        game.home_opp_ftm_pg       = home_team.opp_ftm_pg
+        game.home_opp_fta_pg       = home_team.opp_fta_pg
+        game.home_opp_ftp          = home_team.opp_ftp
+        game.home_opp_tpm_pg       = home_team.opp_tpm_pg
+        game.home_opp_tpa_pg       = home_team.opp_tpa_pg
+        game.home_opp_tpp          = home_team.opp_tpp
+        game.home_opp_offReb_pg    = home_team.opp_offReb_pg
+        game.home_opp_defReb_pg    = home_team.opp_defReb_pg
+        game.home_opp_totReb_pg    = home_team.opp_totReb_pg
+        game.home_opp_assists_pg   = home_team.opp_assists_pg
+        game.home_opp_pFouls_pg    = home_team.opp_pFouls_pg
+        game.home_opp_steals_pg    = home_team.opp_steals_pg
+        game.home_opp_turnovers_pg = home_team.opp_turnovers_pg
+        game.home_opp_blocks_pg    = home_team.opp_blocks_pg
+        game.home_opp_plusMinus_pg = home_team.opp_plusMinus_pg
+
+        game.away_games       = away_team.games
+        game.away_wins        = away_team.wins
+        game.away_losses      = away_team.losses
+        game.away_win_pct     = away_team.win_pct
+        game.away_opp_wins    = away_team.opp_wins
+        game.away_opp_losses  = away_team.opp_losses
+        game.away_opp_win_pct = away_team.opp_win_pct
+
+        game.away_points_pg    = away_team.points_pg
+        game.away_fgm_pg       = away_team.fgm_pg
+        game.away_fga_pg       = away_team.fga_pg
+        game.away_fgp          = away_team.fgp
+        game.away_ftm_pg       = away_team.ftm_pg
+        game.away_fta_pg       = away_team.fta_pg
+        game.away_ftp          = away_team.ftp
+        game.away_tpm_pg       = away_team.tpm_pg
+        game.away_tpa_pg       = away_team.tpa_pg
+        game.away_tpp          = away_team.tpp
+        game.away_offReb_pg    = away_team.offReb_pg
+        game.away_defReb_pg    = away_team.defReb_pg
+        game.away_totReb_pg    = away_team.totReb_pg
+        game.away_assists_pg   = away_team.assists_pg
+        game.away_pFouls_pg    = away_team.pFouls_pg
+        game.away_steals_pg    = away_team.steals_pg
+        game.away_turnovers_pg = away_team.turnovers_pg
+        game.away_blocks_pg    = away_team.blocks_pg
+        game.away_plusMinus_pg = away_team.plusMinus_pg
+
+        game.away_opp_points_pg    = away_team.opp_points_pg
+        game.away_opp_fgm_pg       = away_team.opp_fgm_pg
+        game.away_opp_fga_pg       = away_team.opp_fga_pg
+        game.away_opp_fgp          = away_team.opp_fgp
+        game.away_opp_ftm_pg       = away_team.opp_ftm_pg
+        game.away_opp_fta_pg       = away_team.opp_fta_pg
+        game.away_opp_ftp          = away_team.opp_ftp
+        game.away_opp_tpm_pg       = away_team.opp_tpm_pg
+        game.away_opp_tpa_pg       = away_team.opp_tpa_pg
+        game.away_opp_tpp          = away_team.opp_tpp
+        game.away_opp_offReb_pg    = away_team.opp_offReb_pg
+        game.away_opp_defReb_pg    = away_team.opp_defReb_pg
+        game.away_opp_totReb_pg    = away_team.opp_totReb_pg
+        game.away_opp_assists_pg   = away_team.opp_assists_pg
+        game.away_opp_pFouls_pg    = away_team.opp_pFouls_pg
+        game.away_opp_steals_pg    = away_team.opp_steals_pg
+        game.away_opp_turnovers_pg = away_team.opp_turnovers_pg
+        game.away_opp_blocks_pg    = away_team.opp_blocks_pg
+        game.away_opp_plusMinus_pg = away_team.opp_plusMinus_pg
+
+        preds = run_nba_lin_reg(game)
+        game.home_linreg_points = preds['home_score']
+        game.away_linreg_points = preds['away_score']
+
         if game.played:
-            home_team = game.home_team
-            away_team = game.away_team
-
-            if ( ( home_team.games == 0 ) or ( away_team.games == 0 ) ):
-                game.first_game = True
-
-            game.home_games       = home_team.games
-            game.home_wins        = home_team.wins
-            game.home_losses      = home_team.losses
-            game.home_win_pct     = home_team.win_pct
-            game.home_opp_wins    = home_team.opp_wins
-            game.home_opp_losses  = home_team.opp_losses
-            game.home_opp_win_pct = home_team.opp_win_pct
-
-            game.home_points_pg    = home_team.points_pg
-            game.home_fgm_pg       = home_team.fgm_pg
-            game.home_fga_pg       = home_team.fga_pg
-            game.home_fgp          = home_team.fgp
-            game.home_ftm_pg       = home_team.ftm_pg
-            game.home_fta_pg       = home_team.fta_pg
-            game.home_ftp          = home_team.ftp
-            game.home_tpm_pg       = home_team.tpm_pg
-            game.home_tpa_pg       = home_team.tpa_pg
-            game.home_tpp          = home_team.tpp
-            game.home_offReb_pg    = home_team.offReb_pg
-            game.home_defReb_pg    = home_team.defReb_pg
-            game.home_totReb_pg    = home_team.totReb_pg
-            game.home_assists_pg   = home_team.assists_pg
-            game.home_pFouls_pg    = home_team.pFouls_pg
-            game.home_steals_pg    = home_team.steals_pg
-            game.home_turnovers_pg = home_team.turnovers_pg
-            game.home_blocks_pg    = home_team.blocks_pg
-            game.home_plusMinus_pg = home_team.plusMinus_pg
-
-            game.home_opp_points_pg    = home_team.opp_points_pg
-            game.home_opp_fgm_pg       = home_team.opp_fgm_pg
-            game.home_opp_fga_pg       = home_team.opp_fga_pg
-            game.home_opp_fgp          = home_team.opp_fgp
-            game.home_opp_ftm_pg       = home_team.opp_ftm_pg
-            game.home_opp_fta_pg       = home_team.opp_fta_pg
-            game.home_opp_ftp          = home_team.opp_ftp
-            game.home_opp_tpm_pg       = home_team.opp_tpm_pg
-            game.home_opp_tpa_pg       = home_team.opp_tpa_pg
-            game.home_opp_tpp          = home_team.opp_tpp
-            game.home_opp_offReb_pg    = home_team.opp_offReb_pg
-            game.home_opp_defReb_pg    = home_team.opp_defReb_pg
-            game.home_opp_totReb_pg    = home_team.opp_totReb_pg
-            game.home_opp_assists_pg   = home_team.opp_assists_pg
-            game.home_opp_pFouls_pg    = home_team.opp_pFouls_pg
-            game.home_opp_steals_pg    = home_team.opp_steals_pg
-            game.home_opp_turnovers_pg = home_team.opp_turnovers_pg
-            game.home_opp_blocks_pg    = home_team.opp_blocks_pg
-            game.home_opp_plusMinus_pg = home_team.opp_plusMinus_pg
-
-            game.away_games       = away_team.games
-            game.away_wins        = away_team.wins
-            game.away_losses      = away_team.losses
-            game.away_win_pct     = away_team.win_pct
-            game.away_opp_wins    = away_team.opp_wins
-            game.away_opp_losses  = away_team.opp_losses
-            game.away_opp_win_pct = away_team.opp_win_pct
-
-            game.away_points_pg    = away_team.points_pg
-            game.away_fgm_pg       = away_team.fgm_pg
-            game.away_fga_pg       = away_team.fga_pg
-            game.away_fgp          = away_team.fgp
-            game.away_ftm_pg       = away_team.ftm_pg
-            game.away_fta_pg       = away_team.fta_pg
-            game.away_ftp          = away_team.ftp
-            game.away_tpm_pg       = away_team.tpm_pg
-            game.away_tpa_pg       = away_team.tpa_pg
-            game.away_tpp          = away_team.tpp
-            game.away_offReb_pg    = away_team.offReb_pg
-            game.away_defReb_pg    = away_team.defReb_pg
-            game.away_totReb_pg    = away_team.totReb_pg
-            game.away_assists_pg   = away_team.assists_pg
-            game.away_pFouls_pg    = away_team.pFouls_pg
-            game.away_steals_pg    = away_team.steals_pg
-            game.away_turnovers_pg = away_team.turnovers_pg
-            game.away_blocks_pg    = away_team.blocks_pg
-            game.away_plusMinus_pg = away_team.plusMinus_pg
-
-            game.away_opp_points_pg    = away_team.opp_points_pg
-            game.away_opp_fgm_pg       = away_team.opp_fgm_pg
-            game.away_opp_fga_pg       = away_team.opp_fga_pg
-            game.away_opp_fgp          = away_team.opp_fgp
-            game.away_opp_ftm_pg       = away_team.opp_ftm_pg
-            game.away_opp_fta_pg       = away_team.opp_fta_pg
-            game.away_opp_ftp          = away_team.opp_ftp
-            game.away_opp_tpm_pg       = away_team.opp_tpm_pg
-            game.away_opp_tpa_pg       = away_team.opp_tpa_pg
-            game.away_opp_tpp          = away_team.opp_tpp
-            game.away_opp_offReb_pg    = away_team.opp_offReb_pg
-            game.away_opp_defReb_pg    = away_team.opp_defReb_pg
-            game.away_opp_totReb_pg    = away_team.opp_totReb_pg
-            game.away_opp_assists_pg   = away_team.opp_assists_pg
-            game.away_opp_pFouls_pg    = away_team.opp_pFouls_pg
-            game.away_opp_steals_pg    = away_team.opp_steals_pg
-            game.away_opp_turnovers_pg = away_team.opp_turnovers_pg
-            game.away_opp_blocks_pg    = away_team.opp_blocks_pg
-            game.away_opp_plusMinus_pg = away_team.opp_plusMinus_pg
 
             # Win/loss totals
             home_team.opp_wins   += away_team.wins
@@ -530,7 +583,51 @@ def update_nba_team_stats(year):
             away_team.opp_blocks_pg    = ( ( away_team.opp_blocks_pg    * ( away_team.games - 1 ) ) + game.home_blocks    ) / away_team.games
             away_team.opp_plusMinus_pg = ( ( away_team.opp_plusMinus_pg * ( away_team.games - 1 ) ) + game.home_plusMinus ) / away_team.games
 
-            # Save game, home, and away teams
-            home_team.save()
-            away_team.save()
-            game.save()
+        # Save game, home, and away teams
+        home_team.save()
+        away_team.save()
+        game.save()
+
+def export_nba_stats_to_csv(years):
+    csv_filename = "nba_training_data.csv"
+    with open(csv_filename,'w') as f:
+        writer = csv.writer(f)
+        for year in years:
+            sch_obj = get_schedule_db(year)
+            games = sch_obj.objects.all()
+            field_names = [field.name for field in sch_obj._meta.get_fields()]
+            writer.writerow(field_names)
+            for game in games:
+                writer.writerow([getattr(game, field) for field in field_names])
+
+def run_nba_lin_reg(game):
+    preds = {}
+    scaler_filename       = "SportsApp/ml_models/nba_scaler.sav"
+    home_lin_reg_filename = "SportsApp/ml_models/nba_lin_reg_home_points.sav"
+    away_lin_reg_filename = "SportsApp/ml_models/nba_lin_reg_away_points.sav"
+
+    scaler       = pickle.load(open(scaler_filename,  'rb'))
+    home_lin_reg = pickle.load(open(home_lin_reg_filename, 'rb'))
+    away_lin_reg = pickle.load(open(away_lin_reg_filename, 'rb'))
+
+    game_dict = game.__dict__
+    game_df = pd.DataFrame(data=game_dict, index=[0])
+
+    for col in game_df.columns:
+        if col not in NBA_LIN_REG_PREDICTORS_LIST:
+            game_df = game_df.drop(columns=[col])
+
+    game_scaled = scaler.transform(game_df)
+
+    preds['home_score'] = round(float(home_lin_reg.predict(game_scaled)),1)
+    preds['away_score'] = round(float(away_lin_reg.predict(game_scaled)),1)
+
+    return preds
+
+def get_nba_game_predictions(game):
+    preds = {}
+    preds['lin_reg'] = {
+        'home_score': game.home_linreg_points,
+        'away_score': game.away_linreg_points
+    }
+    return preds

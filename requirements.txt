@@ -1,3 +1,10 @@
 requests
 Django
 bs4
+seaborn
+matplotlib
+scikit-learn
+scipy
+statsmodels
+pandas
+Pillow

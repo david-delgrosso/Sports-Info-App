@@ -30,6 +30,7 @@ urlpatterns = [
     #path(route='d', view=views.populate_nba_teams_db, name='populate_nba_teams_db'),
     path(route='e', view=views.populate_nba_game_stats, name='populate_nba_game_stats'),
     path(route='f', view=views.calculate_nba_team_stats, name='calculate_nba_team_stats'),
+    path(route='g', view=views.copy_nba_stats_to_csv, name='copy_nba_stats_to_csv'),
     path(route='NBA', view=views.load_nba_home, name='load_nba_home'),
     path(route='NBA/<str:id>', view=views.load_nba_game, name='load_nba_game'),
 ]

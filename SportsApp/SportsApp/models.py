@@ -210,6 +210,8 @@ class NBAScheduleTemplate(models.Model):
 class NBASchedule2022(NBAScheduleTemplate):
     home_team = models.ForeignKey(NBATeam, related_name="home_team_2022", on_delete=models.CASCADE)
     away_team = models.ForeignKey(NBATeam, related_name="away_team_2022", on_delete=models.CASCADE)
+    home_linreg_points = models.FloatField(default=0.0)
+    away_linreg_points = models.FloatField(default=0.0)
 
 class NBASchedule2021(NBAScheduleTemplate):
     home_team = models.ForeignKey(NBATeam, related_name="home_team_2021", on_delete=models.CASCADE)
