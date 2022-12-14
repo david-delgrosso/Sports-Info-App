@@ -3,11 +3,21 @@ from .restapis import *
 from .models import NBASchedule2022
 from .utils import *
 from .constants import *
+from django.views import generic
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
+from django import forms
+
+class DateForm(forms.Form):
+    date = forms.DateField(label='',
+                           widget=forms.DateInput(attrs={'class': "form-control",
+                                                         'id': "date",
+                                                         'type': "date"}))
 
 # Load home page
 def home(request):
     context = {}
-    context['nba_games'] = get_todays_games('NBA')
+    today = datetime.now() - timedelta(hours=5)
+    context['nba_games'] = get_nba_games('NBA', today)
     return render(request, 'SportsApp/index.html', context)
 
 # NBA views
@@ -65,10 +75,25 @@ def load_nba_game(request,id):
     game = NBASchedule2022.objects.get(id=id)
     context['game'] = game
     context['preds'] = get_nba_game_predictions(game)
-    return render(request, 'SportsApp/game.html', context)
+    return render(request, 'SportsApp/nba_game.html', context)
 
 # Load page displaying 
 def load_nba_home(request):
     context = {}
-    context['nba_games'] = get_todays_games('NBA')
+    if request.method == 'POST':
+        form = DateForm(request.POST)
+        if form.is_valid():
+            day = form.cleaned_data['date']
+    else:
+        today = datetime.now() - timedelta(hours=5)
+        day = str(today.strftime("%Y-%m-%d"))
+        form = DateForm(initial={'date':day})
+
+    context['day'] = day
+    context['nba_games'] = get_nba_games('NBA', day)
+    context['form'] = form
+    context['in_past'] = False
+    for game in context['nba_games']:
+        if game.played:
+            context['in_past'] = True
     return render(request, 'SportsApp/nba_home.html', context)

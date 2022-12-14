@@ -8,3 +8,4 @@ scipy
 statsmodels
 pandas
 Pillow
+django-bootstrap-datepicker-plus

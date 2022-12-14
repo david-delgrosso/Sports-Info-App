@@ -1,5 +1,5 @@
 body {
-    background-color: #002f4b;
+    background-color: #17171b;
 }
 
 .progress {
@@ -7,4 +7,8 @@ body {
     height: 10px;
     width: 50px;
     margin-top: 7px;
+}
+
+.container {
+    max-width: 800px;
 }

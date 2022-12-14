@@ -33,9 +33,8 @@ def get_schedule_db(year):
     return sch_obj
 
 # Returns a list of today's game objects
-def get_todays_games(sport):
-    today = str(datetime.now().strftime("%Y-%m-%d"))
-    games = NBASchedule2022.objects.filter(sport=sport, date=today)
+def get_nba_games(sport, day):
+    games = NBASchedule2022.objects.filter(sport=sport, date=day)
     return games
 
 def reset_nba_team_fields():
@@ -338,10 +337,14 @@ def backfill_nba_boxscores(year):
 
 # Parse NBA Schedule database to calculate aggregate team stats
 def update_nba_team_stats(year):
+    #reset_nba_team_fields()
+    #nba_game_by_game_calcs(year)
+    nba_rankings()
+
+def nba_game_by_game_calcs(year):
+
     sch_obj = get_schedule_db(year)
     games = sch_obj.objects.all()
-
-    reset_nba_team_fields()
 
     for game in games:
 
@@ -587,6 +590,15 @@ def update_nba_team_stats(year):
         home_team.save()
         away_team.save()
         game.save()
+
+def nba_rankings():
+    for stat in NBA_TEAM_DB_STATS_FIELDS_LIST:
+        stat_name = "-" + str(stat)
+        stat_rank = "rank_" + str(stat)
+        sorted_db = NBATeam.objects.all().order_by(stat_name)
+        for idx,team in enumerate(sorted_db):
+            setattr(team, stat_rank, idx + 1)
+            team.save()
 
 def export_nba_stats_to_csv(years):
     csv_filename = "nba_training_data.csv"

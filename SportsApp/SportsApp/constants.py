@@ -97,3 +97,12 @@ NBA_LIN_REG_PREDICTORS_LIST = ['home_opp_win_pct', 'home_fgm_pg', 'home_fga_pg',
        'away_opp_ftp', 'away_opp_tpm_pg', 'away_opp_tpp', 'away_opp_offReb_pg',
        'away_opp_defReb_pg', 'away_opp_assists_pg', 'away_opp_pFouls_pg',
        'away_opp_steals_pg', 'away_opp_turnovers_pg', 'away_opp_blocks_pg']
+
+NBA_TEAM_DB_STATS_FIELDS_LIST = ['points_pg','fgm_pg','fga_pg','fgp','ftm_pg','fta_pg',
+                                 'ftp','tpm_pg','tpa_pg','tpp','offReb_pg','defReb_pg',
+                                 'totReb_pg','assists_pg','pFouls_pg','steals_pg',
+                                 'turnovers_pg','blocks_pg','plusMinus_pg','opp_points_pg',
+                                 'opp_fgm_pg','opp_fga_pg','opp_fgp','opp_ftm_pg','opp_fta_pg',
+                                 'opp_ftp','opp_tpm_pg','opp_tpa_pg','opp_tpp','opp_offReb_pg',
+                                 'opp_defReb_pg','opp_totReb_pg','opp_assists_pg','opp_pFouls_pg',
+                                 'opp_steals_pg','opp_turnovers_pg','opp_blocks_pg','opp_plusMinus_pg']

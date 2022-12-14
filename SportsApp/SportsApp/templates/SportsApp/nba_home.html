@@ -12,6 +12,9 @@
         integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
         crossorigin="anonymous"></script>
 
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+
     <title>Test Web App</title>
 </head>
 
@@ -21,26 +24,60 @@
 
     <section class="p-1">
         <div class="container">
-            <h3 class="text-center">NBA Games</h3>
-            <hr>
-            <table class="table" id="table" data-filter-control="true">
+            <hr class="bg-light">
+            <h3 class="text-center text-light">NBA Schedule</h3>
+            <hr class="bg-light">
+            <form action="{% url 'load_nba_home' %}" method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-4"></div>
+                    <div class="col-3">
+                        {{ form }}
+                        <!-- <input type="date" class="form-control" id="date" value="{{day}}"> -->
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
                 <thead>
                     <tr>
+                        {% if in_past %}
                         <th scope="col">Date</th>
                         <th scope="col">Away</th>
                         <th scope="col"></th>
                         <th scope="col">Home</th>
-                        <th scope="col">Time</th>
+                        <th scope="col">Score</th>
+                        <th scope="col"></th>
+                        {% else %}
+                        <th scope="col">Date</th>
+                        <th scope="col">Away</th>
+                        <th scope="col"></th>
+                        <th scope="col">Home</th>
+                        <th scope="col">Time ET</th>
+                        <th scope="col"></th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for game in nba_games %}
                     <tr>
+                        {% if in_past %}
                         <td>{{ game.date }}</td>
                         <td>{{ game.away_city }} {{ game.away_team }}</td>
-                        <td><a href="{% url 'load_nba_game' game.id %}">@</a></td>
+                        <td>@</td>
+                        <td>{{ game.home_city }} {{ game.home_team }}</td>
+                        <td>{{ game.away_points }} - {{ game.home_points }}</td>
+                        <td><a href="{% url 'load_nba_game' game.id %}">X</a></td>
+                        {% else %}
+                        <td>{{ game.date }}</td>
+                        <td>{{ game.away_city }} {{ game.away_team }}</td>
+                        <td>@</td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.time }}</td>
+                        <td><a href="{% url 'load_nba_game' game.id %}">X</a></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
