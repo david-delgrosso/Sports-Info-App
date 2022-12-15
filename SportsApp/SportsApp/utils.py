@@ -8,6 +8,8 @@ import time
 import pickle
 from sklearn import linear_model
 import pandas as pd
+import os
+import shutil
 
 # general utilities
 def convert_time(time_in):
@@ -202,7 +204,16 @@ def load_nba_teams_to_db():
                                           sport="NBA")
 
 def backfill_nba_boxscores(year):
+
     sch_obj = get_schedule_db(year)
+
+    d = datetime.strptime('2022-12-14','%Y-%m-%d')
+    games = sch_obj.objects.filter(date=d)
+    for game in games:
+        game.played = 0
+        game.save()
+    
+    
     games = sch_obj.objects.all()
 
     i = 0
@@ -337,7 +348,7 @@ def backfill_nba_boxscores(year):
 # Parse NBA Schedule database to calculate aggregate team stats
 def update_nba_team_stats(year):
     #reset_nba_team_fields()
-    #nba_game_by_game_calcs(year)
+    nba_game_by_game_calcs(year)
     nba_rankings()
 
 def nba_game_by_game_calcs(year):
@@ -345,7 +356,11 @@ def nba_game_by_game_calcs(year):
     sch_obj = get_schedule_db(year)
     games = sch_obj.objects.all()
 
+    i = 0
+
     for game in games:
+
+        i += 1
 
         home_team = game.home_team
         away_team = game.away_team
@@ -589,6 +604,7 @@ def nba_game_by_game_calcs(year):
         home_team.save()
         away_team.save()
         game.save()
+        print("Game ", i, "counted...")
 
 def nba_rankings():
     for stat in NBA_TEAM_DB_STATS_FIELDS_LIST:
@@ -645,3 +661,25 @@ def get_nba_game_predictions(game):
         'away_score': game.away_linreg_points
     }
     return preds
+
+def rename_nba_logos_util():
+    logos_path = "SportsApp/static/media/nba_logos/"
+    logos = os.listdir(logos_path)
+    for logo in logos:
+        if logo[0].islower():
+            logo_sp = logo.split('-')
+            if len(logo_sp) == 4:
+                target = logos_path
+                target += str(logo_sp[0]).capitalize() + '_'
+                target += str(logo_sp[1]).capitalize() + '_'
+                target += "Logo.png"
+            elif len(logo_sp) == 5:
+                target = logos_path
+                target += str(logo_sp[0]).capitalize() + '_'
+                target += str(logo_sp[1]).capitalize() + '_'
+                target += str(logo_sp[2]).capitalize() + '_'
+                target += "Logo.png"
+            source = logos_path + logo
+            print("Source: ", source)
+            print("Target: ", target)
+            shutil.copy(source, target)

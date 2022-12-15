@@ -12,3 +12,8 @@ body {
 .container {
     max-width: 800px;
 }
+
+.center {
+    margin: auto;
+    text-align: center;
+}

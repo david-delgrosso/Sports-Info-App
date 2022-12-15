@@ -15,6 +15,8 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 
+    {% load filters %}
+
     <title>Test Web App</title>
 </head>
 
@@ -33,7 +35,6 @@
                     <div class="col-4"></div>
                     <div class="col-3">
                         {{ form }}
-                        <!-- <input type="date" class="form-control" id="date" value="{{day}}"> -->
                     </div>
                     <div class="col-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -45,14 +46,18 @@
                     <tr>
                         {% if in_past %}
                         <th scope="col">Date</th>
+                        <th scope="col"></th>
                         <th scope="col">Away</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">Home</th>
                         <th scope="col">Score</th>
                         <th scope="col"></th>
                         {% else %}
                         <th scope="col">Date</th>
+                        <th scope="col"></th>
                         <th scope="col">Away</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">Home</th>
                         <th scope="col">Time ET</th>
@@ -65,18 +70,22 @@
                     <tr>
                         {% if in_past %}
                         <td>{{ game.date }}</td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
                         <td>{{ game.away_city }} {{ game.away_team }}</td>
                         <td>@</td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.away_points }} - {{ game.home_points }}</td>
                         <td><a href="{% url 'load_nba_game' game.id %}">X</a></td>
                         {% else %}
                         <td>{{ game.date }}</td>
-                        <td>{{ game.away_city }} {{ game.away_team }}</td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>@</td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.time }}</td>
-                        <td><a href="{% url 'load_nba_game' game.id %}">X</a></td>
+                        <td><a href="{% url 'load_nba_game' game.id %}"><img src="{% static 'media/misc/white-arrow.png' %}" width="25" style="float:center; vertical-align:middle"/></a></td>
                         {% endif %}
                     </tr>
                     {% endfor %}

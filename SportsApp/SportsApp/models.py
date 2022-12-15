@@ -5,7 +5,7 @@ class NBATeam(models.Model):
     name  = models.CharField(max_length=30)
     city  = models.CharField(max_length=30)
     sport = models.CharField(max_length=10)
-    
+        
     games       = models.IntegerField(default=0)
     wins        = models.IntegerField(default=0)
     losses      = models.IntegerField(default=0)

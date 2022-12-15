@@ -9,3 +9,4 @@ statsmodels
 pandas
 Pillow
 django-bootstrap-datepicker-plus
+sorl-thumbnail

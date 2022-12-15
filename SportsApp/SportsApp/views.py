@@ -97,3 +97,9 @@ def load_nba_home(request):
         if game.played:
             context['in_past'] = True
     return render(request, 'SportsApp/nba_home.html', context)
+
+def rename_nba_logos(request):
+    context = {}
+    rename_nba_logos_util()
+    context['info_message'] = "Successfully Copied NBA Stats to CSV"
+    return render(request, 'SportsApp/index.html', context)

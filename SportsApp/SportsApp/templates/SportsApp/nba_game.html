@@ -28,9 +28,23 @@
     <section class="p-1">
         <div class="container">
             <hr class="bg-light">
-            <h3 class="text-center text-light">{{game.away_city}} {{game.away_team}} @ {{game.home_city}}
-                {{game.home_team}}</h3>
-            <h4 class="text-center text-light">{{game.time}}</h4>
+            <div class="row">
+                <div class="col-2 center">
+                    <img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}" width="100" style="float:center; vertical-align:middle"/>
+                </div>
+                <div class="col-3 center">
+                    <h4 class="text-center text-light">{{game.away_team.city}} {{game.away_team.name}}</h4>
+                </div>
+                <div class="col-2 center">
+                    <h5 class="text-center text-light">{{game.time}}</h5>
+                </div>
+                <div class="col-3 center">
+                    <h4 class="text-center text-light">{{game.home_team.city}} {{game.home_team.name}}</h4>
+                </div>
+                <div class="col-2 center">
+                    <img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="100" style="float:center; vertical-align:middle"/>
+                </div>
+            </div>
             <hr class="bg-light">
         </div>
         <hr>
