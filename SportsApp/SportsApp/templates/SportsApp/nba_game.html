@@ -15,6 +15,8 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 
+    {% load filters %}
+
     <title>Test Web App</title>
 </head>
 
@@ -36,119 +38,1120 @@
             <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
                 <thead>
                     <tr>
+                        <th scope="col"></th>
+                        <th colspan="2">{{game.away_team}}</th>
+                        <th colspan="2">{{game.home_team}}</th>
+                    </tr>
+                    <tr>
                         <th scope="col">Stat</th>
-                        <th scope="col">Away</th>
-                        <th scope="col">Home</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Opponents</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Opponents</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>PPG</td>
                         {% if game.away_team.rank_points_pg < 11 %}
-                        <td class="text-success">{{game.away_team.points_pg|floatformat:"1"}}</td>
+                        <td class="text-success">
+                            {{game.away_team.points_pg|floatformat:"1"}}
+                        </td>
                         {% elif game.away_team.rank_points_pg < 21 %}
-                        <td>{{game.away_team.points_pg|floatformat:"1"}}</td>
+                        <td>
+                            {{game.away_team.points_pg|floatformat:"1"}}
+                        </td>
                         {% else %}
-                        <td class="text-danger">{{game.away_team.points_pg|floatformat:"1"}}</td>
+                        <td class="text-danger">
+                            {{game.away_team.points_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_points_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_points_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_points_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_points_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_points_pg|floatformat:"1"}}
+                        </td>
                         {% endif %}
 
                         {% if game.home_team.rank_points_pg < 11 %}
-                        <td class="text-success">{{game.home_team.points_pg|floatformat:"1"}}</td>
+                        <td class="text-success">
+                            {{game.home_team.points_pg|floatformat:"1"}}
+                        </td>
                         {% elif game.home_team.rank_points_pg < 21 %}
-                        <td>{{game.home_team.points_pg|floatformat:"1"}}</td>
+                        <td>
+                            {{game.home_team.points_pg|floatformat:"1"}}
+                        </td>
                         {% else %}
-                        <td class="text-danger">{{game.home_team.points_pg|floatformat:"1"}}</td>
+                        <td class="text-danger">
+                            {{game.home_team.points_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_points_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_points_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_points_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_points_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_points_pg|floatformat:"1"}}
+                        </td>
                         {% endif %}
                     </tr>
                     <tr>
                         <td>FGM</td>
-                        <td>{{game.away_team.fgm_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.fgm_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_fgm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_fgm_pg < 21 %}
+                        <td>
+                            {{game.away_team.fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_fgm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_fgm_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_fgm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_fgm_pg < 21 %}
+                        <td>
+                            {{game.home_team.fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_fgm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_fgm_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_fgm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>FGA</td>
-                        <td>{{game.away_team.fga_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.fga_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_fga_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.fga_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_fga_pg < 21 %}
+                        <td>
+                            {{game.away_team.fga_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.fga_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_fga_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_fga_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_fga_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_fga_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_fga_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_fga_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.fga_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_fga_pg < 21 %}
+                        <td>
+                            {{game.home_team.fga_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.fga_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_fga_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_fga_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_fga_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_fga_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_fga_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>FG%</td>
-                        <td>{{game.away_team.fgp|floatformat:"2"}}</td>
-                        <td>{{game.home_team.fgp|floatformat:"2"}}</td>
+                        {% if game.away_team.rank_fgp < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.fgp|percentformat}}
+                        </td>
+                        {% elif game.away_team.rank_fgp < 21 %}
+                        <td>
+                            {{game.away_team.fgp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.fgp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_fgp < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_fgp|percentformat}}
+                        </td>
+                        {% elif game.away_team.rank_opp_fgp < 21 %}
+                        <td>
+                            {{game.away_team.opp_fgp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_fgp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_fgp < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.fgp|percentformat}}
+                        </td>
+                        {% elif game.home_team.rank_fgp < 21 %}
+                        <td>
+                            {{game.home_team.fgp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.fgp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_fgp < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_fgp|percentformat}}
+                        </td>
+                        {% elif game.home_team.rank_opp_fgp < 21 %}
+                        <td>
+                            {{game.home_team.opp_fgp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_fgp|percentformat}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>FTM</td>
-                        <td>{{game.away_team.ftm_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.ftm_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_ftm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_ftm_pg < 21 %}
+                        <td>
+                            {{game.away_team.ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_ftm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_ftm_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_ftm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_ftm_pg < 21 %}
+                        <td>
+                            {{game.home_team.ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_ftm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_ftm_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_ftm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>FTA</td>
-                        <td>{{game.away_team.fta_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.fta_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_fta_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.fta_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_fta_pg < 21 %}
+                        <td>
+                            {{game.away_team.fta_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.fta_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_fta_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_fta_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_fta_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_fta_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_fta_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_fta_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.fta_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_fta_pg < 21 %}
+                        <td>
+                            {{game.home_team.fta_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.fta_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_fta_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_fta_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_fta_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_fta_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_fta_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>FT%</td>
-                        <td>{{game.away_team.ftp|floatformat:"2"}}</td>
-                        <td>{{game.home_team.ftp|floatformat:"2"}}</td>
+                        {% if game.away_team.rank_ftp < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.ftp|percentformat}}
+                        </td>
+                        {% elif game.away_team.rank_ftp < 21 %}
+                        <td>
+                            {{game.away_team.ftp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.ftp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_ftp < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_ftp|percentformat}}
+                        </td>
+                        {% elif game.away_team.rank_opp_ftp < 21 %}
+                        <td>
+                            {{game.away_team.opp_ftp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_ftp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_ftp < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.ftp|percentformat}}
+                        </td>
+                        {% elif game.home_team.rank_ftp < 21 %}
+                        <td>
+                            {{game.home_team.ftp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.ftp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_ftp < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_ftp|percentformat}}
+                        </td>
+                        {% elif game.home_team.rank_opp_ftp < 21 %}
+                        <td>
+                            {{game.home_team.opp_ftp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_ftp|percentformat}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>3PM</td>
-                        <td>{{game.away_team.tpm_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.tpm_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_tpm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_tpm_pg < 21 %}
+                        <td>
+                            {{game.away_team.tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_tpm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_tpm_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_tpm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_tpm_pg < 21 %}
+                        <td>
+                            {{game.home_team.tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_tpm_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_tpm_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_tpm_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>3PA</td>
-                        <td>{{game.away_team.tpa_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.tpa_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_tpa_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_tpa_pg < 21 %}
+                        <td>
+                            {{game.away_team.tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_tpa_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_tpa_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_tpa_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_tpa_pg < 21 %}
+                        <td>
+                            {{game.home_team.tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_tpa_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_tpa_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_tpa_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>3P%</td>
-                        <td>{{game.away_team.tpp|floatformat:"2"}}</td>
-                        <td>{{game.home_team.tpp|floatformat:"2"}}</td>
+                        {% if game.away_team.rank_tpp < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.tpp|percentformat}}
+                        </td>
+                        {% elif game.away_team.rank_tpp < 21 %}
+                        <td>
+                            {{game.away_team.tpp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.tpp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_tpp < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_tpp|percentformat}}
+                        </td>
+                        {% elif game.away_team.rank_opp_tpp < 21 %}
+                        <td>
+                            {{game.away_team.opp_tpp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_tpp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_tpp < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.tpp|percentformat}}
+                        </td>
+                        {% elif game.home_team.rank_tpp < 21 %}
+                        <td>
+                            {{game.home_team.tpp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.tpp|percentformat}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_tpp < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_tpp|percentformat}}
+                        </td>
+                        {% elif game.home_team.rank_opp_tpp < 21 %}
+                        <td>
+                            {{game.home_team.opp_tpp|percentformat}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_tpp|percentformat}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>ORB</td>
-                        <td>{{game.away_team.offReb_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.offReb_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_offReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_offReb_pg < 21 %}
+                        <td>
+                            {{game.away_team.offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_offReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_offReb_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_offReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_offReb_pg < 21 %}
+                        <td>
+                            {{game.home_team.offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_offReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_offReb_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_offReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>DRB</td>
-                        <td>{{game.away_team.defReb_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.defReb_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_defReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_defReb_pg < 21 %}
+                        <td>
+                            {{game.away_team.defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_defReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_defReb_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_defReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_defReb_pg < 21 %}
+                        <td>
+                            {{game.home_team.defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_defReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_defReb_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_defReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>TRB</td>
-                        <td>{{game.away_team.totReb_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.totReb_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_totReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_totReb_pg < 21 %}
+                        <td>
+                            {{game.away_team.totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_totReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_totReb_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_totReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_totReb_pg < 21 %}
+                        <td>
+                            {{game.home_team.totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_totReb_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_totReb_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_totReb_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>AST</td>
-                        <td>{{game.away_team.assists_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.assists_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_assists_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.assists_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_assists_pg < 21 %}
+                        <td>
+                            {{game.away_team.assists_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.assists_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_assists_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_assists_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_assists_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_assists_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_assists_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_assists_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.assists_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_assists_pg < 21 %}
+                        <td>
+                            {{game.home_team.assists_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.assists_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_assists_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_assists_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_assists_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_assists_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_assists_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>PF</td>
-                        <td>{{game.away_team.pFouls_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.pFouls_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_pFouls_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_pFouls_pg < 21 %}
+                        <td>
+                            {{game.away_team.pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_pFouls_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_pFouls_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_pFouls_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_pFouls_pg < 21 %}
+                        <td>
+                            {{game.home_team.pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_pFouls_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_pFouls_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_pFouls_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>STL</td>
-                        <td>{{game.away_team.steals_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.steals_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_steals_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.steals_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_steals_pg < 21 %}
+                        <td>
+                            {{game.away_team.steals_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.steals_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_steals_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_steals_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_steals_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_steals_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_steals_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_steals_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.steals_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_steals_pg < 21 %}
+                        <td>
+                            {{game.home_team.steals_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.steals_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_steals_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_steals_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_steals_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_steals_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_steals_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>TO</td>
-                        <td>{{game.away_team.turnovers_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.turnovers_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_turnovers_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_turnovers_pg < 21 %}
+                        <td>
+                            {{game.away_team.turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_turnovers_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_turnovers_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_turnovers_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_turnovers_pg < 21 %}
+                        <td>
+                            {{game.home_team.turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_turnovers_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_turnovers_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_turnovers_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>BLK</td>
-                        <td>{{game.away_team.blocks_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.blocks_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_blocks_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_blocks_pg < 21 %}
+                        <td>
+                            {{game.away_team.blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_blocks_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_blocks_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_blocks_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_blocks_pg < 21 %}
+                        <td>
+                            {{game.home_team.blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_blocks_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_blocks_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_blocks_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>+/-</td>
-                        <td>{{game.away_team.plusMinus_pg|floatformat:"1"}}</td>
-                        <td>{{game.home_team.plusMinus_pg|floatformat:"1"}}</td>
+                        {% if game.away_team.rank_plusMinus_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_plusMinus_pg < 21 %}
+                        <td>
+                            {{game.away_team.plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.away_team.rank_opp_plusMinus_pg < 11 %}
+                        <td class="text-success">
+                            {{game.away_team.opp_plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.away_team.rank_opp_plusMinus_pg < 21 %}
+                        <td>
+                            {{game.away_team.opp_plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.away_team.opp_plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_plusMinus_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_plusMinus_pg < 21 %}
+                        <td>
+                            {{game.home_team.plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
+
+                        {% if game.home_team.rank_opp_plusMinus_pg < 11 %}
+                        <td class="text-success">
+                            {{game.home_team.opp_plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% elif game.home_team.rank_opp_plusMinus_pg < 21 %}
+                        <td>
+                            {{game.home_team.opp_plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% else %}
+                        <td class="text-danger">
+                            {{game.home_team.opp_plusMinus_pg|floatformat:"1"}}
+                        </td>
+                        {% endif %}
                     </tr>
                 </tbody>
             </table>

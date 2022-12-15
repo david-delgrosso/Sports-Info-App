@@ -204,15 +204,14 @@ def load_nba_teams_to_db():
 def backfill_nba_boxscores(year):
     sch_obj = get_schedule_db(year)
     games = sch_obj.objects.all()
-    
+
     i = 0
     for game in games:
-        
-        # Ignore games that already have stats filled
-        if game.home_points is not None:
-            continue
-
         i += 1
+
+        # Ignore games that already have stats filled
+        if game.played:
+            continue
 
         # Request game stats
         game_stats_str = request_nba_game_stats(str(game.id))
@@ -221,7 +220,7 @@ def backfill_nba_boxscores(year):
         # Break if game has not been played yet, otherwise wait 60s and submit request again
         try:
             if len(game_stats_json['response']) == 0:
-                continue
+                break
         except:
             print("Waiting 60 seconds...")
             time.sleep(60)
@@ -597,7 +596,10 @@ def nba_rankings():
         stat_rank = "rank_" + str(stat)
         sorted_db = NBATeam.objects.all().order_by(stat_name)
         for idx,team in enumerate(sorted_db):
-            setattr(team, stat_rank, idx + 1)
+            if stat_name[1:4] == 'opp':
+                setattr(team, stat_rank, len(sorted_db) - idx)
+            else:
+                setattr(team, stat_rank, idx + 1)
             team.save()
 
 def export_nba_stats_to_csv(years):
