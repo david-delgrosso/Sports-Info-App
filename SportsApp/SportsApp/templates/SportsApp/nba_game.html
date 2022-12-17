@@ -57,11 +57,11 @@
                         <th colspan="2">{{game.home_team}}</th>
                     </tr>
                     <tr>
-                        <th scope="col">Stat</th>
-                        <th scope="col">Team</th>
-                        <th scope="col">Opponents</th>
-                        <th scope="col">Team</th>
-                        <th scope="col">Opponents</th>
+                        <th scope="col" style="width:20%">Stat</th>
+                        <th scope="col" style="width:20%">Team</th>
+                        <th scope="col" style="width:20%">Opponents</th>
+                        <th scope="col" style="width:20%">Team</th>
+                        <th scope="col" style="width:20%">Opponents</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1181,16 +1181,18 @@
             <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
                 <thead>
                     <tr>
-                        <th scope="col">Stat</th>
-                        <th scope="col">Away</th>
-                        <th scope="col">Home</th>
+                        <th scope="col" style="width:25%">Model</th>
+                        <th scope="col" style="width:25%">Stat</th>
+                        <th scope="col" style="width:25%">Away</th>
+                        <th scope="col" style="width:25%">Home</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>Linear Regression</td>
                         <td>Points</td>
-                        <td>{{ preds.lin_reg.away_score }}</td>
-                        <td>{{ preds.lin_reg.home_score }}</td>
+                        <td>{{ preds.home_points_lr }}</td>
+                        <td>{{ preds.away_points_lr }}</td>
                     </tr>
                 </tbody>
             </table>

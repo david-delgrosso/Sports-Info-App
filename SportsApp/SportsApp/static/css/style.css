@@ -17,3 +17,11 @@ body {
     margin: auto;
     text-align: center;
 }
+
+.btn-pred {
+    padding: 2%;
+    font-size: 25px;
+    border-radius: 10px;
+    margin-top: 7%;
+    width: 100%;
+}

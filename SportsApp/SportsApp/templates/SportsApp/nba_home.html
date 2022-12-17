@@ -34,10 +34,10 @@
                 <div class="row mb-3">
                     <div class="col-4"></div>
                     <div class="col-3">
-                        {{ form }}
+                        {{ date_form }}
                     </div>
                     <div class="col-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="date_submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
@@ -70,22 +70,28 @@
                     <tr>
                         {% if in_past %}
                         <td>{{ game.date }}</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.away_city }} {{ game.away_team }}</td>
                         <td>@</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.away_points }} - {{ game.home_points }}</td>
                         <td><a href="{% url 'load_nba_game' game.id %}">X</a></td>
                         {% else %}
                         <td>{{ game.date }}</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>@</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.time }}</td>
-                        <td><a href="{% url 'load_nba_game' game.id %}"><img src="{% static 'media/misc/white-arrow.png' %}" width="25" style="float:center; vertical-align:middle"/></a></td>
+                        <td><a href="{% url 'load_nba_game' game.id %}"><img
+                                    src="{% static 'media/misc/white-arrow.png' %}" width="25"
+                                    style="float:center; vertical-align:middle" /></a></td>
                         {% endif %}
                     </tr>
                     {% endfor %}
@@ -94,7 +100,38 @@
         </div>
     </section>
 
-
+    <section class="p-1">
+        <div class="container">
+            <hr class="bg-light">
+            <h3 class="text-center text-light">Generate Predictions</h3>
+            <hr class="bg-light">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <form action="{% url 'load_nba_home' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <h5 class="text-light">{{ pred_form.model.label}}</h5>
+                                {{ pred_form.model }}
+                            </div>
+                            <div class="col-4">
+                                <h5 class="text-light">{{ pred_form.away_team.label}}</h5>
+                                {{ pred_form.away_team }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <button type="submit" name="pred_submit" class="btn btn-primary btn-pred">Predict</button>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="text-light">{{ pred_form.home_team.label}}</h5>
+                                {{ pred_form.home_team }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>
 
 </body>
 

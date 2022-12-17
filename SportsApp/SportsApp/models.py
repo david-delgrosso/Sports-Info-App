@@ -98,12 +98,13 @@ class NBATeam(models.Model):
         return str(self.city) + ' ' + (self.name)
 
 class NBAScheduleTemplate(models.Model):
-    id         = models.IntegerField(primary_key=True)
-    time       = models.TimeField('%H:%M')
-    date       = models.DateField()
-    sport      = models.CharField(max_length=10)
-    played     = models.BooleanField(default='False')
-    first_game = models.BooleanField(default='False')
+    id                = models.IntegerField(primary_key=True)
+    time              = models.TimeField('%H:%M')
+    date              = models.DateField()
+    sport             = models.CharField(max_length=10)
+    boxscore_filled   = models.BooleanField(default='False')
+    team_stats_filled = models.BooleanField(default='False')
+    first_game        = models.BooleanField(default='False')
 
     home_points    = models.IntegerField(blank=True, null=True)
     home_fgm       = models.IntegerField(blank=True, null=True)
@@ -273,6 +274,9 @@ class NBASchedule2017(NBAScheduleTemplate):
     home_team = models.ForeignKey(NBATeam, related_name="home_team_2017", on_delete=models.CASCADE)
     away_team = models.ForeignKey(NBATeam, related_name="away_team_2017", on_delete=models.CASCADE)
 
-
-
-
+class NBAModelPredictions(models.Model):
+    id                      = models.OneToOneField(NBASchedule2022, on_delete=models.CASCADE, primary_key=True)
+    home_points_lr          = models.FloatField(default=0.0)
+    away_points_lr          = models.FloatField(default=0.0)
+    home_points_lr_cum_rmse = models.FloatField(default=0.0)
+    away_points_lr_cum_rmse = models.FloatField(default=0.0)

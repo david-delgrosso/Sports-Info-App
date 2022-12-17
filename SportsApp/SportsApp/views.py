@@ -1,105 +1,92 @@
 from django.shortcuts import render, redirect
-from .restapis import *
-from .models import NBASchedule2022
-from .utils import *
-from .constants import *
+from SportsApp.restapis import *
+from SportsApp.models import NBASchedule2022
+from SportsApp.utils import *
+from SportsApp.constants import *
 from django.views import generic
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 from django import forms
+from SportsApp.NBA import NBA
+from datetime import datetime, timedelta
 
+# Class for form used to select a date
 class DateForm(forms.Form):
     date = forms.DateField(label='',
                            widget=forms.DateInput(attrs={'class': "form-control",
                                                          'id': "date",
-                                                         'type': "date"}))
+                                                         'type': "date"}),
+                           required=True)
+
+# Class for form used to generate a game prediction
+class PredictionForm(forms.Form):
+    model     = forms.ChoiceField(choices=NBA_MODELS_TUPLE, label='Model', required=True, widget=forms.Select(attrs={'class': "form-select"}))
+    home_team = forms.ChoiceField(choices=NBA_TEAMS_TUPLE, label='Home Team', required=True, widget=forms.Select(attrs={'class': "form-select"}))
+    away_team = forms.ChoiceField(choices=NBA_TEAMS_TUPLE, label='Away Team', required=True, widget=forms.Select(attrs={'class': "form-select"}))
 
 # Load home page
-def home(request):
+def home_view(request):
     context = {}
+    
+    # Get today's date
     today = datetime.now() - timedelta(hours=5)
-    context['nba_games'] = get_nba_games('NBA', today)
+
+    # Create sport objects at current year
+    nba = NBA(NBA_SEASON)
+
+    # Save games to context dictionary
+    context['nba_games'] = nba.get_games(today)
+
     return render(request, 'SportsApp/index.html', context)
 
-# NBA views
-# Clear NBA Schedule database
-def clear_nba_schedule(request):
+# Load NBA home page
+def nba_home_view(request):
     context = {}
-    clear_nba_schedule_db(NBA_SEASON)
-    context['info_message'] = "Successfully Cleared NBA Schedule Database"
-    return render(request, 'SportsApp/index.html', context)
 
-# Populate NBA Schedule database
-def populate_nba_schedule_db(request):
-    context = {}
-    get_nba_schedule(NBA_SEASON)
-    context['info_message'] = "Successfully Loaded NBA Schedule to Database"
-    return render(request, 'SportsApp/index.html', context)
-
-# Clear NBA Teams database
-def clear_nba_teams_db(request):
-    context = {}
-    NBATeam.objects.all().delete()
-    context['info_message'] = "Successfully Cleared NBA Teams Database"
-    return render(request, 'SportsApp/index.html', context)
-
-# Populate NBA Teams database
-def populate_nba_teams_db(request):
-    context = {}
-    load_nba_teams_to_db()
-    context['info_message'] = "Successfully Loaded NBA Teams to Database"
-    return render(request, 'SportsApp/index.html', context)
-
-# Populate NBA team stats for each game that has already been played
-def populate_nba_game_stats(request):
-    context = {}
-    backfill_nba_boxscores(NBA_SEASON)
-    context['info_message'] = "Successfully Back-filled NBA Stats to Database"
-    return render(request, 'SportsApp/index.html', context)
-
-# Calculate NBA team stats based on previous games played
-def calculate_nba_team_stats(request):
-    context = {}
-    update_nba_team_stats(NBA_SEASON)
-    context['info_message'] = "Successfully Calculated NBA Team Stats"
-    return render(request, 'SportsApp/index.html', context)
-
-def copy_nba_stats_to_csv(request):
-    context = {}
-    export_nba_stats_to_csv([2017,2018,2019,2020,2021])
-    context['info_message'] = "Successfully Copied NBA Stats to CSV"
-    return render(request, 'SportsApp/index.html', context)
-
-# Load page displaying info for a single NBA game
-def load_nba_game(request,id):
-    context = {}
-    game = NBASchedule2022.objects.get(id=id)
-    context['game'] = game
-    context['preds'] = get_nba_game_predictions(game)
-    return render(request, 'SportsApp/nba_game.html', context)
-
-# Load page displaying 
-def load_nba_home(request):
-    context = {}
+    # Check for date change
     if request.method == 'POST':
-        form = DateForm(request.POST)
-        if form.is_valid():
-            day = form.cleaned_data['date']
-    else:
+        if "date_submit" in request.POST:
+            date_form = DateForm(request.POST)
+            if date_form.is_valid():
+                day = date_form.cleaned_data['date']
+        elif "" in request.POST:
+            form = PredictionForm(request.POST)
+            if form.is_valid():
+                pass
+    else:  # Use today
         today = datetime.now() - timedelta(hours=5)
         day = str(today.strftime("%Y-%m-%d"))
-        form = DateForm(initial={'date':day})
+        date_form = DateForm(initial={'date':day})
+        pred_form = PredictionForm(initial={'model':'1',
+                                            'away_team':'2',
+                                            'home_team':'14'})
 
+    # Create NBA object at current year
+    nba = NBA(NBA_SEASON)
+
+    # Populate context dictionary
     context['day'] = day
-    context['nba_games'] = get_nba_games('NBA', day)
-    context['form'] = form
-    context['in_past'] = False
+    context['nba_games'] = nba.get_games(day)
+    context['date_form'] = date_form
+    context['pred_form'] = pred_form
+    context['in_past'] = True
+
+    # If any game hasn't been played yet, set in_past to False
     for game in context['nba_games']:
-        if game.played:
-            context['in_past'] = True
+        if not game.boxscore_filled:
+            context['in_past'] = False
+        
+
     return render(request, 'SportsApp/nba_home.html', context)
 
-def rename_nba_logos(request):
+# Load NBA game page
+def nba_game_view(request,id):
     context = {}
-    rename_nba_logos_util()
-    context['info_message'] = "Successfully Copied NBA Stats to CSV"
-    return render(request, 'SportsApp/index.html', context)
+
+    # Create NBA object at current year
+    nba = NBA(NBA_SEASON)
+
+    # Save game data to context dictionary
+    context['game']  = nba.sch_obj.objects.get(id=id)
+    context['preds'] = nba.pred_obj.objects.get(id=id)
+
+    return render(request, 'SportsApp/nba_game.html', context)

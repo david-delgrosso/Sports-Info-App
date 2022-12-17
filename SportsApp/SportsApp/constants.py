@@ -1,4 +1,4 @@
-from datetime import *
+from datetime import datetime
 
 NBA_SEASON = 2022
 
@@ -10,6 +10,17 @@ NBA_SEASON_START_DATE_DICT = {
     '2018' : datetime.strptime("2018-10-16", '%Y-%m-%d'),
     '2017' : datetime.strptime("2017-10-17", '%Y-%m-%d'),
 }
+
+NBA_TEAMS_LIST = [
+    'Atlanta Hawks', 'Boston Celtics', 'Brooklyn Nets', 'Charlotte Hornets',
+    'Chicago Bulls', 'Cleveland Cavaliers', 'Dallas Mavericks', 'Denver Nuggets',
+    'Detroit Pistons', 'Golden State Warriors', 'Houston Rockets', 'Indiana Pacers',
+    'Los Angeles Clippers', 'Los Angeles Lakers', 'Memphis Grizzlies', 'Miami Heat',
+    'Milwaukee Bucks', 'Minnesota Timberwolves', 'New Orleans Pelicans', 'New York Knicks',
+    'Oklahoma City Thunder', 'Orlando Magic', 'Philadelphia 76ers', 'Phoenix Suns',
+    'Portland Trail Blazers', 'Sacramento Kings', 'San Antonio Spurs', 'Toronto Raptors',
+    'Utah Jazz', 'Washington Wizards'
+]
 
 NBA_TEAMS_DICT = {
     "76ers"         : "Philadelphia"  ,
@@ -77,32 +88,70 @@ NBA_API_ID_DICT = {
     "Bucks"         : 21     
 }
 
-NBA_STAT_NAMES_LIST = ["PPG","FGM","FGA","FG%","FTM","FTA","FT%","3PM",
-                       "3PA","3P%","ORB","DRB","TRB","AST","PF","ST","TO",
-                       "BK","+/-"]
+NBA_STAT_NAMES_LIST = [
+    "PPG","FGM","FGA","FG%","FTM","FTA","FT%","3PM",
+    "3PA","3P%","ORB","DRB","TRB","AST","PF","ST","TO",
+    "BK","+/-"
+]
 
-NBA_LIN_REG_PREDICTORS_LIST = ['home_opp_win_pct', 'home_fgm_pg', 'home_fga_pg', 'home_fgp',
-       'home_ftm_pg', 'home_ftp', 'home_tpm_pg', 'home_tpp', 'home_offReb_pg',
-       'home_defReb_pg', 'home_assists_pg', 'home_steals_pg',
-       'home_turnovers_pg', 'home_blocks_pg', 'home_plusMinus_pg',
-       'home_opp_fgm_pg', 'home_opp_fga_pg', 'home_opp_fgp', 'home_opp_ftm_pg',
-       'home_opp_ftp', 'home_opp_tpm_pg', 'home_opp_tpp', 'home_opp_offReb_pg',
-       'home_opp_defReb_pg', 'home_opp_assists_pg', 'home_opp_pFouls_pg',
-       'home_opp_steals_pg', 'home_opp_turnovers_pg', 'home_opp_blocks_pg',
-       'away_opp_win_pct', 'away_fgm_pg', 'away_fga_pg', 'away_fgp',
-       'away_ftm_pg', 'away_ftp', 'away_tpm_pg', 'away_tpp', 'away_offReb_pg',
-       'away_defReb_pg', 'away_assists_pg', 'away_steals_pg',
-       'away_turnovers_pg', 'away_blocks_pg', 'away_plusMinus_pg',
-       'away_opp_fgm_pg', 'away_opp_fga_pg', 'away_opp_fgp', 'away_opp_ftm_pg',
-       'away_opp_ftp', 'away_opp_tpm_pg', 'away_opp_tpp', 'away_opp_offReb_pg',
-       'away_opp_defReb_pg', 'away_opp_assists_pg', 'away_opp_pFouls_pg',
-       'away_opp_steals_pg', 'away_opp_turnovers_pg', 'away_opp_blocks_pg']
+NBA_TEAM_DB_STATS_FIELDS_LIST = [
+    'points_pg','fgm_pg','fga_pg','fgp','ftm_pg','fta_pg',
+    'ftp','tpm_pg','tpa_pg','tpp','offReb_pg','defReb_pg',
+    'totReb_pg','assists_pg','pFouls_pg','steals_pg',
+    'turnovers_pg','blocks_pg','plusMinus_pg','opp_points_pg',
+    'opp_fgm_pg','opp_fga_pg','opp_fgp','opp_ftm_pg','opp_fta_pg',
+    'opp_ftp','opp_tpm_pg','opp_tpa_pg','opp_tpp','opp_offReb_pg',
+    'opp_defReb_pg','opp_totReb_pg','opp_assists_pg','opp_pFouls_pg',
+    'opp_steals_pg','opp_turnovers_pg','opp_blocks_pg','opp_plusMinus_pg'
+]
 
-NBA_TEAM_DB_STATS_FIELDS_LIST = ['points_pg','fgm_pg','fga_pg','fgp','ftm_pg','fta_pg',
-                                 'ftp','tpm_pg','tpa_pg','tpp','offReb_pg','defReb_pg',
-                                 'totReb_pg','assists_pg','pFouls_pg','steals_pg',
-                                 'turnovers_pg','blocks_pg','plusMinus_pg','opp_points_pg',
-                                 'opp_fgm_pg','opp_fga_pg','opp_fgp','opp_ftm_pg','opp_fta_pg',
-                                 'opp_ftp','opp_tpm_pg','opp_tpa_pg','opp_tpp','opp_offReb_pg',
-                                 'opp_defReb_pg','opp_totReb_pg','opp_assists_pg','opp_pFouls_pg',
-                                 'opp_steals_pg','opp_turnovers_pg','opp_blocks_pg','opp_plusMinus_pg']
+NBA_BOXSCORE_STATS_LIST = [
+        'home_points','home_fgm','home_fga','home_fgp','home_ftm',
+        'home_fta','home_ftp','home_tpm','home_tpa','home_tpp',
+        'home_offReb','home_defReb','home_totReb','home_assists',
+        'home_pFouls','home_steals','home_turnovers','home_blocks',
+        'home_plusMinus',
+        'away_points','away_fgm','away_fga','away_fgp','away_ftm',
+        'away_fta','away_ftp','away_tpm','away_tpa','away_tpp',
+        'away_offReb','away_defReb','away_totReb','away_assists',
+        'away_pFouls','away_steals','away_turnovers','away_blocks',
+        'away_plusMinus','played'
+]
+
+NBA_MODELS_TUPLE = (
+    ('1','Linear Regression'),
+    ('2','Choice 2')
+)
+
+NBA_TEAMS_TUPLE = (
+    ( '1'  , 'Atlanta Hawks'),
+    ( '2'  , 'Boston Celtics'),
+    ( '3'  , 'Brooklyn Nets'),
+    ( '4'  , 'Charlotte Hornets'),
+    ( '5'  , 'Chicago Bulls'),
+    ( '6'  , 'Cleveland Cavaliers'),
+    ( '7'  , 'Dallas Mavericks'),
+    ( '8'  , 'Denver Nuggets'),
+    ( '9'  , 'Detroit Pistons'),
+    ( '10' , 'Golden State Warriors'),
+    ( '11' , 'Houston Rockets'),
+    ( '12' , 'Indiana Pacers'),
+    ( '13' , 'Los Angeles Clippers'),
+    ( '14' , 'Los Angeles Lakers'),
+    ( '15' , 'Memphis Grizzlies'),
+    ( '16' , 'Miami Heat'),
+    ( '17' , 'Milwaukee Bucks'),
+    ( '18' , 'Minnesota Timberwolves'),
+    ( '19' , 'New Orleans Pelicans'),
+    ( '20' , 'New York Knicks'),
+    ( '21' , 'Oklahoma City Thunder'),
+    ( '22' , 'Orlando Magic'),
+    ( '23' , 'Philadelphia 76ers'),
+    ( '24' , 'Phoenix Suns'),
+    ( '25' , 'Portland Trail Blazers'),
+    ( '26' , 'Sacramento Kings'),
+    ( '27' , 'San Antonio Spurs'),
+    ( '28' , 'Toronto Raptors'),
+    ( '29' , 'Utah Jazz'),
+    ( '30' , 'Washington Wizards')
+)

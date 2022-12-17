@@ -2,7 +2,8 @@ import requests as re
 import json
 from .config import *
 
-
+# Download schedule from API and save to JSON file
+# @param[in]    year    year of season being requested
 def request_nba_schedule_to_json(year):
     
     url = "https://api-nba-v1.p.rapidapi.com/games"
@@ -20,6 +21,8 @@ def request_nba_schedule_to_json(year):
     with open(filename,'w') as f:
         f.write(json_object)
 
+# Download game stats from API
+# @param[in]    id    id of game being requested
 def request_nba_game_stats(id):
     url = "https://api-nba-v1.p.rapidapi.com/games/statistics"
 
@@ -31,7 +34,7 @@ def request_nba_game_stats(id):
     re_json = response.json()
     json_object = json.dumps(re_json, indent=4)
 
-    with open("test_game_stats.json",'w') as f:
-        f.write(json_object)
+    # with open("test_game_stats.json",'w') as f:
+    #     f.write(json_object)
     
     return json_object
