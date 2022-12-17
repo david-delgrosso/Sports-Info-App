@@ -42,20 +42,36 @@ def home_view(request):
 def nba_home_view(request):
     context = {}
 
-    # Check for date change
     if request.method == 'POST':
+        # Check for date submit
         if "date_submit" in request.POST:
+            # Process date form
             date_form = DateForm(request.POST)
             if date_form.is_valid():
                 day = date_form.cleaned_data['date']
-        elif "" in request.POST:
-            form = PredictionForm(request.POST)
-            if form.is_valid():
+            
+            # Initialize prediction form
+            pred_form = PredictionForm(initial={'model':'1',
+                                                'away_team':'2',
+                                                'home_team':'14'})
+        # Check for prediction submit
+        elif "pred_submit" in request.POST:
+            # Process prediction form
+            pred_form = PredictionForm(request.POST)
+            if pred_form.is_valid():
                 pass
+            
+            # Initialize date form
+            today = datetime.now() - timedelta(hours=5)
+            day = str(today.strftime("%Y-%m-%d"))
+            date_form = DateForm(initial={'date':day})
     else:  # Use today
+        # Initialize date form
         today = datetime.now() - timedelta(hours=5)
         day = str(today.strftime("%Y-%m-%d"))
         date_form = DateForm(initial={'date':day})
+
+        # Initialize prediction form
         pred_form = PredictionForm(initial={'model':'1',
                                             'away_team':'2',
                                             'home_team':'14'})
