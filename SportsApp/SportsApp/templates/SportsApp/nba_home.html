@@ -83,7 +83,7 @@
                         <td>{{ game.date }}</td>
                         <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
                                 width="25" style="float:center; vertical-align:middle" /></td>
-                        <td>{{ game.home_city }} {{ game.home_team }}</td>
+                        <td>{{ game.away_city }} {{ game.away_team }}</td>
                         <td>@</td>
                         <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
                                 width="25" style="float:center; vertical-align:middle" /></td>
@@ -100,7 +100,7 @@
         </div>
     </section>
 
-    <section class="p-1">
+    <section class="p-1 mb-3">
         <div class="container">
             <hr class="bg-light">
             <h3 class="text-center text-light">Generate Predictions</h3>
@@ -111,12 +111,15 @@
                         {% csrf_token %}
                         <div class="row mb-3">
                             <div class="col-4">
-                                <h5 class="text-light">{{ pred_form.model.label}}</h5>
+                                <h5 class="text-light">{{ pred_form.model.label }}</h5>
                                 {{ pred_form.model }}
                             </div>
                             <div class="col-4">
-                                <h5 class="text-light">{{ pred_form.away_team.label}}</h5>
+                                <h5 class="text-light">{{ pred_form.away_team.label }}</h5>
                                 {{ pred_form.away_team }}
+                            </div>
+                            <div class="col-4">
+                                <h2 class="text-light text-center mt-4">{{ pred_away_score }}</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -124,8 +127,11 @@
                                 <button type="submit" name="pred_submit" class="btn btn-primary btn-pred">Predict</button>
                             </div>
                             <div class="col-4">
-                                <h5 class="text-light">{{ pred_form.home_team.label}}</h5>
+                                <h5 class="text-light">{{ pred_form.home_team.label }}</h5>
                                 {{ pred_form.home_team }}
+                            </div>
+                            <div class="col-4">
+                                <h2 class="text-light text-center mt-4">{{ pred_home_score }}</h2>
                             </div>
                         </div>
                     </form>
@@ -133,6 +139,7 @@
             </div>
     </section>
 
+    {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/footer.html' %}
 </body>
 
 </html>

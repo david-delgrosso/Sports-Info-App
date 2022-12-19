@@ -17,7 +17,7 @@ class NBA:
         self.pred_obj = NBAModelPredictions
         self.teams_list = []
         self.models = {
-            'LinearRegression' : NBALinReg(),
+            'Linear Regression' : NBALinReg(),
         }
 
     def __str__(self):
@@ -674,7 +674,7 @@ class NBA:
                 pred = self.pred_obj.objects.create(id=game)
 
             # Generate predictions
-            pred.home_points_lr, pred.away_points_lr = self.models['LinearRegression'].predict_game(game)
+            pred.home_points_lr, pred.away_points_lr = self.models['Linear Regression'].predict_game(game)
 
             # Save predictions to database
             pred.save()
@@ -686,7 +686,6 @@ class NBA:
     def calculate_pred_error(self):
         # Get games for selected year
         games = self.sch_obj.objects.all()
-
 
         home_diff_lr_sqr_err = 0
         away_diff_lr_sqr_err = 0
@@ -717,6 +716,37 @@ class NBA:
 
             # Print progress bar
             self.printProgressBar(i, n, 'Calculating model error...')
+
+    def predict_single_game(self, model, home_team_name, away_team_name):
+        game = {}
+
+        home_team_sp = home_team_name.split(' ')
+        #print(home_team_sp)
+        if home_team_sp[-1] in NBA_TEAMS_DICT:
+            home_team = NBATeam.objects.get(name=home_team_sp[-1])
+        else:
+            home_team = NBATeam.objects.get(name=home_team_sp[-2:])
+        home_team_dict = home_team.__dict__
+
+        for k,v in home_team_dict.items():
+            col = "home_" + str(k)
+            game[col] = v
+
+        away_team_sp = away_team_name.split(' ')
+        if away_team_sp[-1] in NBA_TEAMS_DICT:
+            away_team = NBATeam.objects.get(name=away_team_sp[-1])
+        else:
+            away_team = NBATeam.objects.get(name=away_team_sp[-2:])
+        away_team_dict = away_team.__dict__
+
+        for k,v in away_team_dict.items():
+            col = "away_" + str(k)
+            game[col] = v
+
+        # for k,v in game.items():
+            # print(k, ': ', v)
+
+        return self.models[model].predict_game(game)
 
     # Print iterations progress
     def printProgressBar (self, iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):

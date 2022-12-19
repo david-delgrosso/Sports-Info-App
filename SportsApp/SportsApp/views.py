@@ -42,6 +42,9 @@ def home_view(request):
 def nba_home_view(request):
     context = {}
 
+    # Create NBA object at current year
+    nba = NBA(NBA_SEASON)
+
     if request.method == 'POST':
         # Check for date submit
         if "date_submit" in request.POST:
@@ -54,13 +57,19 @@ def nba_home_view(request):
             pred_form = PredictionForm(initial={'model':'1',
                                                 'away_team':'2',
                                                 'home_team':'14'})
+            context['pred_home_score'], context['pred_away_score'] = 0.0, 0.0
+
         # Check for prediction submit
         elif "pred_submit" in request.POST:
             # Process prediction form
             pred_form = PredictionForm(request.POST)
             if pred_form.is_valid():
-                pass
-            
+                home_team = NBA_TEAMS_TUPLE[int(pred_form.cleaned_data['home_team']) - 1][1]
+                away_team = NBA_TEAMS_TUPLE[int(pred_form.cleaned_data['away_team']) - 1][1]
+                model = NBA_MODELS_TUPLE[int(pred_form.cleaned_data['model']) - 1][1]
+                print(home_team, away_team, model)
+                context['pred_home_score'], context['pred_away_score'] = nba.predict_single_game(model, home_team, away_team)
+
             # Initialize date form
             today = datetime.now() - timedelta(hours=5)
             day = str(today.strftime("%Y-%m-%d"))
@@ -75,9 +84,7 @@ def nba_home_view(request):
         pred_form = PredictionForm(initial={'model':'1',
                                             'away_team':'2',
                                             'home_team':'14'})
-
-    # Create NBA object at current year
-    nba = NBA(NBA_SEASON)
+        context['pred_home_score'], context['pred_away_score'] = 0.0, 0.0
 
     # Populate context dictionary
     context['day'] = day
@@ -91,7 +98,6 @@ def nba_home_view(request):
         if not game.boxscore_filled:
             context['in_past'] = False
         
-
     return render(request, 'SportsApp/nba_home.html', context)
 
 # Load NBA game page

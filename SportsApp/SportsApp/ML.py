@@ -34,16 +34,34 @@ class NBALinReg:
     def __str__(self):
         return "NBA Linear Regression Model"
 
+    # Standard game prediction method
+    # @param[in]    game         game stats used to generate predictions
+    # @param[out]   home_score   predicted score of home team
+    # @param[out]   away_score   predicted score of away_team
     def predict_game(self, game):
-        game_dict = game.__dict__
+
+        print(type(game))
+
+        # Save game as dictionary
+        if type(game) is not dict:
+            game_dict = game.__dict__
+            print("Converted to dict")
+        else:
+            game_dict = game
+            print("Already a dict")
+
+        # Convert game dictionary to dataframe
         game_df = pd.DataFrame(data=game_dict, index=[0])
 
+        # Drop unnecessary columns
         for col in game_df.columns:
             if col not in self.predictor_list:
                 game_df = game_df.drop(columns=[col])
 
+        # Scale relevant game data
         game_scaled = self.scaler.transform(game_df)
 
+        # Generate predictions for home and away team scores
         home_score = round(float(self.home_lin_reg.predict(game_scaled)),1)
         away_score = round(float(self.away_lin_reg.predict(game_scaled)),1)
 
