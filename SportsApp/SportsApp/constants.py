@@ -155,3 +155,5 @@ NBA_TEAMS_TUPLE = (
     ( '29' , 'Utah Jazz'),
     ( '30' , 'Washington Wizards')
 )
+
+PLOT_PATH = "/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/static/media/plots/"

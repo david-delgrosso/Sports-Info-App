@@ -83,3 +83,8 @@ def calculate_predictions_util():
     #nba.calculate_predictions()
     nba.calculate_pred_error()
     print(str(nba), " has successfully calculated model predictions and error...")
+
+def generate_error_plots_util():
+    nba = NBA(NBA_SEASON)
+    nba.models['Linear Regression'].plot_rmse()
+    print(str(nba), " has successfully generated error plots...")

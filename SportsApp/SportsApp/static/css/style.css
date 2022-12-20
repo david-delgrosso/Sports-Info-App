@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 45%;
 }
 
 .center {
@@ -24,4 +24,13 @@ body {
     border-radius: 10px;
     margin-top: 7%;
     width: 100%;
+}
+
+.game-card {
+    max-width: 70%;
+    vertical-align: middle;
+}
+
+.col-logo {
+    width: 10%;
 }

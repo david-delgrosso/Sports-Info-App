@@ -1,6 +1,9 @@
 import pickle
 import pandas as pd
 import os
+from SportsApp.models import NBAModelPredictions, NBASchedule2022
+import matplotlib.pyplot as plt
+from SportsApp.constants import PLOT_PATH
 
 class NBALinReg:
     def __init__(self):
@@ -40,15 +43,11 @@ class NBALinReg:
     # @param[out]   away_score   predicted score of away_team
     def predict_game(self, game):
 
-        print(type(game))
-
         # Save game as dictionary
         if type(game) is not dict:
             game_dict = game.__dict__
-            print("Converted to dict")
         else:
             game_dict = game
-            print("Already a dict")
 
         # Convert game dictionary to dataframe
         game_df = pd.DataFrame(data=game_dict, index=[0])
@@ -66,3 +65,30 @@ class NBALinReg:
         away_score = round(float(self.away_lin_reg.predict(game_scaled)),1)
 
         return home_score, away_score
+
+    def plot_rmse(self):
+        games = NBASchedule2022.objects.all()
+
+        home_rmse = []
+        away_rmse = []
+
+        for game in games:
+            if game.boxscore_filled and game.team_stats_filled:
+                game_pred = NBAModelPredictions.objects.get(id=game)
+                home_rmse.append(game_pred.home_points_lr_cum_rmse)
+                away_rmse.append(game_pred.away_points_lr_cum_rmse)
+
+        idx = [i for i in range(1, len(home_rmse) + 1)]
+
+        plt.figure(figsize=(7,4))
+        plt.style.use('dark_background')
+        plt.plot(idx, home_rmse, 'dodgerblue')
+        plt.plot(idx, away_rmse, 'tab:orange')
+        plt.title('NBA Linear Regression Root Mean Squared Error')
+        plt.xlabel('Number of Games Predicted')
+        plt.ylabel("RMSE")
+        plt.legend(labels=["Home Score", "Away Score"], loc='lower right')
+        plt.grid(True)
+        save_name = PLOT_PATH + "nba_linreg_rmse.png"
+        plt.savefig(save_name)
+        plt.show(block=False)

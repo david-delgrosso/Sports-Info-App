@@ -27,8 +27,7 @@
     <section class="p-1">
         <div class="container">
             <hr class="bg-light">
-            <h3 class="text-center text-light">NBA Schedule</h3>
-            <hr class="bg-light">
+            <h3 class="text-center text-light mb-3">NBA Schedule</h3>
             <form action="{% url 'load_nba_home' %}" method="post">
                 {% csrf_token %}
                 <div class="row mb-3">
@@ -103,8 +102,7 @@
     <section class="p-1 mb-3">
         <div class="container">
             <hr class="bg-light">
-            <h3 class="text-center text-light">Generate Predictions</h3>
-            <hr class="bg-light">
+            <h3 class="text-center text-light mb-3">Generate Predictions</h3>
             <div class="card bg-dark">
                 <div class="card-body">
                     <form action="{% url 'load_nba_home' %}" method="post">

@@ -112,3 +112,23 @@ def nba_game_view(request,id):
     context['preds'] = nba.pred_obj.objects.get(id=id)
 
     return render(request, 'SportsApp/nba_game.html', context)
+
+def nba_model_view(request,model_name):
+    context = {}
+    url = "SportsApp/" + str(model_name) + ".html"
+
+    today = datetime.now() - timedelta(hours=5)
+    day = str(today.strftime("%Y-%m-%d"))
+
+    # Create NBA object at current year
+    nba = NBA(NBA_SEASON)
+
+    # Get NBA games on current day
+    context['nba_games'] = nba.get_games(day)
+    context['preds'] = []
+    for i,game in enumerate(context['nba_games']):
+        context['preds'].append(nba.pred_obj.objects.get(id=game))
+
+    context['games_and_preds'] = zip(context['nba_games'], context['preds'])
+
+    return render(request, url, context)

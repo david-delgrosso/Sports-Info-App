@@ -26,14 +26,7 @@ urlpatterns = [
     path(route='', view=views.home_view, name='home_view'),
     path(route='NBA', view=views.nba_home_view, name='load_nba_home'),
     path(route='NBA/<str:id>', view=views.nba_game_view, name='load_nba_game'),
-    # path(route='a', view=views.clear_nba_schedule, name='clear_nba_schedule'),
-    # path(route='b', view=views.populate_nba_schedule_db, name='populate_nba_schedule_db'),
-    # path(route='c', view=views.clear_nba_teams_db, name='clear_nba_teams_db'),
-    # path(route='d', view=views.populate_nba_teams_db, name='populate_nba_teams_db'),
-    # path(route='e', view=views.populate_nba_game_stats, name='populate_nba_game_stats'),
-    # path(route='f', view=views.calculate_nba_team_stats, name='calculate_nba_team_stats'),
-    # path(route='g', view=views.copy_nba_stats_to_csv, name='copy_nba_stats_to_csv'),
-    # path(route='h', view=views.rename_nba_logos, name='rename_nba_logos'),
+    path(route='NBA/models/<str:model_name>', view=views.nba_model_view, name='load_nba_model'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

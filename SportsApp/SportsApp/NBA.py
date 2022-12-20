@@ -720,18 +720,20 @@ class NBA:
     def predict_single_game(self, model, home_team_name, away_team_name):
         game = {}
 
+        # Grab home team stats
         home_team_sp = home_team_name.split(' ')
-        #print(home_team_sp)
         if home_team_sp[-1] in NBA_TEAMS_DICT:
             home_team = NBATeam.objects.get(name=home_team_sp[-1])
         else:
             home_team = NBATeam.objects.get(name=home_team_sp[-2:])
         home_team_dict = home_team.__dict__
 
+        # Save home team stats in game dictionary
         for k,v in home_team_dict.items():
             col = "home_" + str(k)
             game[col] = v
 
+        # Grab away team stats
         away_team_sp = away_team_name.split(' ')
         if away_team_sp[-1] in NBA_TEAMS_DICT:
             away_team = NBATeam.objects.get(name=away_team_sp[-1])
@@ -739,13 +741,12 @@ class NBA:
             away_team = NBATeam.objects.get(name=away_team_sp[-2:])
         away_team_dict = away_team.__dict__
 
+        # Save away team stats in game dictionary
         for k,v in away_team_dict.items():
             col = "away_" + str(k)
             game[col] = v
 
-        # for k,v in game.items():
-            # print(k, ': ', v)
-
+        # Run predict ML method and return preditions
         return self.models[model].predict_game(game)
 
     # Print iterations progress
