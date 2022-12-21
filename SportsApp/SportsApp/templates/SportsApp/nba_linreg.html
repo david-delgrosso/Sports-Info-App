@@ -96,7 +96,32 @@
             <hr class="bg-light">
             <h3 class="text-center text-light mb-3">Description</h3>
             <h5 class="text-light mb-3">Preparing the Data</h5>
-            <p class="text-light mb-3">The NBA Linear Regression Model was trained </p>
+            <p class="text-light mb-3">
+                The NBA Linear Regression Model was trained on the previous five years of NBA boxscore dataprovided by NBA-API at RapidAPI.com. Preparing this data was a multistep process.
+            </p>
+            <p class="text-light mb-3">
+                First, the schedule for each season was recorded in a relational database, including each game's date, time, home team, and away team. Next, the boxscore for each game was saved to the database, including basic stats like points, shooting percentage, rebounds, steals, etc. Third, in order to properly train a machine learning model with this data, the training data needed to include only the information that would have been available to the model going into the game.
+            </p>
+            <p class="text-light mb-3">
+                With that in mind, the boxscore statistics for every game and every team were aggregated on a cumulative game-by-game basis, and the home team and away team's per-game stats from games previously played that season were also saved to the database for each game in the schedule. Additionally, the home and away team's opponents stats were aggregated and saved in the same manner.
+            </p>
+            <p class="text-light mb-3">
+                What was left was a filled database with a row for each NBA game played in the last five years and a column for game information, every boxscore stat recorded in that game by the home team and away team, and cumulative aggregated stats going into the game for the home team, the home team's opponents, the away team, and the away team's opponents. Lastly, the data was exported to a CSV file for easy ingestion during model training.
+            </p>
+            <h5 class="text-light mb-3">Selecting Relevant Columns</h5>
+            <p class="text-light mb-3">
+                The first step of this process was removing all obviously irrelevant columns from the input dataframe, such as game ID, date, and time information. All of the boxscore stats for that specific game were also deleted other than home points and away points, since those two values were to be the target values of the linear regression models.
+            </p>
+            <p class="text-light mb-3">
+                The second step of the process was to plot the distribution of each remaining column to ensure a normal distribution. In this particular case, every remaining field did in fact have a normal distribution.
+            </p>
+            <p class="text-light mb-3">
+                Next, all fields had to be checked for correlation. A correlation analysis was run, which highlighted several correlated column pairings. Intuitively, this was to be expected for certain fields. For example, the home team's +/- per game was perfectly negatively correlated with the home team's opponents' +/-. This analysis led to several other columns being eliminated until no two columns had a correlation coefficient above a threshold of 0.8.
+            </p>
+            <h5 class="text-light mb-3">Partitioning Training and Test Data</h5>
+            <p class="text-light mb-3">
+                
+            </p>
         </div>
     </section>
 

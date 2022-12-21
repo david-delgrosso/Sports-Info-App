@@ -26,7 +26,7 @@
 
     <section class="p-1">
         <div class="container">
-            <h2 class="text-center text-light mt-3">Today's Games</h2>
+            <h2 class="text-center text-light mt-3 mx-0">Today's Games</h2>
         </div>
     </section>
 
@@ -35,9 +35,11 @@
             <hr class="bg-light">
             <div class="row mb-3">
                 <div class="col center">
-                    <h3 class="text-center text-light mb-0 center"><img src="{% static 'media/nba_logos/Nba_Logo_Logo.png' %}" width="50" style="float:center; vertical-align:middle"/>NBA Games</h3>
+                    <h3 class="text-center text-light mb-0 center"><img
+                            src="{% static 'media/nba_logos/Nba_Logo_Logo.png' %}" width="50"
+                            style="float:center; vertical-align:middle" />NBA Games</h3>
                 </div>
-            </div>            
+            </div>
             <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
                 <thead>
                     <tr>
@@ -55,13 +57,17 @@
                     {% for game in nba_games %}
                     <tr>
                         <td>{{ game.date }}</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.away_city }} {{ game.away_team }}</td>
                         <td>@</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}" width="25" style="float:center; vertical-align:middle"/></td>
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
                         <td>{{ game.time }}</td>
-                        <td><a href="{% url 'load_nba_game' game.id %}"><img src="{% static 'media/misc/white-arrow.png' %}" width="25" style="float:center; vertical-align:middle"/></a></td>
+                        <td><a href="{% url 'load_nba_game' game.id %}"><img
+                                    src="{% static 'media/misc/white-arrow.png' %}" width="25"
+                                    style="float:center; vertical-align:middle" /></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

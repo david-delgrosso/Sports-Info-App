@@ -34,3 +34,14 @@ body {
 .col-logo {
     width: 10%;
 }
+
+@media all and (min-width:0px) and (max-width: 1024px) {
+    body {
+        background-color: #17171b;
+        position: absolute;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+}
