@@ -1,0 +1,60 @@
+<h5 class="text-light mb-3">Preparing the Data</h5>
+<p class="text-light mb-3">
+    The data used to train this model taken from the previous five years of NBA boxscore data provided by NBA-API at
+    RapidAPI.com. Preparing this data was a multistep process.
+</p>
+<p class="text-light mb-3">
+    First, the schedule for each season was recorded in a relational database, including each game's date, time, home
+    team, and away team. Next, the boxscore for each game was saved to the database, including basic stats like points,
+    shooting percentage, rebounds, steals, etc. Third, in order to properly train a machine learning model with this
+    data, the training data needed to include only the information that would have been available to the model going
+    into the game.
+</p>
+<p class="text-light mb-3">
+    With that in mind, the boxscore statistics for every game and every team were aggregated on a cumulative
+    game-by-game basis, and the home team and away team's per-game stats from games previously played that season were
+    also saved to the database for each game in the schedule. Additionally, the home and away team's opponents stats
+    were aggregated and saved in the same manner.
+</p>
+<p class="text-light mb-3">
+    What was left was a filled database with a row for each NBA game played in the last five years and a column for game
+    information, every boxscore stat recorded in that game by the home team and away team, and cumulative aggregated
+    stats going into the game for the home team, the home team's opponents, the away team, and the away team's
+    opponents. Lastly, the data was exported to a CSV file for easy ingestion during model training.
+</p>
+<h5 class="text-light mb-3">Selecting Relevant Columns</h5>
+<p class="text-light mb-3">
+    The first step of this process was removing all obviously irrelevant columns from the input dataframe, such as game
+    ID, date, and time information. All of the boxscore stats for that specific game were also deleted other than home
+    points and away points, since those two values were to be the target values of model predictions.
+</p>
+<p class="text-light mb-3">
+    The second step of the process was to plot the distribution of each remaining column to ensure a normal
+    distribution. In this particular case, every remaining field did in fact have a normal distribution.
+</p>
+<p class="text-light mb-3">
+    Next, all fields had to be checked for correlation. A correlation analysis was run, which highlighted several
+    correlated column pairings. Intuitively, this was to be expected for certain fields. For example, the home team's
+    +/- per game was perfectly negatively correlated with the home team's opponents' +/-. This analysis led to several
+    other columns being eliminated until no two columns had a correlation coefficient above a threshold of 0.8.
+</p>
+<h5 class="text-light mb-3">Partitioning Training and Test Data</h5>
+<p class="text-light mb-3">
+    The next task was to prepare the data for ingestion into the model, which meant separating out predictors and
+    labels. In order to do so, every field except for home and away points were saved to the predictors dataframe.
+    Meanwhile, home points and away points were saved as two separate sets of labels.
+</p>
+<p class="text-light mb-3">
+    Then, the predictors were scaled as part of good machine learning practice. Since each predictor follows an
+    approximately normal distribution, the <span style="font-style:italic">StandardScaler</span> from scikit-learn was chosen to perform this task.
+</p>
+<p class="text-light mb-3">
+    Since the model can only predict one value as at a time, two models were necessary to determine the score of
+    an NBA game - one for the home team's points and one for the away team's points. These models shared the set of scaled predictors, while using home or away points as the labels.
+</p>
+<p class="text-light mb-3">
+    The final part of the data preparation phase was to partition the data into training and test sets. The training set was to be used to train the model, while the test set was to be used to determine generalization error. Checking generalization error is critical to the machine learning process as it can help assess whether a model is over or underfitting the training data.
+</p>
+<p class="text-light mb-3">
+    The data partition was performed using the scikit-learn <span style="font-style:italic">train_test_split</span> function. This function takes in the predictors and labels for a given model and returns four datasets - training predictors, training labels, test predictors, and test labels. The generation of these arrays was the last phase of the data preparation process, as the data was finally ready to be ingested into a model for training.
+</p>

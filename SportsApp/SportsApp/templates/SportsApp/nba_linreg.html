@@ -95,32 +95,94 @@
         <div class="container">
             <hr class="bg-light">
             <h3 class="text-center text-light mb-3">Description</h3>
-            <h5 class="text-light mb-3">Preparing the Data</h5>
+            {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/data_prep.html' %}
+            <h5 class="text-light mb-3">Training the Model</h5>
             <p class="text-light mb-3">
-                The NBA Linear Regression Model was trained on the previous five years of NBA boxscore dataprovided by NBA-API at RapidAPI.com. Preparing this data was a multistep process.
+                Training the model was far simpler than preparing the data, as is usually the case with machine learning. The model was created with scikit-learn's <span style="font-style:italic">LinearRegression</span> class. The process is as simple as instantiating an object of the class and calling the object's <span style="font-style:italic">fit</span> method, passing the training predictors and training labels as arguments. Both a home score model and an away score model were trained using the corresponding labels.
+            </p>
+            <h5 class="text-light mb-3">Assess Model Performance</h5>
+            <p class="text-light mb-3">
+                Now that the model was trained, it was time to quantify the error in the model. The two error metrics used in this assessment were R-squared and root mean squared error (RMSE). R-squared can be thought of as, when multiplied by 100, the percentage of variance in the label that is explained by the variance in the predictor variables. RMSE can be thought of as the average error expected for a given prediction, provided in the same units as the labels.
             </p>
             <p class="text-light mb-3">
-                First, the schedule for each season was recorded in a relational database, including each game's date, time, home team, and away team. Next, the boxscore for each game was saved to the database, including basic stats like points, shooting percentage, rebounds, steals, etc. Third, in order to properly train a machine learning model with this data, the training data needed to include only the information that would have been available to the model going into the game.
+                First, the model's performance on the training data was tested. To do this, the model's <span style="font-style:italic">predict</span> method was called on the training data, which generates an array of prediction values. Scikit-learn's <span style="font-style:italic">r2_score</span> and <span style="font-style:italic">mean_squared_error</span> were leveraged to help calculate the R-squared and RMSE metric.
             </p>
             <p class="text-light mb-3">
-                With that in mind, the boxscore statistics for every game and every team were aggregated on a cumulative game-by-game basis, and the home team and away team's per-game stats from games previously played that season were also saved to the database for each game in the schedule. Additionally, the home and away team's opponents stats were aggregated and saved in the same manner.
+                For the home score model, the R-squared value was 0.144 and the RMSE was 11.807.
             </p>
             <p class="text-light mb-3">
-                What was left was a filled database with a row for each NBA game played in the last five years and a column for game information, every boxscore stat recorded in that game by the home team and away team, and cumulative aggregated stats going into the game for the home team, the home team's opponents, the away team, and the away team's opponents. Lastly, the data was exported to a CSV file for easy ingestion during model training.
-            </p>
-            <h5 class="text-light mb-3">Selecting Relevant Columns</h5>
-            <p class="text-light mb-3">
-                The first step of this process was removing all obviously irrelevant columns from the input dataframe, such as game ID, date, and time information. All of the boxscore stats for that specific game were also deleted other than home points and away points, since those two values were to be the target values of the linear regression models.
+                For the away score model, the R-squared value was 0.137 and the RMSE was 11.885.
             </p>
             <p class="text-light mb-3">
-                The second step of the process was to plot the distribution of each remaining column to ensure a normal distribution. In this particular case, every remaining field did in fact have a normal distribution.
+                These are results are quite bad, but that is to be expected when trying to apply a linear model to complex datasets. Interpreting these results, each model could only account for roughtly 14% of the variance in NBA scores, and each individual prediction could be expected to have an error of close to 12 points.
             </p>
             <p class="text-light mb-3">
-                Next, all fields had to be checked for correlation. A correlation analysis was run, which highlighted several correlated column pairings. Intuitively, this was to be expected for certain fields. For example, the home team's +/- per game was perfectly negatively correlated with the home team's opponents' +/-. This analysis led to several other columns being eliminated until no two columns had a correlation coefficient above a threshold of 0.8.
+                The final step of the process was to assess generalization error. So far, the performance of the models had only been measured in relation to data it had already seen. This is where the test data sets come into play. The RMSE was calculated for each model after comparing the test set labels with the predictions made using the test predictor set. Similar to the error measured on the training set, the RMSE for the home team's points was 12.070 and the RMSE for the away team's points was 11.863. Since the results for the training and test datasets were similar, it can be concluded that the model did not overfit the data. In fact, the model can be thought of as underfitting the data due its linear assumption.
             </p>
-            <h5 class="text-light mb-3">Partitioning Training and Test Data</h5>
+            <h5 class="text-light mb-3">Important Predictors</h5>
             <p class="text-light mb-3">
-                
+                To properly understand a linear regression model, it is important to review the driving predictors to ensure that the results make logical sense. The table below shows the most influential predictors for each model, in order of importance.
+            </p>
+            <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
+                <thead>
+                    <tr class="text-center">
+                        <th colspan="2">Away Points</th>
+                        <th colspan="2">Home Points</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="width:25%">Positive</th>
+                        <th scope="col" style="width:25%">Negative</th>
+                        <th scope="col" style="width:25%">Positive</th>
+                        <th scope="col" style="width:25%">Negative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home Opp FGM PG</td>
+                        <td>Home FGM PG</td>
+                        <td>Away Opp FGM PG</td>
+                        <td>Away FGM PG</td>
+                    </tr>
+                    <tr>
+                        <td>Home Opp FTM PG</td>
+                        <td>Home FTM PG</td>
+                        <td>Away Opp FTM PG</td>
+                        <td>Away FTM PG</td>
+                    </tr>
+                    <tr>
+                        <td>Home Opp 3PM PG</td>
+                        <td>Home TPM PG</td>
+                        <td>Away Opp 3PM PG</td>
+                        <td>Away TPM PG</td>
+                    </tr>
+                    <tr>
+                        <td>Home PlusMinus PG</td>
+                        <td>Away Opp FGM PG</td>
+                        <td>Away PlusMinus PG</td>
+                        <td>Home Opp FGM PG</td>
+                    </tr>
+                    <tr>
+                        <td>Away FGM PG</td>
+                        <td>Away Opp 3PM PG</td>
+                        <td>Home FGM PG</td>
+                        <td>Home Opp 3PM PG</td>
+                    </tr>
+                    <tr>
+                        <td>Away TPM PG</td>
+                        <td>Away Opp FTM PG</td>
+                        <td>Home TPM PG</td>
+                        <td>Home Opp FTM PG</td>
+                    </tr>
+                    <tr>
+                        <td>Away FTM PG</td>
+                        <td>Away Opp PlusMinus PG</td>
+                        <td>Home FTM PG</td>
+                        <td>Home Opp PlusMinus PG</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-light mb-3">
+                The predictors shown in the table above make logical sense. Teams tend to have an increase in expected points in a game when they have higher values for field goals, three pointers, and free throws per game. An interesting observation is that teams also can expect more points when their opponent scores more points. This likely lends itself to pace of play and that fact that many of the best offensive players and teams in the NBA do not play the best defense.
             </p>
         </div>
     </section>

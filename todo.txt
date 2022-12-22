@@ -1,0 +1,9 @@
+TODO:
+- Add vegas odds to model performance plot
+- Add optimizer for elo system to set rankings
+- Add model cards to sports home pages
+- Add multi column drop down for models
+- Deploy to AWS
+- Add placeholders for missing pages
+- Add other sports
+- Add more models
