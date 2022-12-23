@@ -1,10 +1,11 @@
 from django.db import models
 
 class NBATeam(models.Model):
-    id    = models.IntegerField(primary_key=True)
-    name  = models.CharField(max_length=30)
-    city  = models.CharField(max_length=30)
-    sport = models.CharField(max_length=10)
+    id        = models.IntegerField(primary_key=True)
+    name      = models.CharField(max_length=30)
+    city      = models.CharField(max_length=30)
+    full_name = models.CharField(max_length=40)
+    sport     = models.CharField(max_length=10)
         
     games       = models.IntegerField(default=0)
     wins        = models.IntegerField(default=0)
@@ -275,8 +276,25 @@ class NBASchedule2017(NBAScheduleTemplate):
     away_team = models.ForeignKey(NBATeam, related_name="away_team_2017", on_delete=models.CASCADE)
 
 class NBAModelPredictions(models.Model):
-    id                      = models.OneToOneField(NBASchedule2022, on_delete=models.CASCADE, primary_key=True)
-    home_points_lr          = models.FloatField(default=0.0)
-    away_points_lr          = models.FloatField(default=0.0)
-    home_points_lr_cum_rmse = models.FloatField(default=0.0)
-    away_points_lr_cum_rmse = models.FloatField(default=0.0)
+    id                          = models.OneToOneField(NBASchedule2022, on_delete=models.CASCADE, primary_key=True)
+    home_points_vegas           = models.FloatField(default=0.0)
+    away_points_vegas           = models.FloatField(default=0.0)
+    home_points_vegas_cum_me    = models.FloatField(default=0.0)
+    away_points_vegas_cum_me    = models.FloatField(default=0.0)
+    home_points_vegas_cum_rmse  = models.FloatField(default=0.0)
+    away_points_vegas_cum_rmse  = models.FloatField(default=0.0)
+    home_points_lr              = models.FloatField(default=0.0)
+    away_points_lr              = models.FloatField(default=0.0)
+    home_points_lr_cum_me       = models.FloatField(default=0.0)
+    away_points_lr_cum_me       = models.FloatField(default=0.0)
+    home_points_lr_cum_rmse     = models.FloatField(default=0.0)
+    away_points_lr_cum_rmse     = models.FloatField(default=0.0)
+
+class NBAOdds2022(models.Model):
+    id          = models.CharField(primary_key=True, max_length=50)
+    date        = models.DateField()
+    home_team   = models.ForeignKey(NBATeam, related_name="home_team_odds_2022", on_delete=models.CASCADE)
+    away_team   = models.ForeignKey(NBATeam, related_name="away_team_odds_2022", on_delete=models.CASCADE)
+    home_spread = models.FloatField(default=0.0)
+    away_spread = models.FloatField(default=0.0)
+    total       = models.FloatField(default=0.0)

@@ -1,6 +1,6 @@
-from SportsApp.models import NBASchedule2017, NBASchedule2018, NBASchedule2019, NBASchedule2020, NBASchedule2021, NBASchedule2022, NBATeam, NBAModelPredictions
+from SportsApp.models import NBASchedule2017, NBASchedule2018, NBASchedule2019, NBASchedule2020, NBASchedule2021, NBASchedule2022, NBATeam, NBAModelPredictions, NBAOdds2022
 from SportsApp.constants import *
-from SportsApp.restapis import request_nba_schedule_to_json, request_nba_game_stats
+from SportsApp.restapis import request_nba_schedule_to_json, request_nba_game_stats, request_nba_game_odds
 from SportsApp.ML import NBALinReg
 import json
 from datetime import datetime, timedelta
@@ -197,6 +197,11 @@ class NBA:
 
     # Load team info to teams database
     def load_teams(self):
+        # teams = NBATeam.objects.all()
+        # for team in teams:
+        #     team.full_name = str(team.city) + " " + str(team.name)
+        #     team.save()
+
         for k,v in NBA_TEAMS_DICT.items():
             NBATeam.objects.create(id=NBA_API_ID_DICT[k],
                                    name=k,
@@ -325,7 +330,7 @@ class NBA:
             # Update table fields to reflect statistics
             game.save()
 
-            # Print comlpetion message
+            # Print completion message
             self.printProgressBar(i,n,'Loading Stats to Database...')
 
             # Sleep so as to not exceed API call frequency limits
@@ -676,6 +681,27 @@ class NBA:
             # Generate predictions
             pred.home_points_lr, pred.away_points_lr = self.models['Linear Regression'].predict_game(game)
 
+            # Copy in vegas predictions
+            if game.boxscore_filled and game.team_stats_filled:
+                try:
+                    odds = NBAOdds2022.objects.get(date=game.date,
+                                                home_team=game.home_team,
+                                                away_team=game.away_team)
+                    if odds.home_spread < 0:
+                        pred.away_points_vegas = ( odds.total + odds.home_spread ) / 2
+                        pred.home_points_vegas = pred.away_points_vegas - odds.home_spread
+                    elif odds.home_spread > 0:
+                        pred.home_points_vegas = ( odds.total + odds.away_spread ) / 2
+                        pred.away_points_vegas = pred.home_points_vegas - odds.away_spread
+                    else:
+                        pred.home_points_vegas = odds.total / 2
+                        pred.away_points_vegas = odds.total / 2
+
+                except:
+                    #print(f"{game.away_team.full_name} @ {game.home_team.full_name} on {game.date}")
+                    pred.away_points_vegas = 0
+                    pred.home_points_vegas = 0
+
             # Save predictions to database
             pred.save()
 
@@ -686,6 +712,21 @@ class NBA:
     def calculate_pred_error(self):
         # Get games for selected year
         games = self.sch_obj.objects.all()
+
+        home_diff_vegas_tot_err = 0
+        away_diff_vegas_tot_err = 0
+        home_points_vegas_cum_me = 0
+        away_points_vegas_cum_me = 0
+
+        home_diff_vegas_sqr_err = 0
+        away_diff_vegas_sqr_err = 0
+        home_points_vegas_cum_rmse = 0
+        away_points_vegas_cum_rmse = 0
+
+        home_diff_lr_tot_err = 0
+        away_diff_lr_tot_err = 0
+        home_points_lr_cum_me = 0
+        away_points_lr_cum_me = 0
 
         home_diff_lr_sqr_err = 0
         away_diff_lr_sqr_err = 0
@@ -704,14 +745,38 @@ class NBA:
 
             # Calculate RMSE if stats are filled
             if game.boxscore_filled and game.team_stats_filled:
+                if pred.home_points_vegas > 0 and pred.away_points_vegas > 0:
+                    home_diff_vegas_tot_err += game.home_points - pred.home_points_vegas
+                    away_diff_vegas_tot_err += game.away_points - pred.away_points_vegas
+                    home_points_vegas_cum_me = home_diff_vegas_tot_err / i
+                    away_points_vegas_cum_me = away_diff_vegas_tot_err / i
+                    
+                    home_diff_vegas_sqr_err += (game.home_points - pred.home_points_vegas) ** 2
+                    away_diff_vegas_sqr_err += (game.away_points - pred.away_points_vegas) ** 2
+                    home_points_vegas_cum_rmse = sqrt(home_diff_vegas_sqr_err / i)
+                    away_points_vegas_cum_rmse = sqrt(away_diff_vegas_sqr_err / i)    
+
+                home_diff_lr_tot_err += game.home_points - pred.home_points_lr
+                away_diff_lr_tot_err += game.away_points - pred.away_points_lr
+                home_points_lr_cum_me = home_diff_lr_tot_err / i
+                away_points_lr_cum_me = away_diff_lr_tot_err / i
+
                 home_diff_lr_sqr_err += (game.home_points - pred.home_points_lr) ** 2
                 away_diff_lr_sqr_err += (game.away_points - pred.away_points_lr) ** 2
                 home_points_lr_cum_rmse = sqrt(home_diff_lr_sqr_err / i)
                 away_points_lr_cum_rmse = sqrt(away_diff_lr_sqr_err / i)           
 
             # Save predictions to database
-            pred.home_points_lr_cum_rmse = home_points_lr_cum_rmse
-            pred.away_points_lr_cum_rmse = away_points_lr_cum_rmse
+            pred.home_points_vegas_cum_me = home_points_vegas_cum_me
+            pred.away_points_vegas_cum_me = away_points_vegas_cum_me
+            pred.home_points_lr_cum_me    = home_points_lr_cum_me
+            pred.away_points_lr_cum_me    = away_points_lr_cum_me
+            
+            pred.home_points_vegas_cum_rmse = home_points_vegas_cum_rmse
+            pred.away_points_vegas_cum_rmse = away_points_vegas_cum_rmse
+            pred.home_points_lr_cum_rmse    = home_points_lr_cum_rmse
+            pred.away_points_lr_cum_rmse    = away_points_lr_cum_rmse
+            
             pred.save()
 
             # Print progress bar
@@ -774,3 +839,87 @@ class NBA:
         # Print New Line on Complete
         if iteration == total: 
             print()
+
+    def download_game_odds(self):
+        #NBAOdds2022.objects.all().delete()
+
+        #####################################################################
+        ### DELETE THIS
+        #####################################################################
+
+        # odds_str = request_nba_game_odds("2022-10-26")
+
+        games = self.sch_obj.objects.all()
+        dates = []
+        for game in games:
+            if game.boxscore_filled and game.team_stats_filled:
+                dates.append(game.date)
+        n_games_sch = len(dates)
+        dates_set = set(dates)
+        unique_dates = (list(dates_set))
+        unique_dates.sort(key=lambda date: date)
+
+        i = 0
+        n = len(unique_dates)
+
+        empty_games = []
+
+        for date in unique_dates:
+            i += 1
+
+            odds_str = request_nba_game_odds(str(date))
+            odds_json = json.loads(odds_str)
+            
+            # f = open("test_game_odds.json")
+            # odds_json = json.load(f)
+
+            data = odds_json['data']
+            for game in data:
+                game_id = game['id']
+
+                date_str = str(game['commence_time'])
+                date_str = date_str[:-1].replace('T',' ')
+                game_datetime = datetime.strptime(date_str,'%Y-%m-%d %H:%M:%S') - timedelta(hours=4)
+                game_date = game_datetime.date()
+
+                game_home_team_full_name = game['home_team']
+                game_away_team_full_name = game['away_team']
+
+                try:
+                    game_home_spread = game['bookmakers'][0]['markets'][0]['outcomes'][0]['point']
+                    game_away_spread = game['bookmakers'][0]['markets'][0]['outcomes'][1]['point']
+                    game_total = game['bookmakers'][0]['markets'][1]['outcomes'][0]['point']
+                except:
+                    empty_games.append(game_id)
+                    continue
+                
+                try:
+                    NBAOdds2022.objects.get(id=game_id)
+                except:
+                    game_home_team = NBATeam.objects.get(full_name=game_home_team_full_name)
+                    game_away_team = NBATeam.objects.get(full_name=game_away_team_full_name)
+                    NBAOdds2022.objects.create(id=game_id,
+                                               date=game_date,
+                                               home_team=game_home_team,
+                                               away_team=game_away_team,
+                                               home_spread=game_home_spread,
+                                               away_spread=game_away_spread,
+                                               total=game_total)
+
+            # Print completion message
+            self.printProgressBar(i,n,'Loading Odds to Database...')
+
+            time.sleep(0.5)
+
+        actual_empty_games = []
+        for game_id in empty_games:
+            try:
+                NBAOdds2022.objects.get(id=game_id)
+            except:
+                actual_empty_games.append(game_id)
+
+        n_games_odds = len(NBAOdds2022.objects.all())
+        print("Game totals do not add up...")
+        print("Total Games: ", n_games_sch)
+        print("Games Filled: ", n_games_odds)
+        print("Games Empty: ", len(actual_empty_games))

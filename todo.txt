@@ -3,6 +3,8 @@ TODO:
 - Add optimizer for elo system to set rankings
 - Add model cards to sports home pages
 - Add multi column drop down for models
+- Add link to github repo
+- Fix mobile view
 - Deploy to AWS
 - Add placeholders for missing pages
 - Add other sports

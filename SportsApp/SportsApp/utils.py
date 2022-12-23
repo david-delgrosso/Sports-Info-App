@@ -10,6 +10,10 @@ import pickle
 import pandas as pd
 import os
 import shutil
+#temp
+from SportsApp.config import ODDS_API_HEADERS
+import requests as re
+import json
 
 # NBA Utilities
 # Clear NBA Schedule database
@@ -79,12 +83,39 @@ def rename_nba_logos_util():
 
 def calculate_predictions_util():
     nba = NBA(NBA_SEASON)
-    #nba.clear_predictions()
-    #nba.calculate_predictions()
+    nba.clear_predictions()
+    nba.calculate_predictions()
     nba.calculate_pred_error()
     print(str(nba), " has successfully calculated model predictions and error...")
 
 def generate_error_plots_util():
     nba = NBA(NBA_SEASON)
     nba.models['Linear Regression'].plot_rmse()
+    nba.models['Linear Regression'].plot_me()
     print(str(nba), " has successfully generated error plots...")
+
+def request_nba_game_odds():
+    sport = "basketball_nba"
+    api_key = ODDS_API_HEADERS['API_KEY']
+    regions = "us"
+    markets = "spreads,totals"
+    date = "2022-10-18T00:00:00Z"
+    oddsFormat = "american"
+    bookmakers = "fanduel"
+    url = f"https://api.the-odds-api.com/v4/sports/{sport}/odds-history/?apiKey={api_key}&regions={regions}&markets={markets}&oddsFormat={oddsFormat}&bookmakers={bookmakers}&date={date}"
+    
+    response = re.get(url)
+    re_json = response.json()
+    json_object = json.dumps(re_json, indent=4)
+
+    filename = "odds_api_test.json"
+    with open(filename,'w') as f:
+        f.write(json_object)
+
+def test_odds_api_util():
+    request_nba_game_odds()
+
+def download_game_odds_util():
+    nba = NBA(NBA_SEASON)
+    nba.download_game_odds()
+    print(str(nba), " has successfully loaded game odds to schedule...")

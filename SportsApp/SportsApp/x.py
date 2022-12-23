@@ -15,3 +15,5 @@ from utils import *
 #rename_nba_logos_util()
 #calculate_predictions_util()
 generate_error_plots_util()
+#test_odds_api_util()
+#download_game_odds_util()

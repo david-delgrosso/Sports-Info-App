@@ -71,12 +71,16 @@ class NBALinReg:
 
         home_rmse = []
         away_rmse = []
+        home_vegas_rmse = []
+        away_vegas_rmse = []
 
         for game in games:
             if game.boxscore_filled and game.team_stats_filled:
                 game_pred = NBAModelPredictions.objects.get(id=game)
                 home_rmse.append(game_pred.home_points_lr_cum_rmse)
                 away_rmse.append(game_pred.away_points_lr_cum_rmse)
+                home_vegas_rmse.append(game_pred.home_points_vegas_cum_rmse)
+                away_vegas_rmse.append(game_pred.away_points_vegas_cum_rmse)
 
         idx = [i for i in range(1, len(home_rmse) + 1)]
 
@@ -84,11 +88,46 @@ class NBALinReg:
         plt.style.use('dark_background')
         plt.plot(idx, home_rmse, 'dodgerblue')
         plt.plot(idx, away_rmse, 'tab:orange')
+        plt.plot(idx, home_vegas_rmse, 'blue')
+        plt.plot(idx, away_vegas_rmse, 'red')
         plt.title('NBA Linear Regression Root Mean Squared Error')
         plt.xlabel('Number of Games Predicted')
         plt.ylabel("RMSE")
-        plt.legend(labels=["Home Score", "Away Score"], loc='lower right')
+        plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], loc='lower right')
         plt.grid(True)
         save_name = PLOT_PATH + "nba_linreg_rmse.png"
+        plt.savefig(save_name)
+        plt.show(block=False)
+
+    def plot_me(self):
+        games = NBASchedule2022.objects.all()
+
+        home_me = []
+        away_me = []
+        home_vegas_me = []
+        away_vegas_me = []
+
+        for game in games:
+            if game.boxscore_filled and game.team_stats_filled:
+                game_pred = NBAModelPredictions.objects.get(id=game)
+                home_me.append(game_pred.home_points_lr_cum_me)
+                away_me.append(game_pred.away_points_lr_cum_me)
+                home_vegas_me.append(game_pred.home_points_vegas_cum_me)
+                away_vegas_me.append(game_pred.away_points_vegas_cum_me)
+
+        idx = [i for i in range(1, len(home_me) + 1)]
+
+        plt.figure(figsize=(7,4))
+        plt.style.use('dark_background')
+        plt.plot(idx, home_me, 'dodgerblue')
+        plt.plot(idx, away_me, 'tab:orange')
+        plt.plot(idx, home_vegas_me, 'blue')
+        plt.plot(idx, away_vegas_me, 'red')
+        plt.title('NBA Linear Regression Mean Error')
+        plt.xlabel('Number of Games Predicted')
+        plt.ylabel("Mean Error")
+        plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], loc='upper right')
+        plt.grid(True)
+        save_name = PLOT_PATH + "nba_linreg_me.png"
         plt.savefig(save_name)
         plt.show(block=False)
