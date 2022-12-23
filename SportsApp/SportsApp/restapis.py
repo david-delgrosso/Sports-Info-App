@@ -1,6 +1,7 @@
 import requests as re
 import json
-from .config import *
+from SportsApp.config import *
+from SportsApp.constants import NBA_DATA_PATH
 
 # Download schedule from API and save to JSON file
 # @param[in]    year    year of season being requested
@@ -17,7 +18,7 @@ def request_nba_schedule_to_json(year):
     re_json = response.json()
     json_object = json.dumps(re_json, indent=4)
 
-    filename = "nba_season_" + str(year) + ".json"
+    filename = f"{NBA_DATA_PATH}nba_season_{year}.json"
     with open(filename,'w') as f:
         f.write(json_object)
 
@@ -53,7 +54,9 @@ def request_nba_game_odds(date):
     re_json = response.json()
     json_object = json.dumps(re_json, indent=4)
 
-    with open("test_game_odds.json",'w') as f:
-        f.write(json_object)
+    filename = f"{NBA_DATA_PATH}test_game_odds.json"
+
+    # with open(filename,'w') as f:
+    #     f.write(json_object)
 
     return json_object

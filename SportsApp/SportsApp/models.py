@@ -5,7 +5,6 @@ class NBATeam(models.Model):
     name      = models.CharField(max_length=30)
     city      = models.CharField(max_length=30)
     full_name = models.CharField(max_length=40)
-    sport     = models.CharField(max_length=10)
         
     games       = models.IntegerField(default=0)
     wins        = models.IntegerField(default=0)
@@ -102,11 +101,18 @@ class NBAScheduleTemplate(models.Model):
     id                = models.IntegerField(primary_key=True)
     time              = models.TimeField('%H:%M')
     date              = models.DateField()
-    sport             = models.CharField(max_length=10)
-    boxscore_filled   = models.BooleanField(default='False')
+    game_stats_filled = models.BooleanField(default='False')
     team_stats_filled = models.BooleanField(default='False')
-    first_game        = models.BooleanField(default='False')
+    game_odds_filled  = models.BooleanField(default='False')
+    early_season_game = models.BooleanField(default='False')
 
+    def __str__(self):
+        return str(self.home_team) + " vs " + str(self.away_team) + " @ " + str(self.time)
+
+    class Meta:
+        abstract = True
+
+class NBAGameStatsTemplate(models.Model):
     home_points    = models.IntegerField(blank=True, null=True)
     home_fgm       = models.IntegerField(blank=True, null=True)
     home_fga       = models.IntegerField(blank=True, null=True)
@@ -244,7 +250,7 @@ class NBAScheduleTemplate(models.Model):
     away_opp_plusMinus_pg = models.FloatField(default=0.0)
 
     def __str__(self):
-        return str(self.home_team) + " vs " + str(self.away_team) + " @ " + str(self.time)
+        return f"Game Stats id: {self.id}"
 
     class Meta:
         abstract = True
@@ -252,8 +258,6 @@ class NBAScheduleTemplate(models.Model):
 class NBASchedule2022(NBAScheduleTemplate):
     home_team = models.ForeignKey(NBATeam, related_name="home_team_2022", on_delete=models.CASCADE)
     away_team = models.ForeignKey(NBATeam, related_name="away_team_2022", on_delete=models.CASCADE)
-    home_linreg_points = models.FloatField(default=0.0)
-    away_linreg_points = models.FloatField(default=0.0)
 
 class NBASchedule2021(NBAScheduleTemplate):
     home_team = models.ForeignKey(NBATeam, related_name="home_team_2021", on_delete=models.CASCADE)
@@ -275,7 +279,25 @@ class NBASchedule2017(NBAScheduleTemplate):
     home_team = models.ForeignKey(NBATeam, related_name="home_team_2017", on_delete=models.CASCADE)
     away_team = models.ForeignKey(NBATeam, related_name="away_team_2017", on_delete=models.CASCADE)
 
-class NBAModelPredictions(models.Model):
+class NBAGameStats2022(NBAGameStatsTemplate):
+    id = models.OneToOneField(NBASchedule2022, on_delete=models.CASCADE, primary_key=True)
+
+class NBAGameStats2021(NBAGameStatsTemplate):
+    id = models.OneToOneField(NBASchedule2021, on_delete=models.CASCADE, primary_key=True)
+
+class NBAGameStats2020(NBAGameStatsTemplate):
+    id = models.OneToOneField(NBASchedule2020, on_delete=models.CASCADE, primary_key=True)
+
+class NBAGameStats2019(NBAGameStatsTemplate):
+    id = models.OneToOneField(NBASchedule2019, on_delete=models.CASCADE, primary_key=True)
+
+class NBAGameStats2018(NBAGameStatsTemplate):
+    id = models.OneToOneField(NBASchedule2018, on_delete=models.CASCADE, primary_key=True)
+
+class NBAGameStats2017(NBAGameStatsTemplate):
+    id = models.OneToOneField(NBASchedule2017, on_delete=models.CASCADE, primary_key=True)
+
+class NBAPredictions2022(models.Model):
     id                          = models.OneToOneField(NBASchedule2022, on_delete=models.CASCADE, primary_key=True)
     home_points_vegas           = models.FloatField(default=0.0)
     away_points_vegas           = models.FloatField(default=0.0)

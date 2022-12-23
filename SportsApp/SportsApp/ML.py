@@ -1,7 +1,7 @@
 import pickle
 import pandas as pd
 import os
-from SportsApp.models import NBAModelPredictions, NBASchedule2022
+from SportsApp.models import NBAPredictions2022, NBASchedule2022
 import matplotlib.pyplot as plt
 from SportsApp.constants import PLOT_PATH
 
@@ -67,16 +67,16 @@ class NBALinReg:
         return home_score, away_score
 
     def plot_rmse(self):
-        games = NBASchedule2022.objects.all()
+        schs = NBASchedule2022.objects.all()
 
         home_rmse = []
         away_rmse = []
         home_vegas_rmse = []
         away_vegas_rmse = []
 
-        for game in games:
-            if game.boxscore_filled and game.team_stats_filled:
-                game_pred = NBAModelPredictions.objects.get(id=game)
+        for sch in schs:
+            if sch.game_stats_filled and sch.team_stats_filled and sch.game_odds_filled and not sch.early_season_game:
+                game_pred = NBAPredictions2022.objects.get(id=sch.id)
                 home_rmse.append(game_pred.home_points_lr_cum_rmse)
                 away_rmse.append(game_pred.away_points_lr_cum_rmse)
                 home_vegas_rmse.append(game_pred.home_points_vegas_cum_rmse)
@@ -93,23 +93,23 @@ class NBALinReg:
         plt.title('NBA Linear Regression Root Mean Squared Error')
         plt.xlabel('Number of Games Predicted')
         plt.ylabel("RMSE")
-        plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], loc='lower right')
+        plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], bbox_to_anchor=(1.42, 0.5), loc='center right')
         plt.grid(True)
         save_name = PLOT_PATH + "nba_linreg_rmse.png"
-        plt.savefig(save_name)
+        plt.savefig(save_name, bbox_inches='tight')
         plt.show(block=False)
 
     def plot_me(self):
-        games = NBASchedule2022.objects.all()
+        schs = NBASchedule2022.objects.all()
 
         home_me = []
         away_me = []
         home_vegas_me = []
         away_vegas_me = []
 
-        for game in games:
-            if game.boxscore_filled and game.team_stats_filled:
-                game_pred = NBAModelPredictions.objects.get(id=game)
+        for sch in schs:
+            if sch.game_stats_filled and sch.team_stats_filled and sch.game_odds_filled and not sch.early_season_game:
+                game_pred = NBAPredictions2022.objects.get(id=sch.id)
                 home_me.append(game_pred.home_points_lr_cum_me)
                 away_me.append(game_pred.away_points_lr_cum_me)
                 home_vegas_me.append(game_pred.home_points_vegas_cum_me)
@@ -126,8 +126,8 @@ class NBALinReg:
         plt.title('NBA Linear Regression Mean Error')
         plt.xlabel('Number of Games Predicted')
         plt.ylabel("Mean Error")
-        plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], loc='upper right')
+        plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], bbox_to_anchor=(1.42, 0.5), loc='center right')
         plt.grid(True)
         save_name = PLOT_PATH + "nba_linreg_me.png"
-        plt.savefig(save_name)
+        plt.savefig(save_name, bbox_inches='tight')
         plt.show(block=False)
