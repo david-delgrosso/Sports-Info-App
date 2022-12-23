@@ -9,3 +9,9 @@ TODO:
 - Add placeholders for missing pages
 - Add other sports
 - Add more models
+- Generate new datasets
+  - One for each year
+  - Weight recent games more
+- Logistic regression for ML
+- Linear regression for margin
+- Look into how old NHL model works and maybe replicate
