@@ -89,13 +89,19 @@ def nba_home_view(request):
     # Populate context dictionary
     context['day'] = day
     context['nba_games'] = nba.get_games(day)
+    context['nba_stats'] = []
     context['date_form'] = date_form
     context['pred_form'] = pred_form
     context['in_past'] = True
 
+    for game in context['nba_games']:
+        context['nba_stats'].append(nba.game_stats_obj.objects.get(id=game))
+
+    context['games_and_stats'] = zip(context['nba_games'], context['nba_stats'])
+
     # If any game hasn't been played yet, set in_past to False
     for game in context['nba_games']:
-        if not game.boxscore_filled:
+        if not game.game_stats_filled:
             context['in_past'] = False
         
     return render(request, 'SportsApp/nba_home.html', context)
@@ -110,6 +116,12 @@ def nba_game_view(request,id):
     # Save game data to context dictionary
     context['game']  = nba.sch_obj.objects.get(id=id)
     context['preds'] = nba.pred_obj.objects.get(id=id)
+
+    if context['game'].game_stats_filled:
+        context['in_past'] = True
+        context['stats'] = nba.game_stats_obj.objects.get(id=id)
+    else:
+        context['in_past'] = False
 
     return render(request, 'SportsApp/nba_game.html', context)
 
@@ -126,7 +138,7 @@ def nba_model_view(request,model_name):
     # Get NBA games on current day
     context['nba_games'] = nba.get_games(day)
     context['preds'] = []
-    for i,game in enumerate(context['nba_games']):
+    for game in context['nba_games']:
         context['preds'].append(nba.pred_obj.objects.get(id=game))
 
     context['games_and_preds'] = zip(context['nba_games'], context['preds'])

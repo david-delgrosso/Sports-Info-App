@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for game in nba_games %}
+                    {% for game, stat in games_and_stats %}
                     <tr>
                         {% if in_past %}
                         <td>{{ game.date }}</td>
@@ -76,8 +76,10 @@
                         <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
                                 width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
-                        <td>{{ game.away_points }} - {{ game.home_points }}</td>
-                        <td><a href="{% url 'load_nba_game' game.id %}">X</a></td>
+                        <td>{{ stat.away_points }} - {{ stat.home_points }}</td>
+                        <td><a href="{% url 'load_nba_game' game.id %}"><img
+                            src="{% static 'media/misc/white-arrow.png' %}" width="25"
+                            style="float:center; vertical-align:middle" /></a></td>
                         {% else %}
                         <td>{{ game.date }}</td>
                         <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"

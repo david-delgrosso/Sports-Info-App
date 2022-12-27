@@ -83,12 +83,14 @@
             <h3 class="text-center text-light mb-3">Performance</h3>
             <div class="row mb-3">
                 <div class="col align-self-center">
-                    <img src="{% static 'media/plots/nba_linreg_rmse.png' %}" width="100%" style="float:center; vertical-align:middle" />
+                    <img src="{% static 'media/plots/nba_linreg_rmse.png' %}" width="100%"
+                        style="float:center; vertical-align:middle" />
                 </div>
             </div>
             <div class="row">
                 <div class="col align-self-center">
-                    <img src="{% static 'media/plots/nba_linreg_me.png' %}" width="100%" style="float:center; vertical-align:middle" />
+                    <img src="{% static 'media/plots/nba_linreg_me.png' %}" width="100%"
+                        style="float:center; vertical-align:middle" />
                 </div>
             </div>
         </div>
@@ -98,95 +100,103 @@
         <div class="container">
             <hr class="bg-light">
             <h3 class="text-center text-light mb-3">Description</h3>
-            {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/data_prep.html' %}
+            {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/data_prep.html'%}
             <h5 class="text-light mb-3">Training the Model</h5>
             <p class="text-light mb-3">
-                Training the model was far simpler than preparing the data, as is usually the case with machine learning. The model was created with scikit-learn's <span style="font-style:italic">LinearRegression</span> class. The process is as simple as instantiating an object of the class and calling the object's <span style="font-style:italic">fit</span> method, passing the training predictors and training labels as arguments. Both a home score model and an away score model were trained using the corresponding labels.
+                Training the model was far simpler than preparing the data, as is usually the case with machine
+                learning. The model was created with scikit-learn's <span
+                    style="font-style:italic">LinearRegression</span> class. The process is as simple as instantiating
+                an object of the class and calling the object's <span style="font-style:italic">fit</span> method,
+                passing the training predictors and training labels as arguments. Both a home score model and an away
+                score model were trained using the corresponding labels.
             </p>
-            <h5 class="text-light mb-3">Assess Model Performance</h5>
+            <h5 class="text-light mb-3">Assessing Model Performance</h5>
             <p class="text-light mb-3">
-                Now that the model was trained, it was time to quantify the error in the model. The two error metrics used in this assessment were R-squared and root mean squared error (RMSE). R-squared can be thought of as, when multiplied by 100, the percentage of variance in the label that is explained by the variance in the predictor variables. RMSE can be thought of as the average error expected for a given prediction, provided in the same units as the labels.
-            </p>
-            <p class="text-light mb-3">
-                First, the model's performance on the training data was tested. To do this, the model's <span style="font-style:italic">predict</span> method was called on the training data, which generates an array of prediction values. Scikit-learn's <span style="font-style:italic">r2_score</span> and <span style="font-style:italic">mean_squared_error</span> were leveraged to help calculate the R-squared and RMSE metric.
-            </p>
-            <p class="text-light mb-3">
-                For the home score model, the R-squared value was 0.144 and the RMSE was 11.807.
-            </p>
-            <p class="text-light mb-3">
-                For the away score model, the R-squared value was 0.137 and the RMSE was 11.885.
-            </p>
-            <p class="text-light mb-3">
-                These are results are quite bad, but that is to be expected when trying to apply a linear model to complex datasets. Interpreting these results, each model could only account for roughtly 14% of the variance in NBA scores, and each individual prediction could be expected to have an error of close to 12 points.
+                Now that the model was trained, it was time to quantify the error in the model. The two error metrics
+                used in this assessment were R-squared and root mean squared error (RMSE). R-squared can be thought of
+                as, when multiplied by 100, the percentage of variance in the label that is explained by the variance in
+                the predictor variables. RMSE can be thought of as the average error expected for a given prediction,
+                provided in the same units as the labels.
             </p>
             <p class="text-light mb-3">
-                The final step of the process was to assess generalization error. So far, the performance of the models had only been measured in relation to data it had already seen. This is where the test data sets come into play. The RMSE was calculated for each model after comparing the test set labels with the predictions made using the test predictor set. Similar to the error measured on the training set, the RMSE for the home team's points was 12.070 and the RMSE for the away team's points was 11.863. Since the results for the training and test datasets were similar, it can be concluded that the model did not overfit the data. In fact, the model can be thought of as underfitting the data due its linear assumption.
+                First, the model's performance on the training data was tested. To do this, the model's <span
+                    style="font-style:italic">predict</span> method was called on the training data, which generates an
+                array of prediction values. Scikit-learn's <span style="font-style:italic">r2_score</span> and <span
+                    style="font-style:italic">mean_squared_error</span> were leveraged to help calculate the R-squared
+                and RMSE metric. The results are shown in the table below.
             </p>
-            <h5 class="text-light mb-3">Important Predictors</h5>
-            <p class="text-light mb-3">
-                To properly understand a linear regression model, it is important to review the driving predictors to ensure that the results make logical sense. The table below shows the most influential predictors for each model, in order of importance.
-            </p>
-            <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
+            <table class="table text-light table-striped table-dark center mb-3" style="width:50%" id="table"
+                data-filter-control="true">
                 <thead>
-                    <tr class="text-center">
-                        <th colspan="2">Away Points</th>
-                        <th colspan="2">Home Points</th>
-                    </tr>
-                    <tr>
-                        <th scope="col" style="width:25%">Positive</th>
-                        <th scope="col" style="width:25%">Negative</th>
-                        <th scope="col" style="width:25%">Positive</th>
-                        <th scope="col" style="width:25%">Negative</th>
+                    <tr class="text-left">
+                        <th scope="col">Label</th>
+                        <th scope="col">R-squared</th>
+                        <th scope="col">RMSE</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Home Opp FGM PG</td>
-                        <td>Home FGM PG</td>
-                        <td>Away Opp FGM PG</td>
-                        <td>Away FGM PG</td>
+                        <td>Home Points</td>
+                        <td>0.086</td>
+                        <td>12.196</td>
                     </tr>
                     <tr>
-                        <td>Home Opp FTM PG</td>
-                        <td>Home FTM PG</td>
-                        <td>Away Opp FTM PG</td>
-                        <td>Away FTM PG</td>
-                    </tr>
-                    <tr>
-                        <td>Home Opp 3PM PG</td>
-                        <td>Home TPM PG</td>
-                        <td>Away Opp 3PM PG</td>
-                        <td>Away TPM PG</td>
-                    </tr>
-                    <tr>
-                        <td>Home PlusMinus PG</td>
-                        <td>Away Opp FGM PG</td>
-                        <td>Away PlusMinus PG</td>
-                        <td>Home Opp FGM PG</td>
-                    </tr>
-                    <tr>
-                        <td>Away FGM PG</td>
-                        <td>Away Opp 3PM PG</td>
-                        <td>Home FGM PG</td>
-                        <td>Home Opp 3PM PG</td>
-                    </tr>
-                    <tr>
-                        <td>Away TPM PG</td>
-                        <td>Away Opp FTM PG</td>
-                        <td>Home TPM PG</td>
-                        <td>Home Opp FTM PG</td>
-                    </tr>
-                    <tr>
-                        <td>Away FTM PG</td>
-                        <td>Away Opp PlusMinus PG</td>
-                        <td>Home FTM PG</td>
-                        <td>Home Opp PlusMinus PG</td>
+                        <td>Away Points</td>
+                        <td>0.087</td>
+                        <td>12.442</td>
                     </tr>
                 </tbody>
             </table>
             <p class="text-light mb-3">
-                The predictors shown in the table above make logical sense. Teams tend to have an increase in expected points in a game when they have higher values for field goals, three pointers, and free throws per game. An interesting observation is that teams also can expect more points when their opponent scores more points. This likely lends itself to pace of play and that fact that many of the best offensive players and teams in the NBA do not play the best defense.
+                These are results are quite bad, but that is to be expected when trying to apply a linear model to
+                complex datasets. Interpreting these results, each model could only account for roughtly 9% of the
+                variance in NBA scores, and each individual prediction could be expected to have an error of over 12
+                points.
             </p>
+            <p class="text-light mb-3">
+                The final step of the process was to assess generalization error. So far, the performance of the models
+                had only been measured in relation to data it had already seen. This is where the test data sets come
+                into play. The RMSE was calculated for each model after comparing the test set labels with the
+                predictions made using the test predictor set.
+            </p>
+            <table class="table text-light table-striped table-dark center mb-3" style="width:50%" id="table"
+                data-filter-control="true">
+                <thead>
+                    <tr class="text-left">
+                        <th scope="col">Label</th>
+                        <th scope="col">RMSE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home Points</td>
+                        <td>12.022</td>
+                    </tr>
+                    <tr>
+                        <td>Away Points</td>
+                        <td>11.637</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-light mb-3">
+                Since the results for the training and test datasets were similar, it can be concluded that the model did not
+                overfit the data. In fact, the model can be thought of as underfitting the data due its linear
+                assumption.
+            </p>
+            <h5 class="text-light mb-3">Important Predictors</h5>
+            <p class="text-light mb-3">
+                To properly understand a linear regression model, it is important to review the driving predictors to
+                ensure that the results make logical sense. The plots below shows the most influential predictors for
+                each model.
+            </p>
+            <div class="col align-self-center mb-3">
+                <img src="{% static 'media/plots/nba_home_points_lin_reg_driving_coef.png' %}" width="100%"
+                    style="float:center; vertical-align:middle" />
+            </div>
+            <div class="col align-self-center mb-3">
+                <img src="{% static 'media/plots/nba_away_points_lin_reg_driving_coef.png' %}" width="100%"
+                    style="float:center; vertical-align:middle" />
+            </div>
         </div>
     </section>
 

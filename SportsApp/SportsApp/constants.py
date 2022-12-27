@@ -1,6 +1,6 @@
 from datetime import datetime
 
-NBA_SEASON = 2018
+NBA_SEASON = 2022
 NBA_EARLY_SEASON_CUTOFF = 5
 
 PLOT_PATH = "/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/static/media/plots/"

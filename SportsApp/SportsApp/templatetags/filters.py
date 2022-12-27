@@ -15,3 +15,7 @@ def addstrings(s1, s2):
     if ' ' in str(s2):
         s2 = s2.replace(' ', '_')
     return s1 + s2
+
+@register.filter(name='calcpercent')
+def calcpercent(n, d):
+    return round(float(n/d) * 100, 1)

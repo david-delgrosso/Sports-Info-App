@@ -35,9 +35,15 @@
                 <div class="col-3 center">
                     <h4 class="text-center text-light">{{game.away_team.city}} {{game.away_team.name}}</h4>
                 </div>
+                {% if in_past %}
+                <div class="col-2 center">
+                    <h3 class="text-center text-light">{{stats.away_points}} - {{stats.home_points}}</h3>
+                </div>
+                {% else %}
                 <div class="col-2 center">
                     <h5 class="text-center text-light">{{game.time}}</h5>
                 </div>
+                {% endif %}
                 <div class="col-3 center">
                     <h4 class="text-center text-light">{{game.home_team.city}} {{game.home_team.name}}</h4>
                 </div>
@@ -49,6 +55,114 @@
         </div>
         <hr>
         <div class="container">
+            {% if in_past %}
+            <table class="table text-light table-striped table-dark center" style="width:60%" id="table" data-filter-control="true">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width:25%">Stat</th>
+                        <th scope="col" class="text-center" style="width:33%">{{game.away_team.name}}</th>
+                        <th scope="col" class="text-center" style="width:33%">{{game.home_team.name}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Points</td>
+                        <td class="text-center">{{stats.away_points}}</td>
+                        <td class="text-center">{{stats.home_points}}</td>
+                    </tr>
+                    <tr>
+                        <td>FGM</td>
+                        <td class="text-center">{{stats.away_fgm}}</td>
+                        <td class="text-center">{{stats.home_fgm}}</td>
+                    </tr>
+                    <tr>
+                        <td>FGA</td>
+                        <td class="text-center">{{stats.away_fga}}</td>
+                        <td class="text-center">{{stats.home_fga}}</td>
+                    </tr>
+                    <tr>
+                        <td>FG%</td>
+                        <td class="text-center">{{stats.away_fgm|calcpercent:stats.away_fga}}</td>
+                        <td class="text-center">{{stats.home_fgm|calcpercent:stats.home_fga}}</td>
+                    </tr>
+                    <tr>
+                        <td>FTM</td>
+                        <td class="text-center">{{stats.away_ftm}}</td>
+                        <td class="text-center">{{stats.home_ftm}}</td>
+                    </tr>
+                    <tr>
+                        <td>FTA</td>
+                        <td class="text-center">{{stats.away_fta}}</td>
+                        <td class="text-center">{{stats.home_fta}}</td>
+                    </tr>
+                    <tr>
+                        <td>FT%</td>
+                        <td class="text-center">{{stats.away_ftm|calcpercent:stats.away_fta}}</td>
+                        <td class="text-center">{{stats.home_ftm|calcpercent:stats.home_fta}}</td>
+                    </tr>
+                    <tr>
+                        <td>3PM</td>
+                        <td class="text-center">{{stats.away_tpm}}</td>
+                        <td class="text-center">{{stats.home_tpm}}</td>
+                    </tr>
+                    <tr>
+                        <td>3PA</td>
+                        <td class="text-center">{{stats.away_tpa}}</td>
+                        <td class="text-center">{{stats.home_tpa}}</td>
+                    </tr>
+                    <tr>
+                        <td>3P%</td>
+                        <td class="text-center">{{stats.away_tpm|calcpercent:stats.away_tpa}}</td>
+                        <td class="text-center">{{stats.home_tpm|calcpercent:stats.home_tpa}}</td>
+                    </tr>
+                    <tr>
+                        <td>ORB</td>
+                        <td class="text-center">{{stats.away_offReb}}</td>
+                        <td class="text-center">{{stats.home_offReb}}</td>
+                    </tr>
+                    <tr>
+                        <td>DRB</td>
+                        <td class="text-center">{{stats.away_defReb}}</td>
+                        <td class="text-center">{{stats.home_defReb}}</td>
+                    </tr>
+                    <tr>
+                        <td>TRB</td>
+                        <td class="text-center">{{stats.away_totReb}}</td>
+                        <td class="text-center">{{stats.home_totReb}}</td>
+                    </tr>
+                    <tr>
+                        <td>AST</td>
+                        <td class="text-center">{{stats.away_assists}}</td>
+                        <td class="text-center">{{stats.home_assists}}</td>
+                    </tr>
+                    <tr>
+                        <td>PF</td>
+                        <td class="text-center">{{stats.away_pFouls}}</td>
+                        <td class="text-center">{{stats.home_pFouls}}</td>
+                    </tr>
+                    <tr>
+                        <td>ST</td>
+                        <td class="text-center">{{stats.away_steals}}</td>
+                        <td class="text-center">{{stats.home_steals}}</td>
+                    </tr>
+                    <tr>
+                        <td>TO</td>
+                        <td class="text-center">{{stats.away_turnovers}}</td>
+                        <td class="text-center">{{stats.home_turnovers}}</td>
+                    </tr>
+                    <tr>
+                        <td>BLK</td>
+                        <td class="text-center">{{stats.away_blocks}}</td>
+                        <td class="text-center">{{stats.home_blocks}}</td>
+                    </tr>
+                    <tr>
+                        <td>+/-</td>
+                        <td class="text-center">{{stats.away_plusMinus}}</td>
+                        <td class="text-center">{{stats.home_plusMinus}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% else %}
             <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
                 <thead>
                     <tr>
@@ -1169,6 +1283,7 @@
                     </tr>
                 </tbody>
             </table>
+            {% endif %}
         </div>
     </section>
 

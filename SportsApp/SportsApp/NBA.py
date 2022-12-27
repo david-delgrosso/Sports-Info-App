@@ -156,7 +156,7 @@ class NBA:
             sch_obj = NBAGameStats2021
         elif year == 2020:
             sch_obj = NBAGameStats2020
-        elif self.year == 2019:
+        elif year == 2019:
             sch_obj = NBAGameStats2019
         elif year == 2018:
             sch_obj = NBAGameStats2018
@@ -207,9 +207,10 @@ class NBA:
 
             # Break if game has not been played yet
             if len(game_stats_json['response']) == 0:
-                continue
-
-                # break
+                if self.year == 2022:
+                    break
+                else:
+                    continue
 
             try:
                 # Grab predictions object corresponding to this game
@@ -316,6 +317,15 @@ class NBA:
 
             # Sleep so as to not exceed API call frequency limits
             time.sleep(0.5)
+
+    # Get the game stats for games scheduled on a specified date
+    # @param[in]    day     day to retreive games for
+    # @param[out]   stats   game stats for each game on specified date
+    def get_game_stats(self, day):
+        games = self.get_games(day)
+        id_list = [game.id for game in games]
+        stats = self.game_stats_obj.objects.filter(pk__in=id_list)
+        return stats
 
     # Reset all team stats to their default values
     def reset_team_stats(self):
@@ -714,7 +724,7 @@ class NBA:
         for year in years:
 
             # Set csv name
-            csv_filename = f"{NBA_DATA_PATH}nba_training_data_{years[0]}_to_{years[-1]}.csv"
+            csv_filename = f"{NBA_DATA_PATH}nba_training_data_{year}.csv"
 
             with open(csv_filename, 'w') as f:
 
@@ -734,7 +744,7 @@ class NBA:
                     writer.writerow([getattr(game_stats, field) for field in field_names])
 
         # Set filename to save all stats to
-        csv_filename = f"nba_training_data_{years[0]}_to_{years[-1]}.csv"
+        csv_filename = f"{NBA_DATA_PATH}nba_training_data_{years[0]}_to_{years[-1]}.csv"
 
         # Open file
         with open(csv_filename,'w') as f:
@@ -743,7 +753,7 @@ class NBA:
             writer = csv.writer(f)
 
             # Get temporary game_stats object to save field names
-            game_stats_obj_temp = self.get_game_stats_obj([years[0]])
+            game_stats_obj_temp = self.get_game_stats_obj(years[0])
             
             # Loop over field names in schedule object to write as column headers
             field_names = [field.name for field in game_stats_obj_temp._meta.get_fields()]
@@ -958,8 +968,8 @@ class NBA:
         # Get list of unique dates that games were played on
         dates = []
         for sch in schs:
-            sch.game_odds_filled = 0
-            if sch.game_stats_filled and sch.team_stats_filled:
+            #sch.game_odds_filled = 0
+            if sch.game_stats_filled and sch.team_stats_filled and not sch.game_odds_filled:
                 dates.append(sch.date)
         n_games_sch = len(dates)
         dates_set = set(dates)
