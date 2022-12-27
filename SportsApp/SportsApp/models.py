@@ -311,6 +311,12 @@ class NBAPredictions2022(models.Model):
     away_points_lr_cum_me       = models.FloatField(default=0.0)
     home_points_lr_cum_rmse     = models.FloatField(default=0.0)
     away_points_lr_cum_rmse     = models.FloatField(default=0.0)
+    home_points_pr              = models.FloatField(default=0.0)
+    away_points_pr              = models.FloatField(default=0.0)
+    home_points_pr_cum_me       = models.FloatField(default=0.0)
+    away_points_pr_cum_me       = models.FloatField(default=0.0)
+    home_points_pr_cum_rmse     = models.FloatField(default=0.0)
+    away_points_pr_cum_rmse     = models.FloatField(default=0.0)
 
 class NBAOdds2022(models.Model):
     id          = models.CharField(primary_key=True, max_length=50)

@@ -95,8 +95,16 @@ def calculate_predictions_util():
 
 def generate_error_plots_util():
     nba = NBA(NBA_SEASON)
-    nba.models['Linear Regression'].plot_rmse()
-    nba.models['Linear Regression'].plot_me()
+
+    models = [
+        'Linear Regression',
+        'Polynomial Regression'
+    ]
+
+    for model in models:
+        nba.models[model].plot_rmse()
+        nba.models[model].plot_me()
+        
     print(str(nba), "has successfully generated error plots...")
 
 def request_nba_game_odds():
