@@ -74,6 +74,7 @@ def nba_home_view(request):
             today = datetime.now() - timedelta(hours=5)
             day = str(today.strftime("%Y-%m-%d"))
             date_form = DateForm(initial={'date':day})
+            
     else:  # Use today
         # Initialize date form
         today = datetime.now() - timedelta(hours=5)

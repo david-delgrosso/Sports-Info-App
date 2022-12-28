@@ -142,7 +142,7 @@ class NBAPolyReg:
 
         self.home_poly_reg = pickle.load(open(self.home_filename, 'rb'))
         self.away_poly_reg = pickle.load(open(self.away_filename, 'rb'))
-        self.scaler       = pickle.load(open(self.scaler_filename,  'rb'))
+        self.scaler        = pickle.load(open(self.scaler_filename, 'rb'))
 
         self.predictor_list = [
             'home_opp_win_pct', 'home_fgm_pg', 'home_fga_pg', 'home_fgp',
@@ -164,7 +164,7 @@ class NBAPolyReg:
         ]
 
     def __str__(self):
-        return "NBA Linear Regression Model"
+        return "NBA Polynomial Regression Model"
 
     # Standard game prediction method
     # @param[in]    game         game stats used to generate predictions
@@ -219,7 +219,7 @@ class NBAPolyReg:
         plt.plot(idx, away_rmse, 'tab:orange')
         plt.plot(idx, home_vegas_rmse, 'blue')
         plt.plot(idx, away_vegas_rmse, 'red')
-        plt.title('NBA Linear Regression Root Mean Squared Error')
+        plt.title('NBA Polynomial Regression Root Mean Squared Error')
         plt.xlabel('Number of Games Predicted')
         plt.ylabel("RMSE")
         plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], bbox_to_anchor=(1.42, 0.5), loc='center right')
@@ -252,7 +252,7 @@ class NBAPolyReg:
         plt.plot(idx, away_me, 'tab:orange')
         plt.plot(idx, home_vegas_me, 'blue')
         plt.plot(idx, away_vegas_me, 'red')
-        plt.title('NBA Linear Regression Mean Error')
+        plt.title('NBA Polynomial Regression Mean Error')
         plt.xlabel('Number of Games Predicted')
         plt.ylabel("Mean Error")
         plt.legend(labels=["Home Score Prediction", "Away Score Prediction", "Home Score Baseline", "Away Score Baseline"], bbox_to_anchor=(1.42, 0.5), loc='center right')

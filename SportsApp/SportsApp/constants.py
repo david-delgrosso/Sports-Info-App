@@ -109,6 +109,10 @@ NBA_TEAM_DB_STATS_FIELDS_LIST = [
     'opp_steals_pg','opp_turnovers_pg','opp_blocks_pg','opp_plusMinus_pg'
 ]
 
+NBA_REVERSE_FIELDS_LIST = [
+    'pFouls_pg', 'turnovers_pg', 'opp_pFoups_pg', 'opp_turnovers_pg',
+]
+
 NBA_BOXSCORE_STATS_LIST = [
         'home_points','home_fgm','home_fga','home_fgp','home_ftm',
         'home_fta','home_ftp','home_tpm','home_tpa','home_tpp',
@@ -124,7 +128,7 @@ NBA_BOXSCORE_STATS_LIST = [
 
 NBA_MODELS_TUPLE = (
     ('1','Linear Regression'),
-    ('2','Choice 2')
+    ('2','Polynomial Regression')
 )
 
 NBA_TEAMS_TUPLE = (

@@ -699,7 +699,12 @@ class NBA:
         for stat in NBA_TEAM_DB_STATS_FIELDS_LIST:
 
             # Get stat and ranking field names
-            stat_name = "-" + str(stat) # "-" included to specify descending order
+            if stat in NBA_REVERSE_FIELDS_LIST:
+                stat_name = str(stat)
+            else:
+                stat_name = "-" + str(stat) # "-" included to specify descending order
+            
+            
             stat_rank = "rank_" + str(stat)
 
             # Query database filtering by specified stat

@@ -1,5 +1,5 @@
 TODO:
-- Add vegas odds to model performance plot
+X- Add vegas odds to model performance plot
 - Add optimizer for elo system to set rankings
 - Add model cards to sports home pages
 - Add multi column drop down for models
@@ -10,8 +10,6 @@ TODO:
 - Add other sports
 - Add more models
 - Generate new datasets
-  - One for each year
+  X- One for each year
   - Weight recent games more
-- Logistic regression for ML
-- Linear regression for margin
-- Look into how old NHL model works and maybe replicate
+- Add filter for time display

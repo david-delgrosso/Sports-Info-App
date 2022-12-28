@@ -101,102 +101,96 @@
             <hr class="bg-light">
             <h3 class="text-center text-light mb-3">Description</h3>
             {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/data_prep.html'%}
-            <h5 class="text-light mb-3">Training the Model</h5>
+            <h5 class="text-light mb-3">Determining the Degree</h5>
             <p class="text-light mb-3">
                 Training the model was far simpler than preparing the data, as is usually the case with machine
-                learning. The model was created with scikit-learn's <span
-                    style="font-style:italic">LinearRegression</span> class. The process is as simple as instantiating
-                an object of the class and calling the object's <span style="font-style:italic">fit</span> method,
-                passing the training predictors and training labels as arguments. Both a home score model and an away
+                learning. The model was created with a combination of scikit-learn's <span style="font-style:italic">LinearRegression</span>, <span style="font-style:italic">PolynomialFeatures</span>, and <span style="font-style:italic">Pipeline</span> classes. The process is as simple as instantiating
+                an object of the <span style="font-style:italic">Pipeline</span> class with two steps - a <span style="font-style:italic">PolynomialFeatures</span> object with a specified degree and a <span style="font-style:italic">LinearRegression</span> object. Then, the model can be trained by calling the <span style="font-style:italic">Pipeline</span>'s <span style="font-style:italic">fit</span> method, passing the training predictors and training labels as arguments. Both a home score model and an away
                 score model were trained using the corresponding labels.
             </p>
-            <h5 class="text-light mb-3">Assessing Model Performance</h5>
             <p class="text-light mb-3">
-                Now that the model was trained, it was time to quantify the error in the model. The two error metrics
-                used in this assessment were R-squared and root mean squared error (RMSE). R-squared can be thought of
-                as, when multiplied by 100, the percentage of variance in the label that is explained by the variance in
-                the predictor variables. RMSE can be thought of as the average error expected for a given prediction,
-                provided in the same units as the labels.
+                The first step of a polynomial regression is determining the degree of the polynomial. To find the appropriate degree empirically, a pipeline object was created with for a polynomial of degrees 1, 2, and 3. The RMSE of the pipline for the home points training data set for each degree of polynomial is shown below.
+            </p>
+            <div class="col mb-3 text-center">
+                <img src="{% static 'media/plots/nba_poly_reg_degree_selection.png' %}" width="60%"
+                    style="float:center; vertical-align:middle" />
+            </div>
+            <p class="text-light mb-3">
+                The plot above shows that the RMSE drops as the order of polynomial increases, which is to be expected. An order of 1 represents an ordinary least squares regression model, and the RMSE is very similar to that of the NBA Linear Regression model. This linear assumption causes that model to underfit the data, which leads to a larger error.
             </p>
             <p class="text-light mb-3">
-                First, the model's performance on the training data was tested. To do this, the model's <span
-                    style="font-style:italic">predict</span> method was called on the training data, which generates an
-                array of prediction values. Scikit-learn's <span style="font-style:italic">r2_score</span> and <span
-                    style="font-style:italic">mean_squared_error</span> were leveraged to help calculate the R-squared
-                and RMSE metric. The results are shown in the table below.
+                It is also worth noting that the RMSE of a third order polynomial regression model is about zero. That's an important observation because it means that the model was capable of effectively memorizing the dataset. It could perfectly predict the training data, but overfitting the training data means that the generalization error of the model was probably large. As expected, when creating home points and away points models for the training data, the assessment metrics were perfect. Meanwhile, the model performed terribly on the test set. The results are shown in the table below.
             </p>
             <table class="table text-light table-striped table-dark center mb-3" style="width:50%" id="table"
                 data-filter-control="true">
                 <thead>
+                    <tr class="text-center">
+                        <th scope="col"></th>
+                        <th colspan="2">Training</th>
+                        <th scope="col">Test</th>
+                    </tr>
                     <tr class="text-left">
                         <th scope="col">Label</th>
-                        <th scope="col">R-squared</th>
-                        <th scope="col">RMSE</th>
+                        <th scope="col" class="text-center">R-squared</th>
+                        <th scope="col" class="text-center">RMSE</th>
+                        <th scope="col" class="text-center">RMSE</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Home Points</td>
-                        <td>0.086</td>
-                        <td>12.196</td>
+                        <td>Home</td>
+                        <td class="text-center">1.0</td>
+                        <td class="text-center">0.0</td>
+                        <td class="text-center">118.390</td>
                     </tr>
                     <tr>
-                        <td>Away Points</td>
-                        <td>0.087</td>
-                        <td>12.442</td>
+                        <td>Away</td>
+                        <td class="text-center">1.0</td>
+                        <td class="text-center">0.0</td>
+                        <td class="text-center">117.904</td>
                     </tr>
                 </tbody>
             </table>
+            <h5 class="text-light mb-3">Training the Model</h5>
             <p class="text-light mb-3">
-                These are results are quite bad, but that is to be expected when trying to apply a linear model to
-                complex datasets. Interpreting these results, each model could only account for roughtly 9% of the
-                variance in NBA scores, and each individual prediction could be expected to have an error of over 12
-                points.
-            </p>
-            <p class="text-light mb-3">
-                The final step of the process was to assess generalization error. So far, the performance of the models
-                had only been measured in relation to data it had already seen. This is where the test data sets come
-                into play. The RMSE was calculated for each model after comparing the test set labels with the
-                predictions made using the test predictor set.
+                Last was the second order polynomial model, also known as a quadratic model. The model demonstrated an improved error metric compared to the linear model but did not seem to overfit the training data as extensively as the third order model did. A home and away quadratic regression model was created and the results are shown below.
             </p>
             <table class="table text-light table-striped table-dark center mb-3" style="width:50%" id="table"
                 data-filter-control="true">
                 <thead>
+                    <tr class="text-center">
+                        <th scope="col"></th>
+                        <th colspan="2">Training</th>
+                        <th scope="col">Test</th>
+                    </tr>
                     <tr class="text-left">
                         <th scope="col">Label</th>
-                        <th scope="col">RMSE</th>
+                        <th scope="col" class="text-center">R-squared</th>
+                        <th scope="col" class="text-center">RMSE</th>
+                        <th scope="col" class="text-center">RMSE</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Home Points</td>
-                        <td>12.022</td>
+                        <td>Home</td>
+                        <td class="text-center">0.466</td>
+                        <td class="text-center">9.321</td>
+                        <td class="text-center">17.651</td>
                     </tr>
                     <tr>
-                        <td>Away Points</td>
-                        <td>11.637</td>
+                        <td>Away</td>
+                        <td class="text-center">0.483</td>
+                        <td class="text-center">9.363</td>
+                        <td class="text-center">17.099</td>
                     </tr>
                 </tbody>
             </table>
             <p class="text-light mb-3">
-                Since the results for the training and test datasets were similar, it can be concluded that the model did not
-                overfit the data. In fact, the model can be thought of as underfitting the data due its linear
-                assumption.
+                The quadratic model fits the training data better than the linear model but there is at least a moderate element of overfitting as is evident by the test data RMSE being substantially worse than the training data. It should be expected that this model would not perform well when applied to current matchups. However, there unfortunately is no middle ground in this scenario. The first order polynomial underfits the data and the second order polynomial overfits the data, thus detailing a limitation of polynomial regressors.
             </p>
-            <h5 class="text-light mb-3">Important Predictors</h5>
             <p class="text-light mb-3">
-                To properly understand a linear regression model, it is important to review the driving predictors to
-                ensure that the results make logical sense. The plots below shows the most influential predictors for
-                each model.
+                Unfortunately, the <span style="font-style:italic">Pipeline</span> class does not carry the coefficients calculated within the underlying predictive model, and therefore there cannot be any further investigation into the coefficients determined during training.
             </p>
-            <div class="col align-self-center mb-3">
-                <img src="{% static 'media/plots/nba_home_points_lin_reg_driving_coef.png' %}" width="100%"
-                    style="float:center; vertical-align:middle" />
-            </div>
-            <div class="col align-self-center mb-3">
-                <img src="{% static 'media/plots/nba_away_points_lin_reg_driving_coef.png' %}" width="100%"
-                    style="float:center; vertical-align:middle" />
-            </div>
         </div>
     </section>
 

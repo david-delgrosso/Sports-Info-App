@@ -9,10 +9,10 @@ from utils import *
 #load_nba_teams_util()
 #load_nba_schedule_util()
 #download_nba_game_stats_util()
-#calculate_nba_team_stats_util()
+calculate_nba_team_stats_util()
 #download_game_odds_util()
 #calculate_predictions_util()
-generate_error_plots_util()
+#generate_error_plots_util()
 
 #clear_nba_teams_util()
 
