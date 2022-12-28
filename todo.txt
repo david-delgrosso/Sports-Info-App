@@ -12,4 +12,4 @@ X- Add vegas odds to model performance plot
 - Generate new datasets
   X- One for each year
   - Weight recent games more
-- Add filter for time display
+X- Add filter for time display

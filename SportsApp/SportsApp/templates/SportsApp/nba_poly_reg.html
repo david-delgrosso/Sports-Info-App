@@ -17,7 +17,7 @@
 
     {% load filters %}
 
-    <title>Test Web App</title>
+    <title>Sports Web App</title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-3 mt-1 text-center">
-                                <p>{{ game.time }}</p>
+                                <p>{{ game.time|timeformat }}</p>
                             </div>
                             <div class="col-logo">
                                 <img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"

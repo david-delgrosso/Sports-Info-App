@@ -17,7 +17,7 @@
 
     {% load filters %}
 
-    <title>Test Web App</title>
+    <title>Sports Web App</title>
 </head>
 
 <body>
@@ -1288,32 +1288,48 @@
     </section>
 
 
-    <section class="p1">
+    <section class="p1 mb-3">
         <div class="container">
             <hr class="bg-light">
             <h3 class="text-center text-light">Models</h3>
             <hr class="bg-light">
-            <table class="table text-light table-striped table-dark" id="table" data-filter-control="true">
+            <table class="table text-light table-striped table-dark center" style="width:70%" id="table" data-filter-control="true">
                 <thead>
                     <tr>
-                        <th scope="col" style="width:25%">Model</th>
-                        <th scope="col" style="width:25%">Stat</th>
-                        <th scope="col" style="width:25%">Away</th>
-                        <th scope="col" style="width:25%">Home</th>
+                        <th scope="col" style="width:34%">Model</th>
+                        <th scope="col" style="width:18%">Stat</th>
+                        <th class="text-center" scope="col" style="width:18%">Away</th>
+                        <th class="text-center" scope="col" style="width:18%">Home</th>
+                        <th class="text-center" scope="col" style="width:10%"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Linear Regression</td>
                         <td>Points</td>
-                        <td>{{ preds.away_points_lr }}</td>
-                        <td>{{ preds.home_points_lr }}</td>
+                        <td class="text-center">{{ preds.away_points_lr }}</td>
+                        <td class="text-center">{{ preds.home_points_lr }}</td>
+                        <td class="text-center"><a href="/NBA/models/nba_lin_reg"><img
+                            src="{% static 'media/misc/white-arrow.png' %}" width="25"
+                            style="float:center; vertical-align:middle" /></a></td>
                     </tr>
                     <tr>
                         <td>Polynomial Regression</td>
                         <td>Points</td>
-                        <td>{{ preds.away_points_pr }}</td>
-                        <td>{{ preds.home_points_pr }}</td>
+                        <td class="text-center">{{ preds.away_points_pr }}</td>
+                        <td class="text-center">{{ preds.home_points_pr }}</td>
+                        <td class="text-center"><a href="/NBA/models/nba_poly_reg"><img
+                            src="{% static 'media/misc/white-arrow.png' %}" width="25"
+                            style="float:center; vertical-align:middle" /></a></td>
+                    </tr>
+                    <tr>
+                        <td>Elastic Net Regression</td>
+                        <td>Points</td>
+                        <td class="text-center">{{ preds.away_points_eln }}</td>
+                        <td class="text-center">{{ preds.home_points_eln }}</td>
+                        <td class="text-center"><a href="/NBA/models/nba_eln_reg"><img
+                            src="{% static 'media/misc/white-arrow.png' %}" width="25"
+                            style="float:center; vertical-align:middle" /></a></td>
                     </tr>
                 </tbody>
             </table>

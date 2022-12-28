@@ -96,10 +96,7 @@ def calculate_predictions_util():
 def generate_error_plots_util():
     nba = NBA(NBA_SEASON)
 
-    models = [
-        'Linear Regression',
-        'Polynomial Regression'
-    ]
+    models = nba.models.keys()
 
     for model in models:
         nba.models[model].plot_rmse()

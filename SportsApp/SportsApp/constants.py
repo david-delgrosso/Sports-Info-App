@@ -128,7 +128,8 @@ NBA_BOXSCORE_STATS_LIST = [
 
 NBA_MODELS_TUPLE = (
     ('1','Linear Regression'),
-    ('2','Polynomial Regression')
+    ('2','Polynomial Regression'),
+    ('3','Elastic Net Regression'),
 )
 
 NBA_TEAMS_TUPLE = (

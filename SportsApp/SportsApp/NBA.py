@@ -1,7 +1,7 @@
 from SportsApp.models import NBASchedule2017, NBASchedule2018, NBASchedule2019, NBASchedule2020, NBASchedule2021, NBASchedule2022, NBAGameStats2017, NBAGameStats2018, NBAGameStats2019, NBAGameStats2020, NBAGameStats2021, NBAGameStats2022, NBATeam, NBAPredictions2022, NBAOdds2022
 from SportsApp.constants import *
 from SportsApp.restapis import request_nba_schedule_to_json, request_nba_game_stats, request_nba_game_odds
-from SportsApp.ML import NBALinReg, NBAPolyReg
+from SportsApp.ML import NBALinReg, NBAPolyReg, NBAElnReg
 import json
 from datetime import datetime, timedelta
 import time
@@ -21,6 +21,7 @@ class NBA:
         self.models = {
             'Linear Regression' : NBALinReg(),
             'Polynomial Regression' : NBAPolyReg(),
+            'Elastic Net Regression' : NBAElnReg(),
         }
 
     def __str__(self):
@@ -808,6 +809,7 @@ class NBA:
             # Generate predictions
             pred.home_points_lr, pred.away_points_lr = self.models['Linear Regression'].predict_game(game_stats)
             pred.home_points_pr, pred.away_points_pr = self.models['Polynomial Regression'].predict_game(game_stats)
+            pred.home_points_eln, pred.away_points_eln = self.models['Elastic Net Regression'].predict_game(game_stats)
 
             # Copy in vegas predictions
             if sch.game_stats_filled and sch.team_stats_filled:
@@ -871,6 +873,16 @@ class NBA:
         home_points_pr_cum_rmse = 0
         away_points_pr_cum_rmse = 0
 
+        home_diff_eln_tot_err = 0
+        away_diff_eln_tot_err = 0
+        home_points_eln_cum_me = 0
+        away_points_eln_cum_me = 0
+
+        home_diff_eln_sqr_err = 0
+        away_diff_eln_sqr_err = 0
+        home_points_eln_cum_rmse = 0
+        away_points_eln_cum_rmse = 0
+
         i = 0 # loop counter
         n = len(schs)
 
@@ -919,6 +931,16 @@ class NBA:
                 home_points_pr_cum_rmse = sqrt(home_diff_pr_sqr_err / i)
                 away_points_pr_cum_rmse = sqrt(away_diff_pr_sqr_err / i)
 
+                home_diff_eln_tot_err += game_stats.home_points - pred.home_points_eln
+                away_diff_eln_tot_err += game_stats.away_points - pred.away_points_eln
+                home_points_eln_cum_me = home_diff_eln_tot_err / i
+                away_points_eln_cum_me = away_diff_eln_tot_err / i
+
+                home_diff_eln_sqr_err += (game_stats.home_points - pred.home_points_eln) ** 2
+                away_diff_eln_sqr_err += (game_stats.away_points - pred.away_points_eln) ** 2
+                home_points_eln_cum_rmse = sqrt(home_diff_eln_sqr_err / i)
+                away_points_eln_cum_rmse = sqrt(away_diff_eln_sqr_err / i)
+
             # Save predictions to database
             pred.home_points_vegas_cum_me = home_points_vegas_cum_me
             pred.away_points_vegas_cum_me = away_points_vegas_cum_me
@@ -926,6 +948,8 @@ class NBA:
             pred.away_points_lr_cum_me    = away_points_lr_cum_me
             pred.home_points_pr_cum_me    = home_points_pr_cum_me
             pred.away_points_pr_cum_me    = away_points_pr_cum_me
+            pred.home_points_eln_cum_me   = home_points_eln_cum_me
+            pred.away_points_eln_cum_me   = away_points_eln_cum_me
             
             pred.home_points_vegas_cum_rmse = home_points_vegas_cum_rmse
             pred.away_points_vegas_cum_rmse = away_points_vegas_cum_rmse
@@ -933,7 +957,9 @@ class NBA:
             pred.away_points_lr_cum_rmse    = away_points_lr_cum_rmse
             pred.home_points_pr_cum_rmse    = home_points_pr_cum_rmse
             pred.away_points_pr_cum_rmse    = away_points_pr_cum_rmse
-
+            pred.home_points_eln_cum_rmse   = home_points_eln_cum_rmse
+            pred.away_points_eln_cum_rmse   = away_points_eln_cum_rmse
+            
             pred.save()
 
             # Print progress bar
