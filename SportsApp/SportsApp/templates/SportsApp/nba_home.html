@@ -59,7 +59,7 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">Home</th>
-                        <th scope="col">Time ET</th>
+                        <th scope="col" class="text-center">Time ET</th>
                         <th scope="col"></th>
                         {% endif %}
                     </tr>
@@ -82,14 +82,14 @@
                             style="float:center; vertical-align:middle" /></a></td>
                         {% else %}
                         <td>{{ game.date }}</td>
-                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
+                        <td><img src="{% static 'media/nba_logos/'|addstrings:game.away_team.city|addstrings:'_'|addstrings:game.away_team.name|addstrings:'_Logo.png' %}"
                                 width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.away_city }} {{ game.away_team }}</td>
                         <td>@</td>
                         <td><img src="{% static 'media/nba_logos/'|addstrings:game.home_team.city|addstrings:'_'|addstrings:game.home_team.name|addstrings:'_Logo.png' %}"
                                 width="25" style="float:center; vertical-align:middle" /></td>
                         <td>{{ game.home_city }} {{ game.home_team }}</td>
-                        <td>{{ game.time }}</td>
+                        <td class="text-center">{{ game.time|timeformat }}</td>
                         <td><a href="{% url 'load_nba_game' game.id %}"><img
                                     src="{% static 'media/misc/white-arrow.png' %}" width="25"
                                     style="float:center; vertical-align:middle" /></a></td>
