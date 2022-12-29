@@ -101,11 +101,91 @@
             <hr class="bg-light">
             <h3 class="text-center text-light mb-3">Description</h3>
             {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/data_prep.html'%}
-            <h5 class="text-light mb-3">Header</h5>
+            <h5 class="text-light mb-3">Tuning Hyperparameters</h5>
             <p class="text-light mb-3">
-                Training the model was far simpler than preparing the data, as is usually the case with machine
-                learning.
+                Elastic net regression is an extension of linear regression, with the goal of limiting the size of the regression coefficients. Elastic net regression applies a combination of two other regression methods, Lasso and Ridge, which attempt to minimize a cost function based on the L1 and L2 norms of the regression coefficients, respectively. Elastic net regression is easily implemented in python using scikit-learn's <span style="font-style:italic">ElasticNet</span> class.
             </p>
+            <p class="text-light mb-3">
+                This class takes two arguments, or hyperparameters, that drastically impact the performanc of the model. The first hyperparameter is typically denoted as <span style="font-style:italic">alpha</span>, and it acts as a scaling parameter on the L1 and L2 norms in the cost function. An alpha of zero turns the elastic net regressor effectively into a linear regressor as it negates the cost terms completely. The second hyperparameter is called the <span style="font-style:italic">L1 ratio</span>, and it weights the contribution of the L1 term and the L2 term in the cost function. An L1 ratio of 1 is effectively Lasso regression, and an L1 ratio of 0 is effectively Ridge regression.
+            </p>
+            <p class="text-light mb-3">
+                The hyperparameters were tuned using a grid search with cross fold validation. The results of the search indicated that the optimal parameters were the following.
+            </p>
+            <table class="table text-light table-striped table-dark center mb-3" style="width:30%" id="table"
+                data-filter-control="true">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Alpha</th>
+                        <th scope="col">L1 Ratio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td>0.2</td>
+                        <td>0.8</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5 class="text-light mb-3">Training the Model</h5>
+            <p class="text-light mb-3">
+                As with the other models, a regression object of the <span  style="font-style:italic">ElasticNet</span> class was created for both home points and away points using the hyperparameters shown above. The model errors on the training set are shown below.
+            </p>
+            <table class="table text-light table-striped table-dark center mb-3" style="width:50%" id="table"
+                data-filter-control="true">
+                <thead>
+                    <tr class="text-left">
+                        <th scope="col">Label</th>
+                        <th scope="col">R-squared</th>
+                        <th scope="col">RMSE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home Points</td>
+                        <td>0.067</td>
+                        <td>12.319</td>
+                    </tr>
+                    <tr>
+                        <td>Away Points</td>
+                        <td>0.072</td>
+                        <td>12.543</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5 class="text-light mb-3">Assessing the Performance</h5>
+            <p class="text-light mb-3">
+                Next, the generalization error was computed and the results are shown in the table below.
+            </p>
+            <table class="table text-light table-striped table-dark center mb-3" style="width:50%" id="table"
+                data-filter-control="true">
+                <thead>
+                    <tr class="text-left">
+                        <th scope="col">Label</th>
+                        <th scope="col">RMSE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home Points</td>
+                        <td>12.131</td>
+                    </tr>
+                    <tr>
+                        <td>Away Points</td>
+                        <td>11.675</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="text-light mb-3">
+                These results are similar to those of the NBA Linear Regression model, which is to be expected since elastic nets are linear models as well. However, the model coefficients were far smaller in value due to the elastic net cost function which led to more fields having influence over the final prediction. These coefficients are shown for both models below.
+            </p>
+            <div class="col align-self-center mb-3">
+                <img src="{% static 'media/plots/nba_home_points_eln_reg_driving_coef.png' %}" width="100%"
+                    style="float:center; vertical-align:middle" />
+            </div>
+            <div class="col align-self-center mb-3">
+                <img src="{% static 'media/plots/nba_away_points_eln_reg_driving_coef.png' %}" width="100%"
+                    style="float:center; vertical-align:middle" />
+            </div>
         </div>
     </section>
 

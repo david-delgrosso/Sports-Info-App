@@ -13,3 +13,4 @@ X- Add vegas odds to model performance plot
   X- One for each year
   - Weight recent games more
 X- Add filter for time display
+- include model definition in description
