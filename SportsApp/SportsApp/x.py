@@ -11,8 +11,9 @@ from utils import *
 #download_nba_game_stats_util()
 #calculate_nba_team_stats_util()
 #download_game_odds_util()
-calculate_predictions_util()
-generate_error_plots_util()
+#calculate_predictions_util()
+#generate_error_plots_util()
+set_best_fit_rankings_util()
 
 #clear_nba_teams_util()
 

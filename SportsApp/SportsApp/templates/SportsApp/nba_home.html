@@ -139,6 +139,41 @@
             </div>
     </section>
 
+    <section class="p-1 mb-3">
+        <div class="container">
+            <hr class="bg-light">
+            <h3 class="text-center text-light mb-3">Best Fit Ratings</h3>
+            <table class="table text-light table-striped table-dark center" style="width:50%" id="table" data-filter-control="true">
+                <thead>
+                    <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col"></th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ranking,name,rating,s in ratings %}
+                    <tr>
+                        <td>{{ranking}}</td>
+                        <td>
+                            <img src="{% static 'media/nba_logos/'|addstrings:s|addstrings:'_Logo.png' %}"
+                                width="25" style="float:center; vertical-align:middle" />
+                        </td>
+                        <td>{{name}}</td>
+                        {% if rating > 0 %}
+                        <td class="text-success">{{rating|floatformat:"2"}}</td>
+                        {% else %}
+                        <td class="text-danger">{{rating|floatformat:"2"}}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     {% include '/home/davidm97/Projects/Sports-Info-App/SportsApp/SportsApp/templates/SportsApp/footer.html' %}
 </body>
 

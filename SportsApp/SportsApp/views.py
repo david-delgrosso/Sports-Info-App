@@ -95,6 +95,9 @@ def nba_home_view(request):
     context['pred_form'] = pred_form
     context['in_past'] = True
 
+    ratings = nba.get_best_fit_ratings()
+    context['ratings'] = zip(ratings['ranking'], ratings['team'], ratings['rating'], ratings['string'])
+
     for game in context['nba_games']:
         context['nba_stats'].append(nba.game_stats_obj.objects.get(id=game))
 

@@ -2,9 +2,13 @@ from django.db import models
 
 class NBATeam(models.Model):
     id        = models.IntegerField(primary_key=True)
+    alpha_id  = models.IntegerField(default=0)
     name      = models.CharField(max_length=30)
     city      = models.CharField(max_length=30)
     full_name = models.CharField(max_length=40)
+
+    best_fit_rating = models.FloatField(default=0.0)
+    best_fit_rank   = models.IntegerField(default=0)
         
     games       = models.IntegerField(default=0)
     wins        = models.IntegerField(default=0)
@@ -96,6 +100,9 @@ class NBATeam(models.Model):
 
     def __str__(self):
         return str(self.city) + ' ' + (self.name)
+
+    def __int__(self):
+        return int(self.id)
 
 class NBAScheduleTemplate(models.Model):
     id                = models.IntegerField(primary_key=True)

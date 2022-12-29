@@ -7,6 +7,8 @@ from datetime import datetime, timedelta
 import time
 import csv
 from math import sqrt
+import numpy as np
+import scipy.optimize
 
 # Class to hold all logic pertaining to NBA database management,
 # statistics generation, and model predictions
@@ -17,12 +19,15 @@ class NBA:
         self.game_stats_obj = self.get_game_stats_obj(self.year)
         self.pred_obj = NBAPredictions2022
         self.odds_obj = NBAOdds2022
+        self.teams_obj = NBATeam
         self.teams_list = []
         self.models = {
             'Linear Regression' : NBALinReg(),
             'Polynomial Regression' : NBAPolyReg(),
             'Elastic Net Regression' : NBAElnReg(),
         }
+        self.home_adv = 0.0
+        self.load_teams()
 
     def __str__(self):
         return f"{self.year} NBA object"
@@ -31,13 +36,17 @@ class NBA:
     def load_teams(self):
         for k,v in NBA_TEAMS_DICT.items():
             full_name = str(v) + " " + str(k)
-            NBATeam.objects.create(id=NBA_API_ID_DICT[k],
-                                   name=k,
-                                   city=v,
-                                   full_name=full_name)
+            # self.teams_obj.objects.create(id=NBA_API_ID_DICT[k],
+            #                        name=k,
+            #                        city=v,
+            #                        full_name=full_name)
             team_name = str(v) + " " + str(k)
             self.teams_list.append(team_name)
         self.teams_list = sorted(self.teams_list)
+        for idx,name in enumerate(self.teams_list):
+            team_obj = self.teams_obj.objects.get(full_name=name)
+            team_obj.alpha_id = idx + 1
+            team_obj.save()
 
     # Get schedule object for a specified year
     # @param[in]    year     year of schedule object to retreive
@@ -119,7 +128,7 @@ class NBA:
             # Ignore non NBA teams
             home_team_id = game['teams']['home']['id']
             try:
-                home_team = NBATeam.objects.get(id=home_team_id)
+                home_team = self.teams_obj.objects.get(id=home_team_id)
             except:
                 print(str(game['teams']['home']['name']) + " was not recognized as an NBA team. The game was not added to the schedule.")
                 self.printProgressBar(i,n,'Loading Schedule to Database...')
@@ -127,7 +136,7 @@ class NBA:
         
             away_team_id = game['teams']['visitors']['id']
             try:
-                away_team = NBATeam.objects.get(id=away_team_id)
+                away_team = self.teams_obj.objects.get(id=away_team_id)
             except:
                 print(str(game['teams']['visitors']['name']) + " was not recognized as an NBA team. The game was not added to the schedule.")
                 self.printProgressBar(i+1,n,'Loading Schedule to Database...')
@@ -331,7 +340,7 @@ class NBA:
 
     # Reset all team stats to their default values
     def reset_team_stats(self):
-        teams = NBATeam.objects.all()
+        teams = self.teams_obj.objects.all()
         for team in teams:
             team.games       = 0
             team.wins        = 0
@@ -709,7 +718,7 @@ class NBA:
             stat_rank = "rank_" + str(stat)
 
             # Query database filtering by specified stat
-            sorted_db = NBATeam.objects.all().order_by(stat_name)
+            sorted_db = self.teams_obj.objects.all().order_by(stat_name)
 
             # Iterate over queryset
             for idx,team in enumerate(sorted_db):
@@ -977,9 +986,9 @@ class NBA:
         # Grab home team stats
         home_team_sp = home_team_name.split(' ')
         if home_team_sp[-1] in NBA_TEAMS_DICT:
-            home_team = NBATeam.objects.get(name=home_team_sp[-1])
+            home_team = self.teams_obj.objects.get(name=home_team_sp[-1])
         else:
-            home_team = NBATeam.objects.get(name=home_team_sp[-2:])
+            home_team = self.teams_obj.objects.get(name=home_team_sp[-2:])
         home_team_dict = home_team.__dict__
 
         # Save home team stats in game dictionary
@@ -990,9 +999,9 @@ class NBA:
         # Grab away team stats
         away_team_sp = away_team_name.split(' ')
         if away_team_sp[-1] in NBA_TEAMS_DICT:
-            away_team = NBATeam.objects.get(name=away_team_sp[-1])
+            away_team = self.teams_obj.objects.get(name=away_team_sp[-1])
         else:
-            away_team = NBATeam.objects.get(name=away_team_sp[-2:])
+            away_team = self.teams_obj.objects.get(name=away_team_sp[-2:])
         away_team_dict = away_team.__dict__
 
         # Save away team stats in game dictionary
@@ -1076,8 +1085,8 @@ class NBA:
                 try:
                     self.odds_obj.objects.get(id=game_id)
                 except:
-                    game_home_team = NBATeam.objects.get(full_name=game_home_team_full_name)
-                    game_away_team = NBATeam.objects.get(full_name=game_away_team_full_name)
+                    game_home_team = self.teams_obj.objects.get(full_name=game_home_team_full_name)
+                    game_away_team = self.teams_obj.objects.get(full_name=game_away_team_full_name)
                     self.odds_obj.objects.create(id=game_id,
                                                  date=game_date,
                                                  home_team=game_home_team,
@@ -1114,6 +1123,92 @@ class NBA:
         print("Total Games: ", n_games_sch)
         print("Games Filled: ", n_games_odds)
         print("Games Empty: ", len(actual_empty_games))
+
+    # 
+    def set_best_fit_rankings(self):
+        teams = self.teams_obj.objects.all()
+        n_teams = len(teams)
+        games = self.sch_obj.objects.filter(game_stats_filled=1)
+        n_games = len(games)
+        
+        m_rows = n_teams + 1
+        m_cols = n_games
+        M = np.zeros((m_rows, m_cols))
+
+        s_cols = n_games
+        S = np.zeros(s_cols)
+
+        for col,game in enumerate(games):
+            game_stat_obj = self.game_stats_obj.objects.get(id=game.id)
+            home_team      = game.home_team.alpha_id
+            away_team      = game.away_team.alpha_id
+            home_points    = game_stat_obj.home_points
+            away_points    = game_stat_obj.away_points
+
+            M[0,col]         = 1.0
+            M[home_team,col] = 1.0
+            M[away_team,col] = -1.0
+            S[col]           = home_points - away_points
+
+        init_W = np.array([2.0] + [0.0]*n_teams)
+
+        def errorfn(w,m,s):
+            return w.dot(m) - s
+
+        W = scipy.optimize.leastsq(errorfn, init_W, args=(M,S))
+
+        self.home_adv = W[0][0]
+        team_ratings = W[0][1:]
+
+        for idx,team in enumerate(self.teams_list):
+            team_obj = self.teams_obj.objects.get(alpha_id=(idx+1))
+            team_obj.best_fit_rating = team_ratings[idx]
+            team_obj.save()
+        
+        # Query database filtering by specified stat
+        sorted_db = self.teams_obj.objects.all().order_by("-best_fit_rating")
+
+        ratings_sum = 0
+
+        # Iterate over queryset
+        for idx,team in enumerate(sorted_db):
+            
+            ratings_sum += team.best_fit_rating
+
+            team.best_fit_rank = idx + 1
+           
+            # Save team object to database
+            team.save()
+
+        mean_rating = ratings_sum / n_teams
+
+        for idx,team in enumerate(sorted_db):
+            
+            team.best_fit_rating = team.best_fit_rating - mean_rating
+           
+            # Save team object to database
+            team.save()
+        
+        print("Home court advantage:",round(self.home_adv,2))
+
+    def get_best_fit_ratings(self):
+        teams = self.teams_obj.objects.all().order_by("best_fit_rank")
+        ratings = {
+            'ranking' : [],
+            'team' : [],
+            'rating' : [],
+            'string' : [],
+        }
+
+        for team in teams:
+            ratings['ranking'].append(team.best_fit_rank)
+            ratings['team'].append(team.full_name)
+            ratings['rating'].append(team.best_fit_rating)
+            ratings['string'].append(team.full_name.replace(' ','_'))
+
+        return ratings
+
+
 
     # Print iterations progress
     def printProgressBar (self, iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):

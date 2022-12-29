@@ -130,3 +130,8 @@ def download_game_odds_util():
     nba.clear_game_odds()
     nba.download_game_odds()
     print(str(nba), "has successfully loaded game odds to schedule...")
+
+def set_best_fit_rankings_util():
+    nba = NBA(NBA_SEASON)
+    nba.set_best_fit_rankings()
+    print(str(nba), "has successfully set best fit rankings...")
